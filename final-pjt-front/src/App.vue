@@ -8,6 +8,19 @@
   </div>
 </template>
 
+<script>
+export default {
+  methods: {
+    getMovies() {
+      this.$store.dispatch('getMovies')
+    }
+  },
+  created() {
+    this.getMovies()
+  }
+}
+</script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
