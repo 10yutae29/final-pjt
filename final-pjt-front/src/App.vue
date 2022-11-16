@@ -4,7 +4,7 @@
       <router-link to="/moviesview">MoviesView</router-link> |
       <router-link to="/recommendview">RecommendView</router-link>
     </nav>
-    <router-view/>
+    <router-view id="view"/>
   </div>
 </template>
 
@@ -28,8 +28,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #000000;
-  background: rgb(255, 255, 255);
+  background: #fff;
 }
+
+#view {
+  background: #ffd200;
+}
+
 
 nav {
   padding: 30px;
