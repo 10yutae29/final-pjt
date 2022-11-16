@@ -11,6 +11,14 @@ export default {
   name: 'MoviesView',
   components: {
     MoviesList
+  },
+  methods: {
+    getMovies(){
+      this.$store.dispatch('getMovies')
+    }
+  },
+  created(){
+    this.getMovies()
   }
 }
 </script>

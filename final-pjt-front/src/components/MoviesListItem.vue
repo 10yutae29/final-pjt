@@ -2,12 +2,12 @@
   <div id="a" class="col-xxl-3 col-md-6 mb-3">
     <div class="row justify-content-center">
       <div class="w-75 border col-12 card" id="card">
-        <img class="mt-3" :src="`https://image.tmdb.org/t/p/original${movie.poster_path}`" alt="">
+        <img class="mt-3" :src="`https://image.tmdb.org/t/p/original${movie?.poster_path}`" alt="">
         <div class="h-25">
-          <p class="mt-3 fs-5" id="title">{{ movie.title }}</p>
+          <p class="mt-3 fs-5" id="title">{{ movie?.title }}</p>
           <div class="row align-items-center">
             <div class="col-6">
-              <span>평점 : {{ movie.vote_average }}</span>
+              <span>평점 : {{ movie?.vote_average }}</span>
             </div>
             <div class="col-6">
               <div class="row align-items-center">
