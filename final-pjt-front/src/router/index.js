@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import HomeView from '../views/HomeView.vue'
 import MoviesView from '../views/MoviesView.vue'
-
+import RecommendView from '../views/RecommendView.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -10,6 +9,11 @@ const routes = [
     path: '/moviesview',
     name: 'moviesview',
     component: MoviesView
+  },
+  {
+    path: '/RecommendView',
+    name: 'RecommendView',
+    component: RecommendView
   }
 ]
 
