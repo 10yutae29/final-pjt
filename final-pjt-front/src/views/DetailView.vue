@@ -7,6 +7,7 @@
     <p>{{ movie?.overview }}</p>
     <CommentsList
     :comments="comments"
+    @delete-comment="deleteComment"
     />
   </div>
 </template>
@@ -44,11 +45,23 @@ export default {
     getMovieComments() {
       axios({
         method: 'get',
-        url: `${API_URL}/community/${this.$route.params.id}`,
+        url: `${API_URL}/movies/${this.$route.params.id}`,
       })
       .then((response) => {
         console.log(response)
-        // this.comments = response.data
+        this.comments = response.data.comment_set
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    },
+    deleteComment(comment_id) {
+      axios({
+        method: 'delete',
+        url: `${API_URL}/community/comment/${comment_id}/`,
+      })
+      .then((response) => {
+        console.log(response)
       })
       .catch((error) => {
         console.log(error)
@@ -57,6 +70,7 @@ export default {
   },
   created() {
     this.getMovieDetail()
+    this.getMovieComments()
   }
 }
 </script>
