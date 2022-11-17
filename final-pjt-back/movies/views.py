@@ -25,14 +25,16 @@ def get_movie(request):
         movie.id = result.get('id')
         movie.poster_path = result.get('poster_path')
         movie.popularity = result.get('popularity')
-        movie.genre_ids = result.get('genre_ids')
         movie.vote_average = result.get('vote_average')
-        movie.genre_ids = result.get('genre_ids')
         movie.overview = result.get('overview')
         movie.release_date = result.get('release_date')
         movie.title = result.get('title')
-    
-    open("mydata-new.json","wb").write(open("mydata.json").read().decode("unicode_escape").encode("utf8"))
+
+        genre_ids = result.get('genre_ids')
+        for genre_id in genre_ids:
+            movie.genres.add(genre_id)
+            
+
 
 
 def get_genres(request):
