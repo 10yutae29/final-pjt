@@ -2,7 +2,7 @@
   <div>
     <h1>유저 정보</h1>
     <p>{{ user?.username }}</p>
-    <p @click="goChangePassword">비밀번호 변경</p>
+    <button @click="goChangePassword">비밀번호 변경</button>
   </div>
 </template>
 

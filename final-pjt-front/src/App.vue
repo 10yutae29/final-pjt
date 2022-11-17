@@ -7,7 +7,7 @@
       <router-link v-if="!isLogin" to="/loginview">로그인</router-link> <span v-if="!isLogin">| </span>
       <router-link v-if="!isLogin" to="/signupview">회원 가입</router-link>
       <span @click="getLoginUser" >
-        <router-link v-if="isLogin" to="/userview">내정보</router-link> <span v-if="isLogin">|</span>
+        <router-link v-if="isLogin" to="/userview">내정보</router-link> <span v-if="isLogin">| </span>
       </span>
       <a id="logout" v-if="isLogin" href="#" @click="logOut">로그 아웃</a>
     </nav>

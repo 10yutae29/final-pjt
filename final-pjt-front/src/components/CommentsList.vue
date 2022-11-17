@@ -1,7 +1,11 @@
 <template>
   <div>
     <h1>CommentsList</h1>
-    <CommentsListItems/>
+    <CommentsListItems
+    v-for="comment in comments"
+    :key="comment.id"
+    :comment="comment"
+    />
   </div>
 </template>
 
@@ -12,7 +16,10 @@ export default {
   name: 'CommentsList',
   components:{
     CommentsListItems
-  } 
+  },
+  props: {
+    comments:Object
+  }
 }
 </script>
 
