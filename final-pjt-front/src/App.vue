@@ -2,14 +2,14 @@
   <div id="app">
     <h1>Movie 5range</h1>
     <nav>
-      <router-link to="/moviesview">전체 영화</router-link> |
-      <router-link to="/recommendview">영화 추천</router-link> |
+      <router-link to="/moviesview">전체영화</router-link> |
+      <router-link to="/recommendview">영화추천</router-link> |
       <router-link v-if="!isLogin" to="/loginview">로그인</router-link> <span v-if="!isLogin">| </span>
-      <router-link v-if="!isLogin" to="/signupview">회원 가입</router-link>
+      <router-link v-if="!isLogin" to="/signupview">회원가입</router-link>
       <span @click="getLoginUser" >
         <router-link v-if="isLogin" to="/userview">내정보</router-link> <span v-if="isLogin">| </span>
       </span>
-      <a id="logout" v-if="isLogin" href="#" @click="logOut">로그 아웃</a>
+      <a id="logout" v-if="isLogin" href="#" @click="logOut">로그아웃</a>
     </nav>
     <!-- 체크한번하자 -->
     <router-view id="view"/>
@@ -54,7 +54,7 @@ export default {
 }
 
 #logout:hover {
-  color: blue;
+  color: rgb(154, 154, 250);
 }
 
 nav {
@@ -68,7 +68,8 @@ nav a {
 }
 
 nav a:hover {
-  color: blue;
+  color: rgb(154, 154, 250);
+
 }
 
 nav a.router-link-exact-active {

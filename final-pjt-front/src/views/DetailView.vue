@@ -48,7 +48,6 @@ export default {
         url: `${API_URL}/movies/${this.$route.params.id}`,
       })
       .then((response) => {
-        console.log(response)
         this.comments = response.data.comment_set
       })
       .catch((error) => {
@@ -61,7 +60,7 @@ export default {
         url: `${API_URL}/community/comment/${comment_id}/`,
       })
       .then((response) => {
-        console.log(response)
+        this.getMovieComments(response)
       })
       .catch((error) => {
         console.log(error)
