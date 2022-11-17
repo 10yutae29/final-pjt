@@ -120,6 +120,26 @@ export default new Vuex.Store({
         console.log(error)
       })
 
+    },
+    changePassword(context, payload) {
+      axios({
+        method: 'post',
+        url:  `${API_URL}/accounts/password/reset/confirm/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+        data: {
+          new_password1: payload.new_password1,
+          new_password2: payload.new_password2,
+          // uid: payload.uid
+        }
+      })
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
     }
   },
   modules: {
