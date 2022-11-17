@@ -3,8 +3,6 @@ from rest_framework.decorators import api_view
 from django.shortcuts import render
 import requests
 
-import json
-
 from .models import Movie
 from .serializers import MovieListSerializer
 
