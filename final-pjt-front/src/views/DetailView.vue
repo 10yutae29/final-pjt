@@ -1,22 +1,26 @@
 <template>
   <div>
     <h1>DetailView</h1>
-    <p>{{ movie.title }}</p>
-    <img src="`https://image.tmdb.org/t/p/original${movie?.poster_path}`" alt="">
-    <p>{{ movie.vote_average }}</p>
-    <p>{{ movie.release_date }}</p>    
-    <p>{{ movie.overview }}</p>
+    <p>{{ movie?.title }}</p>
+    <img :src="`https://image.tmdb.org/t/p/original${movie?.poster_path}`" alt="">
+    <p>{{ movie?.vote_average }}</p>
+    <p>{{ movie?.release_date }}</p>    
+    <p>{{ movie?.overview }}</p>
+    <CommentsList/>
   </div>
 </template>
 
 <script>
 import axios  from 'axios'
-
+import CommentsList from '@/components/CommentsList'
 
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'DetailView',
+  components: {
+    CommentsList
+  },
   data() {
     return{
       movie: null
@@ -29,7 +33,6 @@ export default {
         url: `${API_URL}/movies/${this.$route.params.id}`
       })
       .then((response) => {
-        console.log(response)
         this.movie = response.data
       })
       .catch((error) => {
