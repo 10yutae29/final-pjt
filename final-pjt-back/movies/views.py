@@ -3,17 +3,13 @@ from rest_framework.decorators import api_view
 from django.shortcuts import render
 import requests
 
+from rest_framework import status
 from .models import Movie, Genre
-from .serializers import MovieListSerializer, MovieSerializer
+from .serializers import MovieListSerializer, MovieSerializer, CommentSerializer
 
 from pprint import pprint
 # Create your views here.
 
-
-
-def movie_likes(request, movie_pk):
-    movie = Movie.objects.get(pk=movie_pk)
-    movie.like_users.add(3)
 
 @api_view(['GET'])
 def movie_list(request):
@@ -21,11 +17,22 @@ def movie_list(request):
     serializer = MovieListSerializer(movies, many=True)
     return Response(serializer.data)
     
-@api_view(['GET'])
+
+@api_view(['GET', 'POST'])
 def movie_detail(request, movie_pk):
+    if request.method == 'GET':
+        movie = Movie.objects.get(pk=movie_pk)
+        serializer = MovieSerializer(movie)
+        return Response(serializer.data)
+
+
+
+
+
+
+def movie_likes(request, movie_pk):
     movie = Movie.objects.get(pk=movie_pk)
-    serializer = MovieSerializer(movie)
-    return Response(serializer.data)
+    movie.like_users.add(3)
 
 
 def get_movie(request):
@@ -47,8 +54,6 @@ def get_movie(request):
         for genre_id in genre_ids:
             movie.genres.add(genre_id)
             
-
-
 
 def get_genres(request):
     results = requests.get("https://api.themoviedb.org/3/genre/movie/list?api_key=f5c70cf3de1ffb0fae4f5469051c4be3&language=ko-kr").json().get('genres')

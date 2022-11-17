@@ -17,7 +17,7 @@ def comment_list(request):
         serializer = CommentListSerializer(comments, many=True)
         return Response(serializer.data)
 
-    # 댓글 작성_ 권한 있어야 가능 / POST / 근데 그... content만 받아도 작성 할 수 있게 만들기,,,,
+    # 댓글 작성_ 권한 있어야 가능 / POST / 
     elif request.method == 'POST':
         serializer = CommentSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
@@ -40,7 +40,7 @@ def comment_detail(request, comment_pk):
         comment.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    # 댓글 수정_ 권한 있어야 가능 / 본인만 가능 / PUT / 근데 그... content만 받아도 작성 할 수 있게 만들기,,,,
+    # 댓글 수정_ 권한 있어야 가능 / 본인만 가능 / PUT 
     elif request.method == 'PUT':
         serializer = CommentSerializer(comment, data=request.data)
         if serializer.is_valid(raise_exception=True):
