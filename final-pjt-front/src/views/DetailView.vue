@@ -5,7 +5,9 @@
     <p>{{ movie?.vote_average }}</p>
     <p>{{ movie?.release_date }}</p>    
     <p>{{ movie?.overview }}</p>
-    <CommentsList/>
+    <CommentsList
+    :comments="comments"
+    />
   </div>
 </template>
 
@@ -22,7 +24,8 @@ export default {
   },
   data() {
     return{
-      movie: null
+      movie: null,
+      comments: null
     }
   },
   methods: {
@@ -33,6 +36,19 @@ export default {
       })
       .then((response) => {
         this.movie = response.data
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    },
+    getMovieComments() {
+      axios({
+        method: 'get',
+        url: `${API_URL}/community/${this.$route.params.id}`,
+      })
+      .then((response) => {
+        console.log(response)
+        // this.comments = response.data
       })
       .catch((error) => {
         console.log(error)
