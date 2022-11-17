@@ -15,7 +15,8 @@ export default new Vuex.Store({
   state: {
     movies: [],
     movies_filtered : [],
-    token: null
+    token: null,
+    logedin_user: null,
   },
   getters: {
     isLogin(state) {
@@ -73,6 +74,16 @@ export default new Vuex.Store({
     SAVE_TOKEN(state, token) {
       state.token = token
       router.push('/moviesview')
+    },
+    GET_LOGIN_USER(state, logedin_user) {
+      state.logedin_user = logedin_user
+      console.log(state.logedin_user)
+    },
+    LOG_OUT(state) {
+      state.logedin_user = null
+      state.token = null
+      router.push('/moviesview')
+      console.log('여기까지')
     }
   },
   actions: {
@@ -99,7 +110,6 @@ export default new Vuex.Store({
         }
       })
       .then((response) => {
-        console.log(response)
         context.commit('SAVE_TOKEN', response.data.key)
       })
       .catch((error) => {
@@ -116,7 +126,6 @@ export default new Vuex.Store({
         }
       })
       .then((response) => {
-        console.log(response)
         context.commit('SAVE_TOKEN', response.data.key)
       })
       .catch((error) => {
@@ -127,18 +136,48 @@ export default new Vuex.Store({
     changePassword(context, payload) {
       axios({
         method: 'post',
-        url:  `${API_URL}/accounts/password/reset/confirm/`,
+        url:  `${API_URL}/accounts/password/change/`,
         headers: {
           Authorization: `Token ${context.state.token}`
         },
         data: {
           new_password1: payload.new_password1,
           new_password2: payload.new_password2,
-          // uid: payload.uid
         }
       })
       .then((response) => {
         console.log(response)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    },
+    getLoginUser(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/accounts/user/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+      .then((response) => {
+        context.commit('GET_LOGIN_USER', response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    },
+    logOut(context) {
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/logout/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+      .then((response) => {
+        console.log(response)
+        context.commit('LOG_OUT')
       })
       .catch((error) => {
         console.log(error)

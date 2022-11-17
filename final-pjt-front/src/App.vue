@@ -4,9 +4,12 @@
     <nav>
       <router-link to="/moviesview">전체 영화</router-link> |
       <router-link to="/recommendview">영화 추천</router-link> |
-      <router-link v-if="!isLogin" to="/loginview">로그인</router-link> <span v-if="!isLogin">|</span>
-      <router-link v-if="!isLogin" to="/signupview">회원 가입</router-link> <span v-if="!isLogin">|</span>
-      <router-link v-if="isLogin" @click="practice" to="/userview">내정보</router-link>
+      <router-link v-if="!isLogin" to="/loginview">로그인</router-link> <span v-if="!isLogin">| </span>
+      <router-link v-if="!isLogin" to="/signupview">회원 가입</router-link>
+      <span @click="getLoginUser" >
+        <router-link v-if="isLogin" to="/userview">내정보</router-link> <span v-if="isLogin">|</span>
+      </span>
+      <a id="logout" v-if="isLogin" href="#" @click="logOut">로그 아웃</a>
     </nav>
     <!-- 체크한번하자 -->
     <router-view id="view"/>
@@ -21,8 +24,11 @@ export default {
     }
   },
   methods: {
-    practice() {
-      console.log(localStorage.getItem('token'))
+    getLoginUser() {
+      this.$store.dispatch('getLoginUser')
+    },
+    logOut() {
+      this.$store.dispatch('logOut')
     }
   }
 }
@@ -42,6 +48,14 @@ export default {
   background: #FF6F3C;
 }
 
+#logout {
+  font-weight: bold;
+  color: #eee;
+}
+
+#logout:hover {
+  color: blue;
+}
 
 nav {
   padding: 30px;
@@ -50,6 +64,11 @@ nav {
 nav a {
   font-weight: bold;
   color: #eee;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: blue;
 }
 
 nav a.router-link-exact-active {
