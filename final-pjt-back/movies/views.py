@@ -9,6 +9,12 @@ from .serializers import MovieListSerializer, MovieSerializer
 from pprint import pprint
 # Create your views here.
 
+
+
+def movie_likes(request, movie_pk):
+    movie = Movie.objects.get(pk=movie_pk)
+    movie.like_users.add(3)
+
 @api_view(['GET'])
 def movie_list(request):
     movies = Movie.objects.all()
