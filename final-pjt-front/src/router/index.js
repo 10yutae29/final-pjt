@@ -6,7 +6,7 @@ import LoginView from '../views/LoginView.vue'
 import SignUpView from '../views/SignUpView.vue'
 import UserView from '../views/UserView.vue'
 import DetailView from '../views/DetailView.vue'
-
+import PasswordChangeView from '../views/PasswordChangeView.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -31,7 +31,7 @@ const routes = [
     component: SignUpView
   },
   {
-    path: '/userview',
+    path: '/userview/:id',
     name: 'UserView',
     component: UserView
   },
@@ -39,6 +39,11 @@ const routes = [
     path: '/moviesview/:id',
     name: 'DetailView',
     component: DetailView
+  },
+  {
+    path: '/passwordchangeview/',
+    name: 'PasswordChangeView',
+    component: PasswordChangeView
   }
 ]
 
