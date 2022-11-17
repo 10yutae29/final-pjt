@@ -8,6 +8,7 @@
       <router-link v-if="!isLogin" to="/signupview">회원 가입</router-link> <span v-if="!isLogin">|</span>
       <router-link v-if="isLogin" @click="practice" to="/userview">내정보</router-link>
     </nav>
+    <!-- 체크한번하자 -->
     <router-view id="view"/>
   </div>
 </template>
