@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # registration
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -77,6 +79,9 @@ CORS_ALLOWED_ORIGINS = [
 SITE_ID = 1
 
 REST_FRAMEWORK = {
+     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
     
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
