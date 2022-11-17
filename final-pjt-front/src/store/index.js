@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import router from '@/router'
+// import router from '@/router'
 import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
@@ -69,7 +69,7 @@ export default new Vuex.Store({
     },
     SAVE_TOKEN(state, token) {
       state.token = token
-      router.push('/moviesview')
+      // router.push('/moviesview')
     }
   },
   actions: {
@@ -92,13 +92,17 @@ export default new Vuex.Store({
         url: `${API_URL}/accounts/signup/`,
         data: {
           username: payload.username,
-          password: payload.password,
+          password1: payload.password1,
           password2: payload.password2
         }
       })
       .then((response) => {
         console.log(response)
         context.commit('SAVE_TOKEN', response.data.key)
+      })
+      .catch((error) => {
+        console.log(error)
+        console.log('실패 엌')
       })
     },
     logIn(context, payload) {
@@ -114,6 +118,11 @@ export default new Vuex.Store({
         console.log(response)
         context.commit('SAVE_TOKEN', response.data.key)
       })
+      .catch((error) => {
+        console.log(error)
+        console.log('실패 엌')
+      })
+
     }
   },
   modules: {
