@@ -8,9 +8,11 @@ class CommentListSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-# 댓글 작성과 수정에만 사용하는 시리얼라이저로, content만 들어가 져도 됨,,,, 그 유저랑 무비는 자동으로 주어질텐데....ㅇㅂㅇ?
 class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
+        # 댓글 작성과 수정에만 사용할 시리얼라이저이므로 
+        # 유저 인증을 통해 유저 정보 받고 무비 정보 받으면 컨텐츠만 입력할 수 있도록 할 것.
+        # fields = ('content',)
         fields = '__all__'
