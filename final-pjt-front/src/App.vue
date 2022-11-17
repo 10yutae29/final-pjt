@@ -1,8 +1,11 @@
 <template>
   <div id="app">
+    <h1>Movie 5range</h1>
     <nav>
       <router-link to="/moviesview">MoviesView</router-link> |
-      <router-link to="/recommendview">RecommendView</router-link>
+      <router-link to="/recommendview">RecommendView</router-link> |
+      <router-link to="/loginview">LoginView</router-link> |
+      <router-link to="/signupview">SignUpView</router-link>
     </nav>
     <router-view id="view"/>
   </div>

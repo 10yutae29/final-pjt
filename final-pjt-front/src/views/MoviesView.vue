@@ -82,10 +82,11 @@ export default {
   },
   created() {
     this.getMovies()
+
     this.getMovieData()
-    
   }
 }
+
 </script>
 
 <style>
