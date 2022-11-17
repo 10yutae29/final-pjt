@@ -50,7 +50,6 @@ export default {
     getMovies() {
       const movies = this.$store.state.movies
       this.movies = movies
-      console.log(this.movies)
     },
     searchFilter() {
       const word = this.search.toLowerCase()
