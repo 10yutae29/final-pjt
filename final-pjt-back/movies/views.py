@@ -3,9 +3,10 @@ from rest_framework.decorators import api_view
 from django.shortcuts import render
 import requests
 
-from .models import Movie
+from .models import Movie, Genre
 from .serializers import MovieListSerializer
 
+from pprint import pprint
 # Create your views here.
 
 @api_view(['GET'])
@@ -32,3 +33,13 @@ def get_movie(request):
         movie.title = result.get('title')
     
     open("mydata-new.json","wb").write(open("mydata.json").read().decode("unicode_escape").encode("utf8"))
+
+
+def get_genres(request):
+    results = requests.get("https://api.themoviedb.org/3/genre/movie/list?api_key=f5c70cf3de1ffb0fae4f5469051c4be3&language=ko-kr").json().get('genres')
+    
+    for result in results:
+        genre = Genre()
+        genre.id = result.get('id')
+        genre.name = result.get('name')
+        genre.save()
