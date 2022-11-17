@@ -5,7 +5,8 @@
       <router-link to="/moviesview">MoviesView</router-link> |
       <router-link to="/recommendview">RecommendView</router-link> |
       <router-link to="/loginview">LoginView</router-link> |
-      <router-link to="/signupview">SignUpView</router-link>
+      <router-link to="/signupview">SignUpView</router-link> |
+      <router-link to="/userview">UserView</router-link>
     </nav>
     <router-view id="view"/>
   </div>
@@ -14,12 +15,7 @@
 <script>
 export default {
   methods: {
-    getMovies() {
-      this.$store.dispatch('getMovies')
-    }
-  },
-  created() {
-    this.getMovies()
+    
   }
 }
 </script>

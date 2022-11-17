@@ -1,12 +1,14 @@
 <template>
   <div>
-    <h1>detail</h1>
+    <h1>
+      UserView
+    </h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'MovieDetail'
+  name: 'UserView'
 }
 </script>
 

@@ -4,7 +4,7 @@
 
     <form @submit.prevent="logIn">
       <label for="username">아이디</label> <br>
-      <input type="text" v-model="username" id="username">
+      <input type="text" v-model="username" id="username"> <br>
 
       <label for="password">비밀번호</label> <br>
       <input type="text" v-model="password" id="password"> <br>

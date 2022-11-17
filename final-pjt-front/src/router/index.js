@@ -4,29 +4,41 @@ import MoviesView from '../views/MoviesView.vue'
 import RecommendView from '../views/RecommendView.vue'
 import LoginView from '../views/LoginView.vue'
 import SignUpView from '../views/SignUpView.vue'
+import UserView from '../views/UserView.vue'
+import DetailView from '../views/DetailView.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/moviesview',
-    name: 'moviesview',
+    name: 'MoviesView',
     component: MoviesView
   },
   {
     path: '/recommendview',
-    name: 'recommendview',
+    name: 'RecommendView',
     component: RecommendView
   },
   {
     path: '/loginview',
-    name: 'loginview',
+    name: 'LoginView',
     component: LoginView
   },
   {
     path: '/signupview',
-    name: 'signupview',
+    name: 'SignUpView',
     component: SignUpView
+  },
+  {
+    path: '/userview',
+    name: 'UserView',
+    component: UserView
+  },
+  {
+    path: '/moviesview/:id',
+    name: 'DetailView',
+    component: DetailView
   }
 ]
 
