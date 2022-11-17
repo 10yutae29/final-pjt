@@ -13,7 +13,7 @@ class Movie(models.Model):
     release_date = models.DateTimeField()
     overview = models.TextField()
     vote_average = models.FloatField()
-    genre_ids = models.CharField(max_length=100)
+    genres = models.ManyToManyField(Genre, related_name='movies')
     popularity = models.IntegerField()
     poster_path = models.CharField(max_length=200)
 
