@@ -1,9 +1,6 @@
 <template>
   <div>
-    <h1>
-      PasswordChangeView
-    </h1>
-
+    <h1>비밀번호 변경</h1>
     <form @submit.prevent="changePassword">
       <label for="newpassword1">New password1</label>
       <input type="text" name="newpassword1" id="newpassword1" v-model="new_password1">

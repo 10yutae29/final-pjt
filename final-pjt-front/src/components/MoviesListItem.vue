@@ -49,7 +49,7 @@ export default {
 
 <style>
 #card {
-  background: #fdb268;
+  background: #155263;
   border: none;
 }
 

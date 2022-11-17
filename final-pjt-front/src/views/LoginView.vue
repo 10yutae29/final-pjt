@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>LoginView</h1>
+    <h1>로그인</h1>
 
     <form @submit.prevent="logIn">
       <label for="username">아이디</label> <br>
