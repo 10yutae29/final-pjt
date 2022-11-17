@@ -25,9 +25,12 @@ def comment_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
     
 
+# 게시글 수정, 삭제
 @api_view(['DELETE', 'GET', 'PUT'])
 def comment_detail(request, comment_pk):
     comment = Comment.objects.get(id=comment_pk)
+
+    # 확인차 넣은 조회... 쓸일 없을 듯?
     if request.method == 'GET':
         serializer = CommentSerializer(comment)
         return Response(serializer.data)
