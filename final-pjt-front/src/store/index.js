@@ -83,6 +83,7 @@ export default new Vuex.Store({
       })
       .catch(error => {
         console.log(error)
+        console.log('faild ㅠㅠ')
       })
     },
     signUp(context, payload) {
