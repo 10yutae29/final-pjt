@@ -1,4 +1,5 @@
 from django.db import models
+from accounts.models import User
 
 # Create your models here.
 
@@ -16,5 +17,6 @@ class Movie(models.Model):
     genres = models.ManyToManyField(Genre, related_name='movies')
     popularity = models.IntegerField()
     poster_path = models.CharField(max_length=200)
+    like_users = models.ManyToManyField(User, related_name='liked_movies')
 
     
