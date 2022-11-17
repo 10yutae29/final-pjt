@@ -4,7 +4,7 @@ from django.shortcuts import render
 import requests
 
 from .models import Movie, Genre
-from .serializers import MovieListSerializer
+from .serializers import MovieListSerializer, MovieSerializer
 
 from pprint import pprint
 # Create your views here.
@@ -15,6 +15,12 @@ def movie_list(request):
     serializer = MovieListSerializer(movies, many=True)
     return Response(serializer.data)
     
+@api_view(['GET'])
+def movie_detail(request, movie_pk):
+    movie = Movie.objects.get(pk=movie_pk)
+    serializer = MovieSerializer(movie)
+    return Response(serializer.data)
+
 
 def get_movie(request):
     response = requests.get("https://api.themoviedb.org/3/movie/top_rated?api_key=f5c70cf3de1ffb0fae4f5469051c4be3&language=ko-kr").json()
@@ -29,6 +35,7 @@ def get_movie(request):
         movie.overview = result.get('overview')
         movie.release_date = result.get('release_date')
         movie.title = result.get('title')
+        movie.save()
 
         genre_ids = result.get('genre_ids')
         for genre_id in genre_ids:
