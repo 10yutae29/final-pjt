@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>MoviesList.vue</h1>
+    <h1>전체 영화</h1>
     <div>
       <span>평점</span>  <span @click="scoreUp">위</span> <span @click="scoreDown">아래</span> |
       <span>제목</span>  <span @click="titleUp">위</span> <span @click="titleDown">아래</span> |

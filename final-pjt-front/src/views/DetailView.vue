@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1>DetailView</h1>
-    <p>{{ movie?.title }}</p>
+    <h1>{{ movie?.title }}</h1>
     <img :src="`https://image.tmdb.org/t/p/original${movie?.poster_path}`" alt="">
     <p>{{ movie?.vote_average }}</p>
     <p>{{ movie?.release_date }}</p>    

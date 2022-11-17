@@ -2,11 +2,11 @@
   <div id="app">
     <h1>Movie 5range</h1>
     <nav>
-      <router-link to="/moviesview">MoviesView</router-link> |
-      <router-link to="/recommendview">RecommendView</router-link> |
-      <router-link to="/loginview">LoginView</router-link> |
-      <router-link to="/signupview">SignUpView</router-link> |
-      <router-link to="/userview">UserView</router-link>
+      <router-link to="/moviesview">전체 영화</router-link> |
+      <router-link to="/recommendview">영화 추천</router-link> |
+      <router-link v-if="!isLogin" to="/loginview">로그인</router-link> <span v-if="!isLogin">|</span>
+      <router-link v-if="!isLogin" to="/signupview">회원 가입</router-link> <span v-if="!isLogin">|</span>
+      <router-link v-if="isLogin" @click="practice" to="/userview">내정보</router-link>
     </nav>
     <router-view id="view"/>
   </div>
@@ -14,8 +14,15 @@
 
 <script>
 export default {
+  computed: {
+    isLogin() {
+      return this.$store.getters.isLogin
+    }
+  },
   methods: {
-    
+    practice() {
+      console.log(localStorage.getItem('token'))
+    }
   }
 }
 </script>
@@ -27,11 +34,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #000000;
-  background: #fff;
+  background: #115264;
 }
 
 #view {
-  background: #ffd200;
+  background: #FF6F3C;
 }
 
 
@@ -41,10 +48,10 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #eee;
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #F07B3F;
 }
 </style>
