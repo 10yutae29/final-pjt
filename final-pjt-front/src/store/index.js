@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-// import router from '@/router'
+import router from '@/router'
 import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
@@ -69,7 +69,7 @@ export default new Vuex.Store({
     },
     SAVE_TOKEN(state, token) {
       state.token = token
-      // router.push('/moviesview')
+      router.push('/moviesview')
     }
   },
   actions: {
@@ -83,7 +83,6 @@ export default new Vuex.Store({
       })
       .catch(error => {
         console.log(error)
-        console.log('faild ㅠㅠ')
       })
     },
     signUp(context, payload) {
@@ -102,7 +101,6 @@ export default new Vuex.Store({
       })
       .catch((error) => {
         console.log(error)
-        console.log('실패 엌')
       })
     },
     logIn(context, payload) {
@@ -120,7 +118,6 @@ export default new Vuex.Store({
       })
       .catch((error) => {
         console.log(error)
-        console.log('실패 엌')
       })
 
     }
