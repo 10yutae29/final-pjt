@@ -17,12 +17,16 @@ export default new Vuex.Store({
     movies_filtered : [],
     token: null,
     logedin_user: null,
-    user_info: null
+    user_info: null,
+    movie_comments: null
   },
   getters: {
     isLogin(state) {
       return state.token ? true: false
-    }
+    },
+    // detailComments(state) {
+    //   return state.movie_comments
+    // }
   },
   mutations: {
     GET_MOVIES(state, movies) {
@@ -86,7 +90,10 @@ export default new Vuex.Store({
       state.token = null
       router.push('/moviesview')
       console.log('여기까지')
-    }
+    },
+    GET_MOVIE_COMMENTS(state, comments) {
+      state.movie_comments = comments
+    },
   },
   actions: {
     getMovies(context) {
@@ -180,6 +187,33 @@ export default new Vuex.Store({
       .then((response) => {
         console.log(response)
         context.commit('LOG_OUT')
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    },
+    getMovieComments(context, movie_id) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/${movie_id}/`,
+      })
+      .then((response) => {
+        const comments = response.data.comment_set
+        context.commit('GET_MOVIE_COMMENTS', comments)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    },
+    deleteComment(context, comment_id) {
+      axios({
+        method: 'delete',
+        url: `${API_URL}/community/comment/${comment_id}/`,
+      })
+      .then((response) => {
+        context.commit('GET_MOVIE_COMMENTS', response)
+        console.log('딜리트코멘트')
+        
       })
       .catch((error) => {
         console.log(error)
