@@ -17,6 +17,7 @@ export default new Vuex.Store({
     movies_filtered : [],
     token: null,
     logedin_user: null,
+    user_info: null
   },
   getters: {
     isLogin(state) {
@@ -77,6 +78,7 @@ export default new Vuex.Store({
     },
     GET_LOGIN_USER(state, logedin_user) {
       state.logedin_user = logedin_user
+      state.user_info = logedin_user
       console.log(state.logedin_user)
     },
     LOG_OUT(state) {
