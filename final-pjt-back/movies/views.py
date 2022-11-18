@@ -71,7 +71,7 @@ def get_movie(request):
             
 
 def get_genres(request):
-    results = requests.get("https://api.themoviedb.org/3/genre/movie/list?api_key=f5c70cf3de1ffb0fae4f5469051c4be3&language=ko-kr").json().get('genres')
+    results = requests.get("https://api.themoviedb.org/3/genre/movie/list?api_key=f5c70cf3de1ffb0fae4f5469051c4be3").json().get('genres')
     
     for result in results:
         genre = Genre()
