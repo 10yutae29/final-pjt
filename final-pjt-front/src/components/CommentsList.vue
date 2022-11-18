@@ -5,7 +5,6 @@
     v-for="comment in comments"
     :key="comment.id"
     :comment="comment"
-    @delete-comment="deleteComment"
     />
   </div>
 </template>
@@ -21,11 +20,6 @@ export default {
   props: {
     comments: Array
   },
-  methods: {
-    deleteComment(comment_id) {
-      this.$emit('delete-comment', comment_id)
-    }
-  }
 }
 </script>
 

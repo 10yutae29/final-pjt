@@ -11,7 +11,7 @@
     </form>
     <CommentsList
     :comments="comments"
-    @delete-comment="deleteComment"
+    
     />
   </div>
 </template>
@@ -30,8 +30,13 @@ export default {
   data() {
     return{
       movie: null,
-      comments: null,
       comment_create: null
+    }
+  },
+  computed: {
+    comments() {
+      console.log(this.$store.state.movie_comments)
+      return this.$store.state.movie_comments
     }
   },
   methods: {
@@ -48,28 +53,8 @@ export default {
       })
     },
     getMovieComments() {
-      axios({
-        method: 'get',
-        url: `${API_URL}/movies/${this.$route.params.id}`,
-      })
-      .then((response) => {
-        this.comments = response.data.comment_set
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-    },
-    deleteComment(comment_id) {
-      axios({
-        method: 'delete',
-        url: `${API_URL}/community/comment/${comment_id}/`,
-      })
-      .then((response) => {
-        this.getMovieComments(response)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+      const movie_id = this.$route.params.id
+      this.$store.dispatch('getMovieComments', movie_id)
     },
     createComment() {
       const content = this.comment_create
@@ -96,6 +81,7 @@ export default {
       })
       this.comment_create = null
       this.getMovieComments()
+      this.$router.push(`/moviesview/${this.$route.params.id}`)
     }
   },
   created() {
