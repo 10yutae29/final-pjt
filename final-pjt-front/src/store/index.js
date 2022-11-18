@@ -18,15 +18,13 @@ export default new Vuex.Store({
     token: null,
     logedin_user: null,
     user_info: null,
-    movie_comments: null
+    movie_comments: null,
+    selected_genres: []
   },
   getters: {
     isLogin(state) {
       return state.token ? true: false
     },
-    // detailComments(state) {
-    //   return state.movie_comments
-    // }
   },
   mutations: {
     GET_MOVIES(state, movies) {
@@ -94,6 +92,9 @@ export default new Vuex.Store({
     GET_MOVIE_COMMENTS(state, comments) {
       state.movie_comments = comments
     },
+    GET_SELECTED_GENRES(state, selected_genres){
+      state.selected_genres = selected_genres
+    }
   },
   actions: {
     getMovies(context) {
@@ -205,15 +206,51 @@ export default new Vuex.Store({
         console.log(error)
       })
     },
-    deleteComment(context, comment_id) {
+    deleteComment(context, commentItem) {
       axios({
         method: 'delete',
-        url: `${API_URL}/community/comment/${comment_id}/`,
+        url: `${API_URL}/community/comment/${commentItem[0]}/`,
       })
       .then((response) => {
-        context.commit('GET_MOVIE_COMMENTS', response)
-        console.log('딜리트코멘트')
-        
+        this.dispatch('getMovieComments',commentItem[1],response)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    },
+    createComment(context, payload) {
+      axios({
+        method: 'post',
+        url: `${API_URL}/community/comment/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+        data: {
+          content: payload.content,
+          user: payload.user,
+          movie: payload.movie,
+        },
+      })
+      .then((response) => {
+        console.log(response)
+        this.dispatch('getMovieComments',payload.movie)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    },
+    getSelectedGenres(context){
+      axios({
+        method: 'get',
+        // django에서 이 url로 현재 로그인한 사람이 선택한 장르 리스트를 올려줌
+        url: `${API_URL}/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+      .then((response) => {
+        // console.log(response.data)
+        context.commit('GET_SELECTED_GENRES', response.data)
       })
       .catch((error) => {
         console.log(error)

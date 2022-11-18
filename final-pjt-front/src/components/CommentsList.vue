@@ -2,7 +2,7 @@
   <div>
     <h1>CommentsList</h1>
     <CommentsListItems
-    v-for="comment in comments"
+    v-for="comment in commentsList"
     :key="comment.id"
     :comment="comment"
     />
@@ -20,6 +20,11 @@ export default {
   props: {
     comments: Array
   },
+  computed: {
+    commentsList() {
+      return this.comments
+    }
+  }
 }
 </script>
 

@@ -44,9 +44,7 @@ export default {
     }
   },
   methods: {
-    getMovieData(){
-      this.$store.dispatch('getMovies')
-    },
+    
     getMovies() {
       const movies = this.$store.state.movies
       this.movies = movies
@@ -82,7 +80,6 @@ export default {
   created() {
     this.getMovies()
 
-    this.getMovieData()
   }
 }
 
