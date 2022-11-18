@@ -24,12 +24,18 @@ export default {
     }
   },
   methods: {
+    getMovieData(){
+      this.$store.dispatch('getMovies')
+    },
     getLoginUser() {
       this.$store.dispatch('getLoginUser')
     },
     logOut() {
       this.$store.dispatch('logOut')
     }
+  },
+  created() {
+    this.getMovieData()
   }
 }
 </script>
