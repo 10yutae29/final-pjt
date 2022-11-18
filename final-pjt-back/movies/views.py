@@ -1,6 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.shortcuts import render
+from django.http import JsonResponse
 import requests
 
 from rest_framework import status
@@ -26,13 +27,27 @@ def movie_detail(request, movie_pk):
         return Response(serializer.data)
 
 
-
-
-
-
+@api_view(['POST'])
 def movie_likes(request, movie_pk):
     movie = Movie.objects.get(pk=movie_pk)
-    movie.like_users.add(3)
+    if movie.like_users.filter(pk=request.user.pk).exists():
+        movie.like_users.remove(request.user)
+        is_liked = False
+    else:
+        movie.like_users.add(request.user)
+        is_liked = True
+    context = {
+        'is_liked': is_liked,
+    }
+    return JsonResponse(context)
+
+
+
+
+
+
+
+
 
 
 def get_movie(request):
