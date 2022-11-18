@@ -5,6 +5,10 @@
     <p>{{ movie?.vote_average }}</p>
     <p>{{ movie?.release_date }}</p>    
     <p>{{ movie?.overview }}</p>
+    <form @submit.prevent="createComment">
+      <input type="text" v-model="comment_create">
+      <input type="submit" value="작성">
+    </form>
     <CommentsList
     :comments="comments"
     @delete-comment="deleteComment"
@@ -26,7 +30,8 @@ export default {
   data() {
     return{
       movie: null,
-      comments: null
+      comments: null,
+      comment_create: null
     }
   },
   methods: {
@@ -65,6 +70,32 @@ export default {
       .catch((error) => {
         console.log(error)
       })
+    },
+    createComment() {
+      const content = this.comment_create
+      const user = this.$store.state.logedin_user.pk
+      const movie = this.$route.params.id
+      console.log(user)
+      axios({
+        method: 'post',
+        url: `${API_URL}/community/comment/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        },
+        data: {
+          content,
+          user,
+          movie,
+        },
+      })
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+      this.comment_create = null
+      this.getMovieComments()
     }
   },
   created() {

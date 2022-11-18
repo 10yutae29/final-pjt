@@ -16,7 +16,7 @@ export default {
   },
   computed: {
     user() {
-      return this.$store.state.logedin_user
+      return this.$store.state.user_info
     }
   },
   methods: {  
