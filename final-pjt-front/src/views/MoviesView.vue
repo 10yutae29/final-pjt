@@ -34,21 +34,17 @@ export default {
   },
   data() {
     return {
-      movies: null,
       search: ''
     }
   },
   computed: {
     movieGo(){
+      console.log('k')
+      // console.log(this.$store.state.movies_filtered)
       return this.$store.state.movies_filtered
     }
   },
   methods: {
-    
-    getMovies() {
-      const movies = this.$store.state.movies
-      this.movies = movies
-    },
     searchFilter() {
       const word = this.search.toLowerCase()
       this.$store.commit('SEARCH_FILTER', word)
@@ -78,8 +74,6 @@ export default {
     }
   },
   created() {
-    this.getMovies()
-
   }
 }
 

@@ -38,6 +38,7 @@ export default {
   },
   computed: {
     IsLiked() {
+      // console.log(this.movieman)
       return  this.isLiked
     }
   },
@@ -59,8 +60,9 @@ export default {
       })
       .then((response) => {
         // const isLiked = response.data.is_liked
-        console.log(response.data.is_liked)
+        // console.log(response.data.is_liked)
         this.isLiked = response.data.is_liked
+        // console.log(response.data.is_liked)
         // context.commit('GET_IS_LIKED', isLiked)
       })
       .catch((error) => {
@@ -73,16 +75,17 @@ export default {
     getIsLiked() {
       const is_liked = this.movie.like_users.includes(this.$store.state.logedin_user.pk)
       this.isLiked = is_liked
-      console.log(this.isLiked)
+      // console.log(`${this.movie.id}`)
+      // console.log(is_liked)
 
     }
   },
   created() {
     // console.log(this.movie)
-    console.log(this.isLiked)
+    // console.log(this.isLiked)
 
     this.getIsLiked()
-    console.log(this.isLiked)
+    // console.log(this.isLiked)
   }
 }
 </script>

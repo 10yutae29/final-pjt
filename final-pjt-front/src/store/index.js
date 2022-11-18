@@ -29,7 +29,7 @@ export default new Vuex.Store({
   mutations: {
     GET_MOVIES(state, movies) {
       state.movies = movies
-      state.movies_filtered = movies
+      state.movies_filtered = state.movies
     },
     SEARCH_FILTER(state, word) {
       state.movies_filtered = state.movies.filter(movie => movie.title.toLowerCase().includes(word))
