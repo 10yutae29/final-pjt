@@ -19,7 +19,7 @@ export default new Vuex.Store({
     logedin_user: null,
     user_info: null,
     movie_comments: null,
-    selected_genres: []
+    selected_genres: [],
   },
   getters: {
     isLogin(state) {
@@ -94,6 +94,9 @@ export default new Vuex.Store({
     },
     GET_SELECTED_GENRES(state, selected_genres){
       state.selected_genres = selected_genres
+    },
+    GET_IS_LIKED(state, isLiked) {
+      state.detail_liked = isLiked
     }
   },
   actions: {
@@ -255,7 +258,27 @@ export default new Vuex.Store({
       .catch((error) => {
         console.log(error)
       })
-    }
+    },
+    // toggleLike(context, movie_id) {
+    //   axios({
+    //     method: 'post',
+    //     url: `${API_URL}/movies/${movie_id}/likes/`,
+    //     headers: {
+    //       Authorization: `Token ${context.state.token}`
+    //     },
+    //   })
+    //   .then((response) => {
+    //     const isLiked = response.data.is_liked
+    //     // console.log(response.data.is_liked)
+    //     context.commit('GET_IS_LIKED', isLiked)
+    //   })
+    //   .catch((error) => {
+    //     console.log(error)
+    //   })
+    // },
+    // getIsLiked(context, isLiked) {
+    //   context.commit('GET_IS_LIKED',isLiked)
+    // }
   },
   modules: {
   }
