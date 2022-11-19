@@ -20,6 +20,7 @@
       v-for="movie in movieGo"
       :key="movie.id"
       :movie="movie"
+      @likechanged="getMovieData"
       />
     </div>
   </div>
@@ -45,6 +46,9 @@ export default {
     }
   },
   methods: {
+    getMovieData(){
+      this.$store.dispatch('getMovies')
+    },
     searchFilter() {
       const word = this.search.toLowerCase()
       this.$store.commit('SEARCH_FILTER', word)

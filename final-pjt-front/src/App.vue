@@ -36,6 +36,10 @@ export default {
   },
   created() {
     this.getMovieData()
+  },
+  updated() {
+    this.getMovieData()
+    console.log('updated')
   }
 }
 </script>

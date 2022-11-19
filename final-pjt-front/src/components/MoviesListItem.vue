@@ -11,8 +11,10 @@
             </div>
             <div class="col-6">
               <div class="row align-items-center">
-                <ion-icon size="large" v-if="!IsLiked" @click="toggleLike" name="heart" id="unheart"></ion-icon>
-                <ion-icon size="large" v-if="IsLiked" @click="toggleLike" name="heart" id="heart"></ion-icon>
+                <ion-icon size="large" v-if="is_liked_conition" @click="toggleLike" name="heart" id="heart"></ion-icon>
+                <ion-icon size="large" v-if="!is_liked_conition" @click="toggleLike" name="heart"></ion-icon>
+                <!-- <ion-icon size="large" @click="toggleLike" name="heart" :class=" { 'is-liked' : is_liked_conition}"></ion-icon> -->
+
               </div>
             </div>
           </div>
@@ -32,25 +34,18 @@ export default {
     movie:Object
   },
   data() {
-    return{
-      isLiked: false
+    return{  
+      is_liked: this.movie.like_users.includes(this.$store.state.logedin_user.pk)
     }
   },
   computed: {
-    IsLiked() {
-      // console.log(this.movieman)
-      return  this.isLiked
+    is_liked_conition() {
+      return this.movie.like_users.includes(this.$store.state.logedin_user.pk)
     }
   },
   methods: {
     toggleLike() {
-      // this.isLiked = !this.isLiked
       const movie_id = this.movie.id
-      // this.$store.dispatch('toggleLike', movie_id)
-      // console.log(this.isLiked)
-      // console.log(this.movie.like_users)
-      // console.log(this.$store.state.logedin_user.pk)
-      // console.log(this.movie.like_users.includes(this.$store.state.logedin_user.pk))
       axios({
         method: 'post',
         url: `${API_URL}/movies/${movie_id}/likes/`,
@@ -59,11 +54,10 @@ export default {
         },
       })
       .then((response) => {
-        // const isLiked = response.data.is_liked
-        // console.log(response.data.is_liked)
+        console.log(response.data)
         this.isLiked = response.data.is_liked
-        // console.log(response.data.is_liked)
-        // context.commit('GET_IS_LIKED', isLiked)
+        this.$emit('likechanged')
+        console.log(this.movie)
       })
       .catch((error) => {
         console.log(error)
@@ -72,20 +66,10 @@ export default {
     goDetail() {
       this.$router.push(`/moviesview/${this.movie.id}/`)
     },
-    getIsLiked() {
-      const is_liked = this.movie.like_users.includes(this.$store.state.logedin_user.pk)
-      this.isLiked = is_liked
-      // console.log(`${this.movie.id}`)
-      // console.log(is_liked)
-
-    }
   },
   created() {
-    // console.log(this.movie)
-    // console.log(this.isLiked)
-
-    this.getIsLiked()
-    // console.log(this.isLiked)
+    console.log(this.movie.like_users.includes(this.$store.state.logedin_user.pk))
+    // console.log(this.$store.state.logedin_user)
   }
 }
 </script>
@@ -111,7 +95,12 @@ export default {
   color: red;
 }
 
+.heart {
+  color: black
+}
+
 #unheart {
   color: black;
 }
+
 </style>
