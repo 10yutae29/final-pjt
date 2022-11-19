@@ -19,4 +19,12 @@ class Movie(models.Model):
     poster_path = models.CharField(max_length=200)
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='liked_movies')
 
+
     
+class PreferGenre(models.Model):
+    id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
+
+genres = Genre.objects.all()
+for genre in genres:
+    name = genre.name.lower().replace(' ', '')
+    PreferGenre.add_to_class(name, models.IntegerField())    

@@ -5,8 +5,9 @@ from django.http import JsonResponse
 import requests
 
 from rest_framework import status
-from .models import Movie, Genre
-from .serializers import MovieListSerializer, MovieSerializer, CommentSerializer
+from .models import Movie, Genre, PreferGenre
+from accounts.models import User
+from .serializers import MovieListSerializer, MovieSerializer, PreferGenreListSerializer
 
 from pprint import pprint
 # Create your views here.
@@ -18,6 +19,13 @@ def movie_list(request):
     serializer = MovieListSerializer(movies, many=True)
     return Response(serializer.data)
     
+
+@api_view(['GET'])
+def prefer_genre_list(request):
+    movies = PreferGenre.objects.all()
+    serializer = PreferGenreListSerializer(movies, many=True)
+    return Response(serializer.data)
+
 
 @api_view(['GET', 'POST'])
 def movie_detail(request, movie_pk):
@@ -43,10 +51,30 @@ def movie_likes(request, movie_pk):
 
 
 
-
-
-
-
+def prefer_genre(requset):
+    prefer_genre = PreferGenre()
+    user = User.objects.get(pk=3)
+    prefer_genre.id = user
+    prefer_genre.adventure = 0
+    prefer_genre.fantasy = 0
+    prefer_genre.animation = 3
+    prefer_genre.drama = 4
+    prefer_genre.horror = 2
+    prefer_genre.action = 0
+    prefer_genre.comedy = 0
+    prefer_genre.history = 0
+    prefer_genre.western = 0
+    prefer_genre.thriller = 0
+    prefer_genre.crime = 0
+    prefer_genre.documentary = 0
+    prefer_genre.sciencefiction = 0
+    prefer_genre.mystery = 0
+    prefer_genre.music = 0
+    prefer_genre.romance = 0
+    prefer_genre.family = 0
+    prefer_genre.war = 0
+    prefer_genre.tvmovie = 0
+    prefer_genre.save()
 
 
 

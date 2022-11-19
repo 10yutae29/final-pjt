@@ -1,11 +1,18 @@
 from rest_framework import serializers
-from .models import Movie
+from .models import Movie, PreferGenre
 from community.models import Comment
 
 class MovieListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Movie
+        fields = '__all__'
+
+
+class PreferGenreListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = PreferGenre
         fields = '__all__'
 
 
