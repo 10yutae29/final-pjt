@@ -83,13 +83,13 @@ export default new Vuex.Store({
     GET_LOGIN_USER(state, logedin_user) {
       state.logedin_user = logedin_user
       state.user_info = logedin_user
-      console.log(state.logedin_user)
     },
     LOG_OUT(state) {
       state.logedin_user = null
       state.token = null
-      router.push('/moviesview')
-      console.log('여기까지')
+      // router.push('/moviesview')
+      if(this.$route.path !=='/moviesview') router.push('/moviesview')
+
     },
     GET_MOVIE_COMMENTS(state, comments) {
       state.movie_comments = comments
@@ -139,6 +139,21 @@ export default new Vuex.Store({
       })
       .then((response) => {
         context.commit('SAVE_TOKEN', response.data.key)
+        console.log(response)
+        axios({
+          method: 'get',
+          url: `${API_URL}/accounts/user/`,
+          headers: {
+            Authorization: `Token ${response.data.key}`
+          },
+        })
+        .then((response) => {
+          context.commit('GET_LOGIN_USER', response.data)
+          // console.log('로그인 후에 유저 저장')
+        })
+        .catch((error) => {
+          console.log(error)
+        })
       })
       .catch((error) => {
         console.log(error)
@@ -157,8 +172,8 @@ export default new Vuex.Store({
           new_password2: payload.new_password2,
         }
       })
-      .then((response) => {
-        console.log(response)
+      .then(() => {
+        router.push('/moviesview')
       })
       .catch((error) => {
         console.log(error)
@@ -187,8 +202,8 @@ export default new Vuex.Store({
           Authorization: `Token ${context.state.token}`
         },
       })
-      .then((response) => {
-        console.log(response)
+      .then(() => {
+        // console.log(response)
         context.commit('LOG_OUT')
       })
       .catch((error) => {
