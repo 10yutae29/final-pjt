@@ -260,13 +260,13 @@ export default new Vuex.Store({
       axios({
         method: 'get',
         // django에서 이 url로 현재 로그인한 사람이 선택한 장르 리스트를 올려줌
-        url: `${API_URL}/`,
+        url: `${API_URL}/movies/prefer-list/`,
         headers: {
           Authorization: `Token ${context.state.token}`
         },
       })
       .then((response) => {
-        // console.log(response.data)
+        console.log(response.data)
         context.commit('GET_SELECTED_GENRES', response.data)
       })
       .catch((error) => {
@@ -277,3 +277,43 @@ export default new Vuex.Store({
   modules: {
   }
 })
+
+
+
+// axios({
+//   method: 'get',
+//   url: `${API_URL}/movies/prefer-list/${this.state.logedin_user.pk}`,
+//   headers: {
+//     Authorization: `Token ${context.state.token}`
+//   },
+// })
+// // 좋아요한 영화가 하나도 없을 때
+// // 위처럼 요청을 보내면 아래처럼 응답이 와야함
+// response.data.my-prefer-genres = []
+
+// axios({
+//   method: 'post',
+//   url: `${API_URL}/movies/prefer-list/${this.state.logedin_user.pk}`,
+//   headers: {
+//     Authorization: `Token ${context.state.token}`,
+//   data: {
+//     Picked_Genres : ['공포', '코미디', 'SF', '가족', '코미디', '액션'],
+//     plus: true
+//   }
+//   },
+// })
+// // 첫 Recommend 페이지에서 영화 3개를 고르고 Picked_Genres로 담아 위와같이 보내면
+// // django에서는 Picked_Genres를 for을 돌며 
+// // prefer-genres의 logedin_user.pk row의 장르에 카운트 +를 해준다
+
+
+// axios({
+//   method: 'get',
+//   url: `${API_URL}/movies/prefer-list/${this.state.logedin_user.pk}`,
+//   headers: {
+//     Authorization: `Token ${context.state.token}`
+//   },
+// })
+// // 좋아요한 영화가 있거나 첫 Recommend페이지에서 선택한 영화가 db에서 다 count 된상태에서 위와같이 요청을 보내면
+// // 아래와 같은 응답이 와야함
+// response.data.my-prefer-genres = ['코미디', '공포', '가족']
