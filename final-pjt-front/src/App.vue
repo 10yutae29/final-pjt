@@ -6,7 +6,7 @@
       <router-link to="/recommendview">영화추천</router-link> |
       <router-link v-if="!isLogin" to="/loginview">로그인</router-link> <span v-if="!isLogin">| </span>
       <router-link v-if="!isLogin" to="/signupview">회원가입</router-link>
-      <span @click="getLoginUser" >
+      <span>
         <router-link v-if="isLogin" to="/userview">내정보</router-link> <span v-if="isLogin">| </span>
       </span>
       <a id="logout" v-if="isLogin" href="#" @click="logOut">로그아웃</a>
@@ -27,9 +27,9 @@ export default {
     getMovieData(){
       this.$store.dispatch('getMovies')
     },
-    getLoginUser() {
-      this.$store.dispatch('getLoginUser')
-    },
+    // getLoginUser() {
+    //   this.$store.dispatch('getLoginUser')
+    // },
     logOut() {
       this.$store.dispatch('logOut')
     }
@@ -37,10 +37,6 @@ export default {
   created() {
     this.getMovieData()
   },
-  updated() {
-    this.getMovieData()
-    console.log('updated')
-  }
 }
 </script>
 

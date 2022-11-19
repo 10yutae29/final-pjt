@@ -10,7 +10,7 @@
               <span>평점 : {{ movie?.vote_average }}</span>
             </div>
             <div class="col-6">
-              <div class="row align-items-center">
+              <div v-if="logedin" class="row align-items-center">
                 <ion-icon size="large" v-if="is_liked_conition" @click="toggleLike" name="heart" id="heart"></ion-icon>
                 <ion-icon size="large" v-if="!is_liked_conition" @click="toggleLike" name="heart"></ion-icon>
                 <!-- <ion-icon size="large" @click="toggleLike" name="heart" :class=" { 'is-liked' : is_liked_conition}"></ion-icon> -->
@@ -35,12 +35,18 @@ export default {
   },
   data() {
     return{  
-      is_liked: this.movie.like_users.includes(this.$store.state.logedin_user.pk)
     }
   },
   computed: {
     is_liked_conition() {
-      return this.movie.like_users.includes(this.$store.state.logedin_user.pk)
+      if (this.$store.state.logedin_user) {
+        return this.movie.like_users.includes(this.$store.state.logedin_user.pk)
+      } else {
+        return false
+      }
+    },
+    logedin() {
+      return this.$store.state.logedin_user
     }
   },
   methods: {
@@ -53,11 +59,8 @@ export default {
           Authorization: `Token ${this.$store.state.token}`
         },
       })
-      .then((response) => {
-        console.log(response.data)
-        this.isLiked = response.data.is_liked
+      .then(() => {
         this.$emit('likechanged')
-        console.log(this.movie)
       })
       .catch((error) => {
         console.log(error)
@@ -68,8 +71,7 @@ export default {
     },
   },
   created() {
-    console.log(this.movie.like_users.includes(this.$store.state.logedin_user.pk))
-    // console.log(this.$store.state.logedin_user)
+  
   }
 }
 </script>

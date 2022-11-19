@@ -40,8 +40,6 @@ export default {
   },
   computed: {
     movieGo(){
-      console.log('k')
-      // console.log(this.$store.state.movies_filtered)
       return this.$store.state.movies_filtered
     }
   },

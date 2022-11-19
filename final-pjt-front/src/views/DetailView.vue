@@ -5,6 +5,14 @@
     <p>{{ movie?.vote_average }}</p>
     <p>{{ movie?.release_date }}</p>    
     <p>{{ movie?.overview }}</p>
+
+    <div class="col">
+      <div v-if="logedin" class="row align-items-center">
+        <ion-icon size="large" v-if="is_liked_conition" @click="toggleLike" name="heart" id="heart"></ion-icon>
+        <ion-icon size="large" v-if="!is_liked_conition" @click="toggleLike" name="heart"></ion-icon>
+      </div>
+    </div>
+
     <form @submit.prevent="createComment">
       <input type="text" v-model="comment_create">
       <input type="submit" value="작성">
@@ -34,8 +42,22 @@ export default {
     }
   },
   computed: {
+    movie_info() {
+      return this.movie
+    },
     comments() {
       return this.$store.state.movie_comments
+    },
+    is_liked_conition() {
+      if (this.$store.state.logedin_user) {
+        if (this.movie_info) {
+          return this.movie_info.like_users.includes(this.$store.state.logedin_user.pk)
+        }
+      }
+      return false 
+    },
+    logedin() {
+      return this.$store.state.logedin_user
     }
   },
   methods: {
@@ -68,7 +90,23 @@ export default {
       this.$store.dispatch('createComment', payload)
       this.comment_create = null
 
-    }
+    },
+    toggleLike() {
+      const movie_id = this.movie.id
+      axios({
+        method: 'post',
+        url: `${API_URL}/movies/${movie_id}/likes/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        },
+      })
+      .then(() => {
+        this.getMovieDetail()
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    },
   },
   created() {
     this.getMovieDetail()
@@ -78,5 +116,7 @@ export default {
 </script>
 
 <style>
-
+#heart {
+  color: red;
+}
 </style>

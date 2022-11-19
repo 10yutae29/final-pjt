@@ -7,7 +7,7 @@ import requests
 from rest_framework import status
 from .models import Movie, Genre, PreferGenre
 from accounts.models import User
-from .serializers import MovieListSerializer, MovieSerializer,PreferGenreListSerializer
+from .serializers import MovieListSerializer, MovieSerializer, PreferGenreListSerializer
 
 from pprint import pprint
 # Create your views here.
