@@ -46,9 +46,3 @@ def comment_detail(request, comment_pk):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
-
-
-# movie id가 동일한 댓글 목록 반환하는 함수 
-
-def like(request):
-    pass
