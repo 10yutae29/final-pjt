@@ -24,7 +24,8 @@ class Movie(models.Model):
 class PreferGenre(models.Model):
     id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
 
+
 genres = Genre.objects.all()
 for genre in genres:
-    name = genre.name.lower().replace(' ', '')
+    name = genre.name
     PreferGenre.add_to_class(name, models.IntegerField())    

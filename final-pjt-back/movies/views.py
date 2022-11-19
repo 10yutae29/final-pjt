@@ -76,6 +76,16 @@ def prefer_genre(requset):
     prefer_genre.tvmovie = 0
     prefer_genre.save()
 
+# 장르 이름으로 prefer_genre 인스턴스에 접근하고 싶어.....
+# def prefer_genre(requset):
+#     genres = Genre.objects.all()
+#     user = User.objects.get(pk=3)
+#     prefer_genre = PreferGenre()
+#     prefer_genre.id = user
+#     for genre in genres:
+#         name = genre.name
+#         prefer_genre[name] = 0
+#     prefer_genre.save()
 
 
 def get_movie(request):
@@ -104,5 +114,5 @@ def get_genres(request):
     for result in results:
         genre = Genre()
         genre.id = result.get('id')
-        genre.name = result.get('name')
+        genre.name = result.get('name').lower().replace(' ', '')
         genre.save()
