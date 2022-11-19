@@ -28,4 +28,4 @@ class PreferGenre(models.Model):
 genres = Genre.objects.all()
 for genre in genres:
     name = genre.name
-    PreferGenre.add_to_class(name, models.IntegerField())    
+    PreferGenre.add_to_class(name, models.IntegerField())
