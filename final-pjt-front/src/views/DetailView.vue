@@ -1,26 +1,34 @@
 <template>
   <div>
-    <h1>{{ movie?.title }}</h1>
-    <img :src="`https://image.tmdb.org/t/p/original${movie?.poster_path}`" alt="">
-    <p>{{ movie?.vote_average }}</p>
-    <p>{{ movie?.release_date }}</p>    
-    <p>{{ movie?.overview }}</p>
+    <div class="container" id="movie-container">
+      <h1 id="title">{{ movie?.title }}</h1>
+      <div id="movie-info">
+        <img :src="`https://image.tmdb.org/t/p/original${movie?.poster_path}`" alt=""  id="poster">
+      </div>
+      <div id="movie-info">
+        <p>평점 : {{ movie?.vote_average }}</p>
+        <p>개봉일자 : {{ movie?.release_date }}</p>    
+        <h5>영화 줄거리</h5>
+        <p>{{ movie?.overview }}</p>
+      </div>
 
-    <div class="col">
-      <div v-if="logedin" class="row align-items-center">
-        <ion-icon size="large" v-if="is_liked_conition" @click="toggleLike" name="heart" id="heart"></ion-icon>
-        <ion-icon size="large" v-if="!is_liked_conition" @click="toggleLike" name="heart"></ion-icon>
+      <div id="like-button">
+        <div v-if="logedin">
+          <ion-icon size="large" v-if="is_liked_conition" @click="toggleLike" name="heart" id="heart"></ion-icon>
+          <ion-icon size="large" v-if="!is_liked_conition" @click="toggleLike" name="heart"></ion-icon>
+        </div>
+      </div>
+
+      <form id="form" @submit.prevent="createComment">
+        <input id="" type="textarea" v-model="comment_create">
+        <input type="submit" value="작성">
+      </form>
+      <div id="comment-list">
+        <CommentsList
+        :comments="comments"
+        />
       </div>
     </div>
-
-    <form @submit.prevent="createComment">
-      <input type="text" v-model="comment_create">
-      <input type="submit" value="작성">
-    </form>
-    <CommentsList
-    :comments="comments"
-    
-    />
   </div>
 </template>
 
@@ -109,8 +117,13 @@ export default {
     },
   },
   created() {
-    this.getMovieDetail()
-    this.getMovieComments()
+    if (!this.logedin) {
+      window.alert('로그인이 필요한 서비스입니다.')
+      this.$router.push('/LoginView')
+    } else {
+      this.getMovieDetail()
+      this.getMovieComments()
+    }
   }
 }
 </script>
@@ -118,5 +131,37 @@ export default {
 <style>
 #heart {
   color: red;
+}
+
+#poster {
+  width: 70%;
+}
+
+#title{
+  flex-basis: 100%;
+}
+
+#movie-info{
+  position: relative;
+  flex-basis: 50%;
+}
+
+#movie-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#like-button{
+  flex-basis: 100%;
+}
+
+#form{
+  flex-basis: 100%;
+}
+
+#comment-list{
+  flex-basis: 100%;
 }
 </style>

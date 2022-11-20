@@ -10,7 +10,7 @@
     </div>
     <nav>
       <router-link to="/moviesview">전체영화</router-link> |
-      <router-link to="/recommendview">영화추천</router-link> |
+      <router-link to="/recommendview">영화추천</router-link>  |
       <router-link v-if="!isLogin" to="/loginview">로그인</router-link> <span v-if="!isLogin">| </span>
       <router-link v-if="!isLogin" to="/signupview">회원가입</router-link>
       <span>
@@ -31,6 +31,12 @@ export default {
     }
   },
   methods: {
+    // checkAuth(){
+    //   if (!this.isLogin) {
+    //     window.alert('로그인 페이지로 이동합니다.')
+    //     this.$router.push('/loginview')
+    //   }
+    // },
     getMovieData(){
       this.$store.dispatch('getMovies')
     },
@@ -60,7 +66,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #000000;
-  background: #77efff;
+  background: #71DFE7;
 
   /* background: #115264; */
 }
@@ -80,11 +86,12 @@ export default {
 
 nav {
   padding: 30px;
+  background: #009DAE;
 }
 
 nav a {
   font-weight: bold;
-  color: #eee;
+  color: #FFE652;
   text-decoration: none;
 }
 

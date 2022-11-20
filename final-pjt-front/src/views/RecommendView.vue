@@ -36,6 +36,9 @@ export default {
   computed: {
     selected_genres(){
       return this.$store.state.selected_genres
+    },
+    isLogin() {
+      return this.$store.getters.isLogin
     }
   },
   data() {
@@ -59,6 +62,7 @@ export default {
     if (!this.selected_genres) {
       this.getRandomMovies()
     }
+
   }
 }
 </script>
