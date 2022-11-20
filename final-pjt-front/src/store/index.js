@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import router from '@/router'
+import router from '../router'
 import createPersistedState from 'vuex-persistedstate'
 
 
@@ -85,10 +85,16 @@ export default new Vuex.Store({
       state.user_info = logedin_user
     },
     LOG_OUT(state) {
+      // console.log('여기')
       state.logedin_user = null
       state.token = null
-      // router.push('/moviesview')
+      // console.log('사이')
+      localStorage.removeItem('vuex')
+      // console.log(localStorage.vuex)
+      router.push('/')
+
       if(this.$route.path !=='/moviesview') router.push('/moviesview')
+      console.log(this.$route.path)
 
     },
     GET_MOVIE_COMMENTS(state, comments) {
@@ -149,7 +155,6 @@ export default new Vuex.Store({
         })
         .then((response) => {
           context.commit('GET_LOGIN_USER', response.data)
-          // console.log('로그인 후에 유저 저장')
         })
         .catch((error) => {
           console.log(error)
@@ -157,6 +162,7 @@ export default new Vuex.Store({
       })
       .catch((error) => {
         console.log(error)
+        window.alert('아이디와 비밀번호를 확인해주세요.')
       })
 
     },
@@ -202,9 +208,10 @@ export default new Vuex.Store({
           Authorization: `Token ${context.state.token}`
         },
       })
-      .then(() => {
-        // console.log(response)
+      .then((res) => {
+        console.log(res)
         context.commit('LOG_OUT')
+        // this.dispatch('getMovies')
       })
       .catch((error) => {
         console.log(error)
@@ -277,6 +284,8 @@ export default new Vuex.Store({
   modules: {
   }
 })
+
+
 
 
 

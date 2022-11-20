@@ -1,11 +1,12 @@
 <template>
   <div>
-    <h1>CommentsList</h1>
-    <CommentsListItems
-    v-for="comment in commentsList"
-    :key="comment.id"
-    :comment="comment"
-    />
+    <div id="comments-case">
+      <CommentsListItems
+      v-for="comment in commentsList"
+      :key="comment.id"
+      :comment="comment"
+      />
+    </div>
   </div>
 </template>
 
@@ -29,5 +30,9 @@ export default {
 </script>
 
 <style>
-
+#comments-case{
+  border: solid;
+  border-radius: 5px;
+  margin: 5px;
+}
 </style>

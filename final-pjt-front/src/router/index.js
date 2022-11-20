@@ -8,6 +8,9 @@ import UserView from '../views/UserView.vue'
 import DetailView from '../views/DetailView.vue'
 import PasswordChangeView from '../views/PasswordChangeView.vue'
 import MainView from '../views/MainView.vue'
+import store from '../store/index.js'
+
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -53,6 +56,9 @@ const routes = [
   }
 ]
 
+
+
+
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -60,3 +66,18 @@ const router = new VueRouter({
 })
 
 export default router
+
+router.beforeEach((to, from, next) => {
+  const isLoggedIn = store.state.token
+
+  const authPages = ['RecommendView']
+
+  const isAuthRequired = authPages.includes(to.name)
+
+  if (isAuthRequired && !isLoggedIn) {
+    window.alert('로그인이 필요한 서비스입니다.')
+    next({ name: 'LoginView'})
+  } else {
+    next()
+  }
+})

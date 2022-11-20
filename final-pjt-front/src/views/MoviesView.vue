@@ -73,7 +73,7 @@ export default {
       
       const search = document.querySelector('.search')
       search.classList.toggle('active')
-    }
+    },
   },
   created() {
   }

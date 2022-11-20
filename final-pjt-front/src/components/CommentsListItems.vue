@@ -1,10 +1,12 @@
 <template>
   <div>
-    <div style="border:solid;">
-      <p>댓글 내용 : {{ commentItem.content }}</p>
-      <p>댓글 작성자 : {{ commentItem.user }}</p>
-      <p>작성 시간 : {{ commentItem.updated_at}}</p>
-      <button @click="deleteComment">댓글삭제</button>
+    <div id="comment">
+      <div id="comment-box">
+        <p>댓글 내용 : {{ commentItem.content }}</p>
+        <p>댓글 작성자 : {{ commentItem.user }}</p>
+        <p>작성 시간 : {{ commentItem.updated_at}}</p>
+        <button @click="deleteComment">댓글삭제</button>
+      </div>
     </div>
   </div>
 </template>
@@ -34,5 +36,15 @@ export default {
 </script>
 
 <style>
+#comment{
+  border-bottom: solid 1px;
+}
 
+#comment-box{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+/* #comment:last-child{
+  border-bottom: 1px;
+} */
 </style>
