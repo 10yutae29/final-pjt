@@ -46,13 +46,29 @@ def movie_likes(request, movie_pk):
 
 def recommend(request):
     prefer_genres = PreferGenre.objects.all()
+
+    # 선호 장르가 있는 유저의 리스트를 만들어서 확인한다.
     user_has_prefers = []
     for prefer_genre in prefer_genres:
         user_has_prefers.append(prefer_genre.id)
+    
+    # 로그인된 사용자의 정보를 받아올 예정 테스트를 위해 임의로 선택한 유저(3) 정보
+    request.user = prefer_genre.id
+
     # 유저의 장르 선호 정보가 있다면
-    if request.user.pk in user_has_prefers:
-        # 계획대로 추천 장르 반환
+    if request.user in user_has_prefers:
+        user_prefer_genres = PreferGenre.objects.get(pk=request.user)
+        print('!!!!!!!!!!!11')
+        print(user_prefer_genres)
+        print(user_prefer_genres.adventure)
+
+        for user_prefer_genre in user_prefer_genres:
+            print(user_prefer_genre)
+
         pass
+
+
+
     # 유저의 장르 선호 정보가 없다면
     else:
         # 영화 선택 페이지로 연결
