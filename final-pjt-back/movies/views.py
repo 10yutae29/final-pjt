@@ -60,12 +60,16 @@ def recommend(request):
         user_prefer_genres = PreferGenre.objects.get(pk=request.user)
         print('!!!!!!!!!!!11')
         print(user_prefer_genres)
-        print(user_prefer_genres.adventure)
-
         for user_prefer_genre in user_prefer_genres:
-            print(user_prefer_genre)
+            context = {
+                'prefer': user_prefer_genre
+            }
+        return JsonResponse(context)
+        # print(user_prefer_genres.adventure)
 
-        pass
+        #     print(user_prefer_genre)
+
+        # pass
 
 
 
