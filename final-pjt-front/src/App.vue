@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div style="height:150px">
-      <div class="liquid">
+      <div class="liquid" @click="goMain">
             <h1>SEE원한 영화</h1>
             <h1>SEE원한 영화</h1>
             <h1>SEE원한 영화</h1>
@@ -39,6 +39,9 @@ export default {
     // },
     logOut() {
       this.$store.dispatch('logOut')
+    },
+    goMain() {
+      this.$router.push('/')
     }
   },
   created() {
@@ -57,7 +60,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #000000;
-  background: #183954;
+  background: #77efff;
 
   /* background: #115264; */
 }
