@@ -7,9 +7,15 @@ import SignUpView from '../views/SignUpView.vue'
 import UserView from '../views/UserView.vue'
 import DetailView from '../views/DetailView.vue'
 import PasswordChangeView from '../views/PasswordChangeView.vue'
+import MainView from '../views/MainView.vue'
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/',
+    name: 'MainView',
+    component: MainView
+  },
   {
     path: '/moviesview',
     name: 'MoviesView',
