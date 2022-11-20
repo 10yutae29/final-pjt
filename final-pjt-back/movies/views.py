@@ -20,12 +20,6 @@ def movie_list(request):
     return Response(serializer.data)
     
 
-@api_view(['GET'])
-def prefer_genre_list(request):
-    movies = PreferGenre.objects.all()
-    serializer = PreferGenreListSerializer(movies, many=True)
-    return Response(serializer.data)
-
 
 @api_view(['GET', 'POST'])
 def movie_detail(request, movie_pk):
@@ -48,6 +42,30 @@ def movie_likes(request, movie_pk):
         'is_liked': is_liked,
     }
     return JsonResponse(context)
+
+
+def recommend(request):
+    prefer_genres = PreferGenre.objects.all()
+    user_has_prefers = []
+    for prefer_genre in prefer_genres:
+        user_has_prefers.append(prefer_genre.id)
+    # 유저의 장르 선호 정보가 있다면
+    if request.user.pk in user_has_prefers:
+        # 계획대로 추천 장르 반환
+        pass
+    # 유저의 장르 선호 정보가 없다면
+    else:
+        # 영화 선택 페이지로 연결
+        return []
+
+
+
+
+@api_view(['GET'])
+def prefer_genre_list(request):
+    prefer_genres = PreferGenre.objects.all()
+    serializer = PreferGenreListSerializer(prefer_genres, many=True)
+    return Response(serializer.data)
 
 
 def prefer_genre(requset):
@@ -75,7 +93,6 @@ def prefer_genre(requset):
     prefer_genre.war = 0
     prefer_genre.tvmovie = 0
     prefer_genre.save()
-
 
 # 장르 이름으로 prefer_genre 인스턴스에 접근하고 싶어.....
 # def prefer_genre(requset):
