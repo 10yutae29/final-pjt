@@ -23,9 +23,27 @@ class Movie(models.Model):
     
 class PreferGenre(models.Model):
     id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
+    sciencefiction = models.IntegerField()
+    adventure = models.IntegerField()
+    fantasy = models.IntegerField()
+    animation = models.IntegerField()
+    drama = models.IntegerField()
+    horror = models.IntegerField()
+    action = models.IntegerField()
+    comedy = models.IntegerField()
+    history = models.IntegerField()
+    western = models.IntegerField()
+    thriller = models.IntegerField()
+    crime = models.IntegerField()
+    documentary = models.IntegerField()
+    mystery = models.IntegerField()
+    music = models.IntegerField()
+    romance = models.IntegerField()
+    family = models.IntegerField()
+    war = models.IntegerField()
+    tvmovie = models.IntegerField()
 
-
-genres = Genre.objects.all()
-for genre in genres:
-    name = genre.name
-    PreferGenre.add_to_class(name, models.IntegerField())
+# genres = Genre.objects.all()
+# for genre in genres:
+#     name = genre.name
+#     PreferGenre.add_to_class(name, models.IntegerField())

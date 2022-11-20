@@ -50,6 +50,32 @@ def movie_likes(request, movie_pk):
     return JsonResponse(context)
 
 
+def prefer_genre(requset):
+    genres = Genre.objects.all()
+    user = User.objects.get(pk=2)
+    prefer_genre = PreferGenre()
+    prefer_genre.id = user
+    prefer_genre.sciencefiction = 4
+    prefer_genre.adventure = 2
+    prefer_genre.fantasy = 3
+    prefer_genre.animation = 0
+    prefer_genre.drama = 1
+    prefer_genre.horror = 2
+    prefer_genre.action = 0
+    prefer_genre.comedy = 0
+    prefer_genre.history = 0
+    prefer_genre.western = 0
+    prefer_genre.thriller = 0
+    prefer_genre.crime = 0
+    prefer_genre.documentary = 0
+    prefer_genre.mystery = 0
+    prefer_genre.music = 0
+    prefer_genre.romance = 0
+    prefer_genre.family = 0
+    prefer_genre.war = 0
+    prefer_genre.tvmovie = 0
+    prefer_genre.save()
+
 
 # 장르 이름으로 prefer_genre 인스턴스에 접근하고 싶어.....
 # def prefer_genre(requset):

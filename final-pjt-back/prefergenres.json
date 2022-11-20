@@ -1,0 +1,77 @@
+[
+{
+    "model": "movies.prefergenre",
+    "pk": 1,
+    "fields": {
+        "sciencefiction": 0,
+        "adventure": 0,
+        "fantasy": 0,
+        "animation": 0,
+        "drama": 0,
+        "horror": 0,
+        "action": 0,
+        "comedy": 0,
+        "history": 0,
+        "western": 0,
+        "thriller": 0,
+        "crime": 0,
+        "documentary": 0,
+        "mystery": 0,
+        "music": 0,
+        "romance": 0,
+        "family": 0,
+        "war": 0,
+        "tvmovie": 0
+    }
+},
+{
+    "model": "movies.prefergenre",
+    "pk": 2,
+    "fields": {
+        "sciencefiction": 4,
+        "adventure": 2,
+        "fantasy": 3,
+        "animation": 0,
+        "drama": 1,
+        "horror": 2,
+        "action": 0,
+        "comedy": 0,
+        "history": 0,
+        "western": 0,
+        "thriller": 0,
+        "crime": 0,
+        "documentary": 0,
+        "mystery": 0,
+        "music": 0,
+        "romance": 0,
+        "family": 0,
+        "war": 0,
+        "tvmovie": 0
+    }
+},
+{
+    "model": "movies.prefergenre",
+    "pk": 3,
+    "fields": {
+        "sciencefiction": 0,
+        "adventure": 5,
+        "fantasy": 5,
+        "animation": 2,
+        "drama": 3,
+        "horror": 3,
+        "action": 1,
+        "comedy": 0,
+        "history": 0,
+        "western": 0,
+        "thriller": 0,
+        "crime": 0,
+        "documentary": 0,
+        "mystery": 0,
+        "music": 0,
+        "romance": 0,
+        "family": 0,
+        "war": 0,
+        "tvmovie": 0
+    }
+}
+]
