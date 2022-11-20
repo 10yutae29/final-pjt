@@ -7,7 +7,7 @@
           <span class="mt-3 fs-5" id="title" @click="goDetail">{{ movie?.title }}</span>
           <div class="row align-items-center">
             <div class="col-6">
-              <span>평점 : {{ movie?.vote_average }}</span>
+              <span id="score">평점 : {{ movie?.vote_average }}</span>
             </div>
             <div class="col-6">
               <div v-if="logedin" class="row align-items-center">
@@ -78,14 +78,18 @@ export default {
 
 <style>
 #card {
-  background: #155263;
+  background: #183954;
   border: none;
 }
 
 #title {
-  color: black;
+  color: #fff;
   text-anchor: middle;
   font-size: 1vw;
+}
+
+#score {
+  color: #fff;
 }
 
 #poster {
