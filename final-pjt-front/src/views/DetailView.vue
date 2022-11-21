@@ -1,15 +1,15 @@
 <template>
   <div>
     <div class="container" id="movie-container">
-      <h1 id="title">{{ movie?.title }}</h1>
+      <h1 id="title">{{ movie_info?.title }}</h1>
       <div id="movie-info">
-        <img :src="`https://image.tmdb.org/t/p/original${movie?.poster_path}`" alt=""  id="poster">
+        <img :src="`https://image.tmdb.org/t/p/original${movie_info?.poster_path}`" alt=""  id="poster">
       </div>
       <div id="movie-info">
-        <p>평점 : {{ movie?.vote_average }}</p>
-        <p>개봉일자 : {{ movie?.release_date }}</p>    
+        <p>평점 : {{ movie_info?.vote_average }}</p>
+        <p>개봉일자 : {{ movie_info?.release_date }}</p>    
         <h5>영화 줄거리</h5>
-        <p>{{ movie?.overview }}</p>
+        <p>{{ movie_info?.overview }}</p>
       </div>
 
       <div id="like-button">
