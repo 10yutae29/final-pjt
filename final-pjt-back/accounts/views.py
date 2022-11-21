@@ -91,4 +91,4 @@ def recommend(request, user_pk):
     context = {
         'result' : result
     }
-    return JsonResponse(context)
+    return Response(context)

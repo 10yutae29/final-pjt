@@ -29,8 +29,12 @@ export default {
   methods: {
     deleteComment() {
       this.$store.dispatch('deleteComment', [this.commentItem.id, this.commentItem.movie])
-      console.log(this.commentItem)
+      // console.log(this.commentItem.user)
     }
+  },
+  created() {
+    console.log(this.commentItem)
+    console.log(this.commentItem.user)
   }
 }
 </script>
