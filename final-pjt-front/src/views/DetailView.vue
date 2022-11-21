@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="container" id="movie-container">
-      <h1 id="title">{{ movie_info?.title }}</h1>
       <div id="movie-info">
         <img :src="`https://image.tmdb.org/t/p/original${movie_info?.poster_path}`" alt=""  id="poster">
       </div>
       <div id="movie-info">
+        <h1 id="title">{{ movie_info?.title }}</h1>
         <p>평점 : {{ movie_info?.vote_average }}</p>
         <p>개봉일자 : {{ movie_info?.release_date }}</p>    
         <h5>영화 줄거리</h5>
@@ -110,6 +110,7 @@ export default {
       })
       .then(() => {
         this.getMovieDetail()
+        this.$store.dispatch('getMovies')
       })
       .catch((error) => {
         console.log(error)

@@ -5,7 +5,8 @@
         <h1>유저 정보</h1>
         <p>{{ user_detail?.username }}</p>
         <button @click="goChangePassword">비밀번호 변경</button>
-
+      </div>
+      <div id="done-block">
         <div>
           <LikeMovieList
           :liked_movies="user_detail.liked_movies"
@@ -63,13 +64,20 @@ export default {
 #user{
   justify-content: center;
   padding: 20px 20px 20px 20px;
+  display: flex;
 }
 #user-block{
   background: rgb(150, 243, 255);
   border-radius: 5px;
   border: solid rgb(6, 8, 66);
   position: relative;
-  /* display: inline; */
-  width: 100%;
+  width: 50%;
+}
+
+#done-block{
+  border-radius: 5px;
+  border: solid rgb(6, 8, 66);
+  position: relative;
+  width: 50%;
 }
 </style>

@@ -8,7 +8,7 @@
 
     <!-- 이 div에는 selected_genres가 비었을 때 영화 선택 -->
     <div v-if="!genres_length">
-      <button @click='getRandomMovies'>다른 영화</button>
+      <button id="reset-random" @click='getRandomMovies'>다른 영화</button>
       <div id="randomcase">
         <RandomItem
         v-for="random_movie in random_movies"
@@ -17,7 +17,7 @@
         @movie-plus="makeMovieList"
         />
       </div>
-      <button @click="goGenres">제출</button>
+      <button @click="goGenres"><h1>제출</h1></button>
     </div>
 
   </div>
@@ -91,5 +91,11 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+#reset-random{
+  width: 200px;
+  padding: 1vw;
+  /* font-size: 1vh; */
 }
 </style>

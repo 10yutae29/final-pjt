@@ -1,25 +1,12 @@
 <template>
-  <div id="a" class="col-xxl-3 col-md-6 mb-3">
-    <div class="row justify-content-center">
-      <div id="card" class="w-75 border card" >
-        <img id="poster" @click="goDetail" class="mt-3" :src="`https://image.tmdb.org/t/p/original${movie?.poster_path}`" alt="">
-        <div class="h-25">
-          <!-- <span class="mt-3 fs-5" id="title" @click="goDetail">{{ movie?.title }}</span> -->
-          <div class="row align-items-center">
-            <div class="col-6">
-              <span id="score">평점 : {{ movie?.vote_average }}</span>
-            </div>
-            <div class="col-6">
-              <div v-if="logedin" class="row align-items-center">
-                <ion-icon size="large" v-if="is_liked_conition" @click="toggleLike" name="heart" id="heart"></ion-icon>
-                <ion-icon size="large" v-if="!is_liked_conition" @click="toggleLike" name="heart" id="noheart"></ion-icon>
-                <!-- <ion-icon size="large" @click="toggleLike" name="heart" :class=" { 'is-liked' : is_liked_conition}"></ion-icon> -->
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div id="box">
+    <img id="poster" class="img-fluid" @click="goDetail" :src="`https://image.tmdb.org/t/p/original${movie?.poster_path}`" alt="">
+    <!-- <div>
+      <span>평점 : {{ movie?.vote_average }}</span>
+    </div> -->
+    <div v-if="logedin">
+      <ion-icon size="large" v-if="is_liked_conition" @click="toggleLike" name="heart" id="heart"></ion-icon>
+      <ion-icon size="large" v-if="!is_liked_conition" @click="toggleLike" name="heart" id="noheart"></ion-icon>
     </div>
   </div>
 </template>
@@ -51,6 +38,7 @@ export default {
   },
   methods: {
     toggleLike() {
+      console.log(this.logedin)
       const movie_id = this.movie.id
       axios({
         method: 'post',
@@ -65,6 +53,8 @@ export default {
       .catch((error) => {
         console.log(error)
       })
+      console.log(this.is_liked_conition)
+
     },
     goDetail() {
       this.$router.push(`/moviesview/${this.movie.id}/`)
@@ -77,31 +67,29 @@ export default {
 </script>
 
 <style>
-#card {
-  background: wheat;
-  border: none;
+#box{
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  width: 20%;
 }
 
-#title {
-  color: #000;
-  text-anchor: middle;
-  font-size: 1vw;
+#poster{
+  /* width: 100% */
+  height: 100%;
+  overflow: hidden;
+  border: solid 1px;
+  border-radius: 5px;
+  margin: 5px 5px 5px 5px;
 }
 
-#score {
-  color: #000;
-}
-
-#poster {
-  /* width:90%; */
-  height: 80%;
-  margin-top: 10px ;
+#card{
+  border: solid;
+  border-radius: 10px ;
 }
 
 #heart {
   color: red;
-  width: 100%;
 }
 
 .heart {

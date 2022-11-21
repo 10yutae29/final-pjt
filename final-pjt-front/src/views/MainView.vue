@@ -1,24 +1,20 @@
 <template>
   <div>
-    <div id="main" class="container">
-      <div id="main-content">
-        <h1>SEE원한 영화에 오신것을 환영합니다.</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique consequuntur omnis aperiam ipsum, laudantium ullam officia deleniti vel excepturi blanditiis sit et veniam ipsam facilis dolorum esse est quo placeat. Lorem ipsum dolor sit amet consectetur adipisicing elit. At officia ex tempora voluptatum facere placeat minima adipisci, voluptates necessitatibus perferendis architecto dolorem illo quibusdam a. Quos dignissimos magnam numquam nemo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam eos ullam sint minima alias, est corrupti neque enim ducimus veritatis. Necessitatibus incidunt amet rem excepturi tempore ducimus asperiores, ipsa error!</p>
-        <div class="water-box">
-          <div class="drop" style="--clr:#1B03DB">
-            <div class="water-content">
-              <h2>01</h2>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt debitis id sit sequi </p>
-              <router-link to="/moviesview">GO</router-link>
-            </div>
-          </div>
-          <div class="drop" style="--clr:#9000FF">
-            <div class="water-content">
-              <h2>02</h2>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt debitis id sit sequi </p>
-              <router-link to="/recommendview">GO</router-link>
-            </div>
-          </div>
+    <h1>SEE원한 영화에 오신것을 환영합니다.</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique consequuntur omnis aperiam ipsum, laudantium ullam officia deleniti vel excepturi blanditiis sit et veniam ipsam facilis dolorum esse est quo placeat. Lorem ipsum dolor sit amet consectetur adipisicing elit. At officia ex tempora voluptatum facere placeat minima adipisci, voluptates necessitatibus perferendis architecto dolorem illo quibusdam a. Quos dignissimos magnam numquam nemo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam eos ullam sint minima alias, est corrupti neque enim ducimus veritatis. Necessitatibus incidunt amet rem excepturi tempore ducimus asperiores, ipsa error!</p>
+    <div class="water-box">
+      <div class="drop" style="--clr:#1B03DB">
+        <div class="water-content">
+          <h2>01</h2>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt debitis id sit sequi </p>
+          <router-link to="/moviesview">GO</router-link>
+        </div>
+      </div>
+      <div class="drop" style="--clr:#9000FF">
+        <div class="water-content">
+          <h2>02</h2>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt debitis id sit sequi </p>
+          <router-link to="/recommendview">GO</router-link>
         </div>
       </div>
     </div>
@@ -32,18 +28,7 @@ export default {
 </script>
 
 <style>
-#main{
-  padding: 20px 20px 20px 20px;
-}
-#main-content{
-  background: #eff0f4;
-  border: solid black;
-  border-radius: 5px;
-  position: relative;
-  /* width: 100%; */
-  padding: 10px 10px 10px 10px;
-  opacity: 0.95;
-}
+
 
 /* 여기서부터 물방울 */
 .water-box{

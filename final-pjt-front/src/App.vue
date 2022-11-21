@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <!-- <div style="height:150px; margin-bottom: 10px;">
+    <div style="height:200px; margin-bottom: 10px;">
       <div class="liquid" @click="goMain">
             <h1>SEE원한 영화</h1>
             <h1>SEE원한 영화</h1>
             <h1>SEE원한 영화</h1>
             <h1>SEE원한 영화</h1>
       </div>
-    </div> -->
+    </div>
     <nav>
       <router-link to="/moviesview">전체영화</router-link> |
       <router-link to="/recommendview">영화추천</router-link>  |
@@ -19,14 +19,19 @@
       <a id="logout" v-if="isLogin" href="#" @click="logOut">로그아웃</a>
     </nav>
     <!-- 체크한번하자 -->
-    <div id="view-part">
-      <section>
-        <div id="wave"></div>
-        <div id="wave"></div>
-        <div id="wave"></div>
+    <div id="view">
+      <div id="main">
+        <div id="main-content">
+          <!-- <section>
+            <div id="wave"></div>
+            <div id="wave"></div>
+            <div id="wave"></div>
 
-      </section>
-      <router-view id="view"/>
+          </section> -->
+          <router-view/>
+        </div>
+
+      </div>
     </div>
   </div>
 </template>
@@ -67,6 +72,7 @@ export default {
   },
 }
 </script>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
 </style>
@@ -78,23 +84,39 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #000000;
-  background: #71DFE7;
+  background: #e0fdff;
+  height: 100%;
 
   /* background: #115264; */
 }
 
 #view {
-  /* background: #F5E8C7; */
+  background: #F5E8C7;
+  height: 100%;
+}
+
+#main{
+  padding: 20px 20px 20px 20px;
+}
+#main-content{
+  background: #eee;
+  border: solid black;
+  border-radius: 5px;
+  position: relative;
+  /* width: 100%; */
+  /* padding: 20px 20px 20px 20px; */
+  opacity: 0.95;
+  /* margin: 20px 20px 20px 20px; */
 }
 
 #view-part{
-  background: #F5E8C7;
-
+  display: flex;
+  justify-content: center;
 }
 
 #logout {
   font-weight: bold;
-  color: #eee;
+  color: #FFE652;
 }
 
 #logout:hover {
@@ -102,8 +124,8 @@ export default {
 }
 
 nav {
-  padding: 30px;
-  background: #009DAE;
+  padding: 10px;
+  background: #020048;
 }
 
 nav a {
@@ -124,6 +146,7 @@ nav a.router-link-exact-active {
 /* 여기서부터 물 스타일 */
 .liquid{
   margin-top: 25px;
+  margin-bottom: 25px ;
   position: absolute;
   width: 100%;
   /* height: 100%; */
