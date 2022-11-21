@@ -1,11 +1,6 @@
 <template>
-  <div>
-    <div class="card" style="width: 18rem;" @click="sendPicked">
-      <h1>
-        <!-- {{ movie?.title }} -->
-      </h1>
-      <img :src="`https://image.tmdb.org/t/p/original${movie?.poster_path}`" alt="">
-    </div>
+  <div id="box">
+    <img id="poster" class="img-fluid" :src="`https://image.tmdb.org/t/p/original${movie?.poster_path}`" alt="">
   </div>
 </template>
 
@@ -48,5 +43,19 @@ export default {
 </script>
 
 <style>
+#box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+}
 
+#poster{
+  /* width: 100% */
+  height: 100%;
+  overflow: hidden;
+  border: solid 1px;
+  border-radius: 5px;
+  margin: 5px 5px 5px 5px;
+}
 </style>

@@ -11,12 +11,12 @@
         <div class="search">
           <div class="icon" @click="activateSearch"></div>
           <div class="input">
-            <input type="text" placeholder="Search" v-model="search" @input="searchFilter">
+            <input type="search" placeholder="Search" v-model="search" @input="searchFilter">
           </div>
         </div>
       </div>
 
-      <div class="row justify-content-around">
+      <div class="row justify-content-around" id="movie-item-box">
         <MoviesListItem
         v-for="movie in movieGo"
         :key="movie.id"
@@ -49,6 +49,7 @@ export default {
   methods: {
     getMovieData(){
       this.$store.dispatch('getMovies')
+      console.log('바뀜')
     },
     searchFilter() {
       const word = this.search.toLowerCase()
@@ -95,21 +96,18 @@ export default {
 #main{
   padding: 20px 20px 20px 20px;
 }
-#main-content{
-  background: #eff0f4;
-  border: solid black;
-  border-radius: 5px;
-  position: relative;
-  /* width: 100%; */
-  padding: 10px 10px 10px 10px;
-  opacity: 0.95;
+
+
+#movie-item-box{
+  display: flex;
+  justify-content: start;
 }
 
 .search {
   position: relative;
   width: 60px;
   height: 60px;
-  background: #59C1BD;
+  background: #000;
   border-radius: 60px;
   transition: 0.5s;
   overflow:hidden;
@@ -125,7 +123,7 @@ export default {
   left: 0;
   width: 60px;
   height: 60px;
-  background: #59C1BD;
+  background: #000;
   border-radius: 60px;
   display: flex;
   justify-content: center;
@@ -139,7 +137,7 @@ export default {
   width: 15px;
   height: 15px;
   /* border: 3px solid rgb(225, 36, 36); */
-  border: 3px solid #fff;
+  border: 3px solid rgb(82, 252, 255);
 
   border-radius: 50%;
   transform: translate(-4px, -4px);
@@ -151,7 +149,7 @@ export default {
   width: 3px;
   height: 12px;
   /* background: rgb(225, 36, 36); */
-  background: #fff;
+  background: rgb(82, 252, 255);
   transform: translate(6px, 6px) rotate(315deg);
 }
 .search .input{
@@ -168,13 +166,13 @@ export default {
 .search .input input {
   position: absolute;
   top: 0;
-  width: 100%;
+  width: 90%;
   height: 100%;
   border: none;
   outline: none;
   font-size: 18px;
   padding: 10px 0;
-  background: #59C1BD;
+  background: #000;
   color: #fff;
 }
 

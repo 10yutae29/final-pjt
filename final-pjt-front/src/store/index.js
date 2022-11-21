@@ -112,7 +112,7 @@ export default new Vuex.Store({
       state.genres_length = selected_genres.result.length
       if (state.genres_length == 0) {
         const movies = state.movies
-        const random_movies = _.sampleSize(movies, 12)
+        const random_movies = _.sampleSize(movies, 15)
         state.random_movies = random_movies
         console.log(state.random_movies)
       }
@@ -123,7 +123,7 @@ export default new Vuex.Store({
     },
     GET_RANDOM_MOVIES(state) {
       const movies = state.movies
-        const random_movies = _.sampleSize(movies, 12)
+        const random_movies = _.sampleSize(movies, 15)
         state.random_movies = random_movies
     }
   },
@@ -285,25 +285,6 @@ export default new Vuex.Store({
         console.log(error)
       })
     },
-    getSelectedGenres(context){
-
-      axios({
-        method: 'get',
-        // django에서 이 url로 현재 로그인한 사람이 선택한 장르 리스트를 올려줌
-        url: `${API_URL}/accounts_detail/recommend/${this.state.logedin_user.pk}/`,
-        headers: {
-          Authorization: `Token ${context.state.token}`
-        },
-      })
-      .then((response) => {
-        console.log(response.data)
-        context.commit('GET_SELECTED_GENRES', response.data)
-
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-    },
     getUserInfo(context, user_pk){
       axios({
         method: 'get',
@@ -324,6 +305,23 @@ export default new Vuex.Store({
     getRandomMovies(context){
       context.commit('GET_RANDOM_MOVIES')
     },
+    getSelectedGenres(context){
+      axios({
+        method: 'get',
+        // django에서 이 url로 현재 로그인한 사람이 선택한 장르 리스트를 올려줌
+        url: `${API_URL}/accounts_detail/recommend/${this.state.logedin_user.pk}/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+      .then((response) => {
+        console.log(response.data)
+        context.commit('GET_SELECTED_GENRES', response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    },
     goGenres(context, picked_movies) {
       axios({
         method: 'post',
@@ -337,6 +335,7 @@ export default new Vuex.Store({
       })
       .then((response) => {
         console.log(response)
+        this.getSelectedGenres()
       })
       .catch((error) => {
         console.log(error)
