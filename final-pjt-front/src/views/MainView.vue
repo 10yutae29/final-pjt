@@ -42,6 +42,7 @@ export default {
   position: relative;
   /* width: 100%; */
   padding: 10px 10px 10px 10px;
+  opacity: 0.95;
 }
 
 /* 여기서부터 물방울 */
