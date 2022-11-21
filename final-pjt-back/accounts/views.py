@@ -17,6 +17,7 @@ from .serializers import UserDetailSerializers
 
 
 @api_view(['GET'])
+
 def user_detail(request, user_pk):
     user = User.objects.get(pk=user_pk)
     serializer = UserDetailSerializers(user)
