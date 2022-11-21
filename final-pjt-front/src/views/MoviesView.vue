@@ -1,27 +1,30 @@
 <template>
   <div>
-    <h1>전체 영화</h1>
-    <div>
-      <span>평점</span>  <span @click="scoreUp">위</span> <span @click="scoreDown">아래</span> |
-      <span>제목</span>  <span @click="titleUp">위</span> <span @click="titleDown">아래</span> |
-      <span>개봉일</span>  <span @click="dateUp">위</span> <span @click="dateDown">아래</span>
-    </div>
-    <div class="searchbody my-5">
-      <div class="search">
-        <div class="icon" @click="activateSearch"></div>
-        <div class="input">
-          <input type="text" placeholder="Search" v-model="search" @input="searchFilter">
+    <div id="main" class="container">
+      <h1>전체 영화</h1>
+      <div>
+        <span>평점</span>  <span @click="scoreUp">위</span> <span @click="scoreDown">아래</span> |
+        <span>제목</span>  <span @click="titleUp">위</span> <span @click="titleDown">아래</span> |
+        <span>개봉일</span>  <span @click="dateUp">위</span> <span @click="dateDown">아래</span>
+      </div>
+      <div class="searchbody my-5">
+        <div class="search">
+          <div class="icon" @click="activateSearch"></div>
+          <div class="input">
+            <input type="text" placeholder="Search" v-model="search" @input="searchFilter">
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row justify-content-around">
-      <MoviesListItem
-      v-for="movie in movieGo"
-      :key="movie.id"
-      :movie="movie"
-      @likechanged="getMovieData"
-      />
+      <div class="row justify-content-around">
+        <MoviesListItem
+        v-for="movie in movieGo"
+        :key="movie.id"
+        :movie="movie"
+        @likechanged="getMovieData"
+        />
+      </div>
+
     </div>
   </div>
 </template>
@@ -87,6 +90,19 @@ export default {
   justify-content: center;
   align-items: center;
 
+}
+
+#main{
+  padding: 20px 20px 20px 20px;
+}
+#main-content{
+  background: #eff0f4;
+  border: solid black;
+  border-radius: 5px;
+  position: relative;
+  /* width: 100%; */
+  padding: 10px 10px 10px 10px;
+  opacity: 0.95;
 }
 
 .search {
