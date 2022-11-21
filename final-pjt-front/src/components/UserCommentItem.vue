@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div @click="goDetail">
       <h1>{{ comment.content }}</h1>
     </div>
   </div>
@@ -15,6 +15,12 @@ export default {
   computed: {
     comment() {
       return this.comment_info
+    }
+  },
+  methods: {
+    goDetail(){
+      // console.log(this.comment)
+      this.$router.push(`/moviesview/${this.comment.movie}/`)
     }
   }
 }
