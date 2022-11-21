@@ -43,6 +43,9 @@ class PreferGenre(models.Model):
     war = models.IntegerField()
     tvmovie = models.IntegerField()
 
+    def __getitem__(self, key):
+        return getattr(self, key)
+
 # genres = Genre.objects.all()
 # for genre in genres:
 #     name = genre.name
