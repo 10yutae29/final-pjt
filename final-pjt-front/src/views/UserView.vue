@@ -26,9 +26,14 @@ export default {
   methods: {  
     goChangePassword() {
       this.$router.push('/passwordchangeview/')
+    },
+    getUserInfo() {
+      console.log(this.user)
+      this.$store.dispatch('getUserInfo', this.user.pk)
     }
   },
   created() {
+    this.getUserInfo()
   }
 }
 </script>

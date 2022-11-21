@@ -211,7 +211,6 @@ export default new Vuex.Store({
       .then((res) => {
         console.log(res)
         context.commit('LOG_OUT')
-        // this.dispatch('getMovies')
       })
       .catch((error) => {
         console.log(error)
@@ -280,6 +279,23 @@ export default new Vuex.Store({
         console.log(error)
       })
     },
+    getUserInfo(context){
+      axios({
+        method: 'get',
+        url: `${API_URL}/accounts/user_detail/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+      .then((response) => {
+        console.log(response)
+        console.log('응답받음 ㄷ')
+      })
+      .catch((error) => {
+        console.log(error)
+        console.log('에러남 ㄷ')
+      })
+    }
   },
   modules: {
   }
