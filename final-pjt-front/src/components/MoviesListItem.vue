@@ -1,8 +1,8 @@
 <template>
   <div id="a" class="col-xxl-3 col-md-6 mb-3">
     <div class="row justify-content-center">
-      <div class="w-75 border col-12 card" id="card">
-        <img @click="goDetail" class="mt-3" :src="`https://image.tmdb.org/t/p/original${movie?.poster_path}`" alt="">
+      <div id="card" class="w-75 border card" >
+        <img id="poster" @click="goDetail" class="mt-3" :src="`https://image.tmdb.org/t/p/original${movie?.poster_path}`" alt="">
         <div class="h-25">
           <span class="mt-3 fs-5" id="title" @click="goDetail">{{ movie?.title }}</span>
           <div class="row align-items-center">
@@ -80,6 +80,7 @@ export default {
 #card {
   background: #183954;
   border: none;
+  align-items: center;
 }
 
 #title {
@@ -93,8 +94,9 @@ export default {
 }
 
 #poster {
-  width:50%;
-  height: 70%;
+  /* width:90%; */
+  height: 80%;
+  margin-top: 10px ;
 }
 
 #heart {
@@ -108,5 +110,6 @@ export default {
 #unheart {
   color: black;
 }
+
 
 </style>

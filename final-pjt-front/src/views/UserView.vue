@@ -3,16 +3,34 @@
     <div id="user">
       <div id="user-block">
         <h1>유저 정보</h1>
-        <p>{{ user?.username }}</p>
+        <p>{{ user_detail?.username }}</p>
         <button @click="goChangePassword">비밀번호 변경</button>
+
+        <div>
+          <LikeMovieList
+          :liked_movies="user_detail.liked_movies"
+          />
+        </div>
+
+        <div>
+          <UserCommentList
+          :comments="user_detail.comment_set"
+          />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import UserCommentList from '@/components/UserCommentList'
+import LikeMovieList from '@/components/LikeMovieList'
 
 export default {
+  components:{
+    UserCommentList,
+    LikeMovieList
+  },
   name: 'UserView',
   data() {
     return {
@@ -21,6 +39,9 @@ export default {
   computed: {
     user() {
       return this.$store.state.user_info
+    },
+    user_detail() {
+      return this.$store.state.user_detail
     }
   },
   methods: {  

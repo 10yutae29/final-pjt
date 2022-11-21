@@ -21,6 +21,7 @@ export default new Vuex.Store({
     user_info: null,
     movie_comments: null,
     selected_genres: [],
+    user_detail: null,
 
   },
   getters: {
@@ -86,15 +87,19 @@ export default new Vuex.Store({
     },
     LOG_OUT(state) {
       // console.log('여기')
+      
       state.logedin_user = null
       state.token = null
+    
+      localStorage.removeItem('logedin_user')
+      localStorage.removeItem('token')
       // console.log('사이')
-      localStorage.removeItem('vuex')
+      // localStorage.removeItem('vuex')
       // console.log(localStorage.vuex)
       router.push('/')
 
-      if(this.$route.path !=='/moviesview') router.push('/moviesview')
-      console.log(this.$route.path)
+      // if(this.$route.path !=='/moviesview') router.push('/moviesview')
+      // console.log(this.$route.path)
 
     },
     GET_MOVIE_COMMENTS(state, comments) {
@@ -103,6 +108,9 @@ export default new Vuex.Store({
     GET_SELECTED_GENRES(state, selected_genres){
       state.selected_genres = selected_genres
     },
+    GET_USER_INFO(state, user_detail) {
+      state.user_detail = user_detail
+    }
   },
   actions: {
     getMovies(context) {
@@ -200,22 +208,9 @@ export default new Vuex.Store({
         console.log(error)
       })
     },
-    logOut(context) {
-      axios({
-        method: 'post',
-        url: `${API_URL}/accounts/logout/`,
-        headers: {
-          Authorization: `Token ${context.state.token}`
-        },
-      })
-      .then((res) => {
-        console.log(res)
-        context.commit('LOG_OUT')
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-    },
+    // logOut(context) {     
+    //   context.commit('LOG_OUT')
+    // },
     getMovieComments(context, movie_id) {
       axios({
         method: 'get',
@@ -288,9 +283,8 @@ export default new Vuex.Store({
         },
       })
       .then((response) => {
-        console.log(response)
-        console.log(context)
-        console.log('응답받음 ㄷ')
+        console.log(response.data)
+        context.commit('GET_USER_INFO', response.data)
       })
       .catch((error) => {
         console.log(error)

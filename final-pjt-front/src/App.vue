@@ -44,7 +44,11 @@ export default {
     //   this.$store.dispatch('getLoginUser')
     // },
     logOut() {
-      this.$store.dispatch('logOut')
+      console.log(this.$store.state.token)
+      console.log(this.$store.state.logedin_user)
+      console.log('logout pushed')
+      this.$store.commit('LOG_OUT')
+      // this.$store.dispatch('logOut')
     },
     goMain() {
       this.$router.push('/')
