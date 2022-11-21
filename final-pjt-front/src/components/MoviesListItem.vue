@@ -4,7 +4,7 @@
       <div id="card" class="w-75 border card" >
         <img id="poster" @click="goDetail" class="mt-3" :src="`https://image.tmdb.org/t/p/original${movie?.poster_path}`" alt="">
         <div class="h-25">
-          <span class="mt-3 fs-5" id="title" @click="goDetail">{{ movie?.title }}</span>
+          <!-- <span class="mt-3 fs-5" id="title" @click="goDetail">{{ movie?.title }}</span> -->
           <div class="row align-items-center">
             <div class="col-6">
               <span id="score">평점 : {{ movie?.vote_average }}</span>

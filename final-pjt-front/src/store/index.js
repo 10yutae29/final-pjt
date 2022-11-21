@@ -137,6 +137,19 @@ export default new Vuex.Store({
       })
       .then((response) => {
         context.commit('SAVE_TOKEN', response.data.key)
+        axios({
+          method: 'get',
+          url: `${API_URL}/accounts/user/`,
+          headers: {
+            Authorization: `Token ${response.data.key}`
+          },
+        })
+        .then((response) => {
+          context.commit('GET_LOGIN_USER', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
       })
       .catch((error) => {
         console.log(error)
@@ -258,10 +271,11 @@ export default new Vuex.Store({
       })
     },
     getSelectedGenres(context){
+
       axios({
         method: 'get',
         // django에서 이 url로 현재 로그인한 사람이 선택한 장르 리스트를 올려줌
-        url: `${API_URL}/movies/prefer-list/`,
+        url: `${API_URL}/accounts_detail/recommend/${this.state.logedin_user.pk}/`,
         headers: {
           Authorization: `Token ${context.state.token}`
         },
