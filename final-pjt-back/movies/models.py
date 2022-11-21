@@ -6,8 +6,6 @@ from django.conf import settings
 class Genre(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=30)
-    prefer_user = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='prefer_genres')
-
 
 
 class Movie(models.Model):
@@ -22,6 +20,13 @@ class Movie(models.Model):
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='liked_movies')
 
 
+class Prefer(models.Model):
+    class Meta:
+        unique_together = (('user', 'genre'),)
+
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    count = models.IntegerField(null=True)
     
 # class PreferGenre(models.Model):
 #     id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
