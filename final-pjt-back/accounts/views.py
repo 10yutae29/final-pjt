@@ -18,7 +18,7 @@ def user_detail(request, user_pk):
     return Response(serializer.data)
 
 
-@api_view(['GET'])
+@api_view(['GET','POST'])
 def recommend(request, user_pk):
     # 추천 페이지 url 요청이 들어오면, movie_like_users에 저장된 내용 업데이트
     user = User.objects.get(pk=user_pk)
