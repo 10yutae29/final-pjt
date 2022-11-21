@@ -10,6 +10,6 @@ from .serializers import UserDetailSerializers
 
 @api_view(['GET'])
 def user_detail(request):
-    user = User.objects.get(pk=request.user.pk)
+    user = User.objects.get(pk=request.user)
     serializer = UserDetailSerializers(user)
     return Response(serializer.data)
