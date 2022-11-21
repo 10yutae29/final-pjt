@@ -1,10 +1,9 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.response import Response
-from accounts.models import User
 from rest_framework.decorators import api_view
-from .serializers import UserDetailSerializers, PreferGenreSerializer
-from .models import User
+from .serializers import UserDetailSerializers
+from django.contrib.auth import get_user_model
 import random
 
 from movies.models import PreferGenre, Genre, Movie
@@ -13,7 +12,7 @@ from movies.models import PreferGenre, Genre, Movie
 
 @api_view(['GET'])
 def user_detail(request, user_pk):
-    user = User.objects.get(pk=user_pk)
+    user = get_user_model().objects.get(pk=user_pk)
     serializer = UserDetailSerializers(user)
     return Response(serializer.data)
 
@@ -21,7 +20,7 @@ def user_detail(request, user_pk):
 @api_view(['GET','POST'])
 def recommend(request, user_pk):
     # 추천 페이지 url 요청이 들어오면, movie_like_users에 저장된 내용 업데이트
-    user = User.objects.get(pk=user_pk)
+    user = get_user_model().objects.get(pk=user_pk)
     serializer = UserDetailSerializers(user)
     user_like_movies = serializer.data["liked_movies"]
     genres = Genre.objects.all()
