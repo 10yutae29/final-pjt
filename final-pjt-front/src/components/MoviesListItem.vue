@@ -12,7 +12,7 @@
             <div class="col-6">
               <div v-if="logedin" class="row align-items-center">
                 <ion-icon size="large" v-if="is_liked_conition" @click="toggleLike" name="heart" id="heart"></ion-icon>
-                <ion-icon size="large" v-if="!is_liked_conition" @click="toggleLike" name="heart"></ion-icon>
+                <ion-icon size="large" v-if="!is_liked_conition" @click="toggleLike" name="heart" id="noheart"></ion-icon>
                 <!-- <ion-icon size="large" @click="toggleLike" name="heart" :class=" { 'is-liked' : is_liked_conition}"></ion-icon> -->
 
               </div>
@@ -78,19 +78,19 @@ export default {
 
 <style>
 #card {
-  background: #183954;
+  background: wheat;
   border: none;
   align-items: center;
 }
 
 #title {
-  color: #fff;
+  color: #000;
   text-anchor: middle;
   font-size: 1vw;
 }
 
 #score {
-  color: #fff;
+  color: #000;
 }
 
 #poster {
@@ -101,13 +101,14 @@ export default {
 
 #heart {
   color: red;
+  width: 100%;
 }
 
 .heart {
   color: black
 }
 
-#unheart {
+#noheart {
   color: black;
 }
 

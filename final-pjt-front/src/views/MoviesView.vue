@@ -93,7 +93,7 @@ export default {
   position: relative;
   width: 60px;
   height: 60px;
-  background: #183954;
+  background: #59C1BD;
   border-radius: 60px;
   transition: 0.5s;
   overflow:hidden;
@@ -109,7 +109,7 @@ export default {
   left: 0;
   width: 60px;
   height: 60px;
-  background: #183954;
+  background: #59C1BD;
   border-radius: 60px;
   display: flex;
   justify-content: center;
@@ -158,7 +158,7 @@ export default {
   outline: none;
   font-size: 18px;
   padding: 10px 0;
-  background: #183954;
+  background: #59C1BD;
   color: #fff;
 }
 
