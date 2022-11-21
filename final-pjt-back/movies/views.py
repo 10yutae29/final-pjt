@@ -6,7 +6,6 @@ import requests
 
 from rest_framework import status
 from .models import Movie, Genre, PreferGenre
-from accounts.models import User
 from .serializers import MovieListSerializer, MovieSerializer, PreferGenreListSerializer
 
 from pprint import pprint
@@ -87,6 +86,7 @@ def get_movie(request):
     response = requests.get("https://api.themoviedb.org/3/movie/top_rated?api_key=f5c70cf3de1ffb0fae4f5469051c4be3&language=ko-kr").json()
     results = response.get('results')
     
+    print(results)
     for result in results:
         movie = Movie()
         movie.id = result.get('id')
