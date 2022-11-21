@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Movie, PreferGenre
+from .models import Movie
 from community.models import Comment
 from django.contrib.auth import get_user_model
 
@@ -8,13 +8,6 @@ class MovieListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Movie
-        fields = '__all__'
-
-
-class PreferGenreListSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = PreferGenre
         fields = '__all__'
 
 

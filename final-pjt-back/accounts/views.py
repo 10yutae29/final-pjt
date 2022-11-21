@@ -3,10 +3,10 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .serializers import UserDetailSerializers
+from movies.serializers import MovieSerializer
 from django.contrib.auth import get_user_model
 import random
-
-from movies.models import PreferGenre, Genre, Movie
+from movies.models import Genre, Movie
 # # Create your views here.
 
 
@@ -20,13 +20,20 @@ def user_detail(request, user_pk):
 @api_view(['GET','POST'])
 def recommend(request, user_pk):
     # 추천 장르 목록 반환
-    prefer_genres = PreferGenre.objects.get(id=user_pk)
+    user = get_user_model().objects.get(pk=user_pk)
+    user_like_movies = user.liked_movies.all()
+    for user_like_movie in user_like_movies:
+        genres = Genre.objects.all()
+        user_prefer_genres = user_like_movie.genres.all()
+        for user_prefer_genre in user_prefer_genres:
+            user_prefer_genre.prefer_user.add(user)
+    
+    
     if request.method == 'GET':
         # 추천 페이지 url 요청이 들어오면, movie_like_users에 저장된 내용 업데이트
 
-        # 
 
-
+        #
         user = get_user_model().objects.get(pk=user_pk)
         serializer = UserDetailSerializers(user)
         user_like_movies = serializer.data["liked_movies"]
@@ -42,11 +49,11 @@ def recommend(request, user_pk):
 
         # 가중치 값에 따른 장르명 저장
         genre_prefer_count = {}
-        for genre in genres:
-            if prefer_genres[f"{genre.name}"] not in genre_prefer_count: 
-                genre_prefer_count[prefer_genres[f"{genre.name}"]] = []
-            cnt = genre_prefer_count[prefer_genres[f"{genre.name}"]]
-            cnt.append(genre.name)
+        # for genre in genres:
+        #     if prefer_genres[f"{genre.name}"] not in genre_prefer_count: 
+        #         genre_prefer_count[prefer_genres[f"{genre.name}"]] = []
+        #     cnt = genre_prefer_count[prefer_genres[f"{genre.name}"]]
+        #     cnt.append(genre.name)
         cnt_val_list = sorted(genre_prefer_count.keys(), reverse=True)
 
         # 가중치 값에 따라 장르 추출
@@ -107,19 +114,16 @@ def recommend(request, user_pk):
     elif request.method == 'POST':
         picked_movie_ids = request.data["picked_movies"]
         for picked_id in picked_movie_ids:
+            select_movie_genres = []
             select_movie = Movie.objects.get(pk=picked_id)
-            print('select_movie.genres')
-            print(select_movie["genres"])
-            select_genres = select_movie.genre_list
-            # print(select_genres)
-            for select_genre in select_genres:
-                print(select_genre)
-                print(prefer_genres)
-                # prefer_genres[]
-
-        # 받은 영화 목록에서 가중치 movie_liked_user에 반영
-        # 지금 입력한 선호 영화의 장르 목록 반환
-        result = ['adventure']
+            pick_serializer = MovieSerializer(select_movie)
+            pick_genres = pick_serializer.data["genres"]
+            for pick_genre in pick_genres:
+                pick_genre_obj= Genre.objects.get(pk=pick_genre)
+                select_movie_genres.append(pick_genre_obj.name)
+            # 여기서 select_movie_genres 값 한번씩 더해주면 됨.
+            for select_movie_genre in select_movie_genres:
+                prefer_genres[select_movie_genre] += 1
         context = {
             'result' : result
         }
