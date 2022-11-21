@@ -7,7 +7,7 @@ from .serializers import UserDetailSerializers, PreferGenreSerializer
 from .models import User
 import random
 
-from movies.models import PreferGenre, Genre
+from movies.models import PreferGenre, Genre, Movie
 # # Create your views here.
 
 
@@ -20,42 +20,54 @@ def user_detail(request, user_pk):
 
 @api_view(['GET'])
 def recommend(request, user_pk):
+    # 추천 페이지 url 요청이 들어오면, movie_like_users에 저장된 내용 업데이트
+    user = User.objects.get(pk=user_pk)
+    serializer = UserDetailSerializers(user)
+    user_like_movies = serializer.data["liked_movies"]
     genres = Genre.objects.all()
-    prefer_genre_datas = PreferGenre.objects.all()
+    print(user_like_movies)
+
+    for user_like_movie in user_like_movies:
+        movie = Movie.objects.get(id=user_like_movie)
+        # for genre in genres:
+        #     print(genre.id)
+        print(movie)
+        print(movie.like_users)
+
+
+
     prefer_genres = PreferGenre.objects.get(id=user_pk)
 
-    user_has_prefers = []
-    for prefer_genre_data in prefer_genre_datas:
-        user_has_prefers.append(prefer_genre_data.id.pk)
+    # 가중치 값에 따른 장르명 저장
+    genre_prefer_count = {}
+    for genre in genres:
+        if prefer_genres[f"{genre.name}"] not in genre_prefer_count: 
+            genre_prefer_count[prefer_genres[f"{genre.name}"]] = []
+        cnt = genre_prefer_count[prefer_genres[f"{genre.name}"]]
+        cnt.append(genre.name)
+    cnt_val_list = sorted(genre_prefer_count.keys(), reverse=True)
 
-    # 유저의 장르 선호 정보가 있다면
-    if user_pk in user_has_prefers:
-        # 가중치 값에 따른 장르명 저장
-        genre_prefer_count = {}
-        for genre in genres:
-            if prefer_genres[f"{genre.name}"] not in genre_prefer_count: 
-                genre_prefer_count[prefer_genres[f"{genre.name}"]] = []
-            cnt = genre_prefer_count[prefer_genres[f"{genre.name}"]]
-            cnt.append(genre.name)
-        cnt_val_list = sorted(genre_prefer_count.keys(), reverse=True)
-        result_cnt = 0
-        result_datas = []
+    # 가중치 값에 따라 장르 추출
+    result_cnt = 0
+    result_datas = []
 
-        for cnt_val in cnt_val_list:
-            if cnt_val: 
-                result_datas.append(genre_prefer_count[cnt_val])
-                result_cnt += len(genre_prefer_count[cnt_val])
-            if result_cnt >= 3 :
-                break 
-        # 추천 장르 세가지 보내기
-        all_genre_cnt = 0
-        result = []
+    for cnt_val in cnt_val_list:
+        if cnt_val: 
+            result_datas.append(genre_prefer_count[cnt_val])
+            result_cnt += len(genre_prefer_count[cnt_val])
+        if result_cnt >= 3 :
+            break 
 
-        # 선호장르 개수 계산
+    # 추천 장르 세가지 보내기
+    all_genre_cnt = 0
+    result = []
+
+    # 장르 선호 정보가 있다면
+    if result_datas:
         for result_data in result_datas:
             all_genre_cnt += len(result_data)
-
-        # 선호장르 개수가 3보다 작으면 모든 선호장르 리스트 반환
+    
+         # 선호장르 개수가 3보다 작으면 모든 선호장르 리스트 반환
         if all_genre_cnt < 4:
             for result_data in result_datas:
                 for result_d in result_data:
@@ -85,9 +97,11 @@ def recommend(request, user_pk):
                 # 3개 랜덤으로 선택해서 반환
                 result = random.sample(result_datas[0], k=3)
 
-    # 유저의 장르 선호 정보가 없다면 빈 리스트 반환
-    else:
-        result = []
+    # 장르 선호 정보가 없다면 
+    else: 
+    # 새로운 영화 목록 받아서 MOVIE_LIKE_USERS에 반영해서 
+        result = '가중치 데이터 없음'
+
     context = {
         'result' : result
     }

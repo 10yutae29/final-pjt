@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import User
 from community.models import Comment
 from movies.models import PreferGenre
+from django.contrib.auth import get_user_model
 
 
 class PreferGenreSerializer(serializers.ModelSerializer):
