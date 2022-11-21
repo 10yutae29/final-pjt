@@ -1,14 +1,6 @@
 from rest_framework import serializers
 from community.models import Comment
-from movies.models import PreferGenre
 from django.contrib.auth import get_user_model
-
-
-class PreferGenreSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = PreferGenre
-        fields = '__all__'
 
 
 class CommentSerializer(serializers.ModelSerializer):
