@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from .models import User
 from community.models import Comment
 from movies.models import PreferGenre
 from django.contrib.auth import get_user_model
@@ -24,5 +23,5 @@ class UserDetailSerializers(serializers.ModelSerializer):
     liked_movies = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
-        model = User
+        model = get_user_model()
         fields = '__all__'
