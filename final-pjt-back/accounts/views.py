@@ -18,7 +18,7 @@ def user_detail(request, user_pk):
     return Response(serializer.data)
 
 
-@api_view(['GET'])
+@api_view(['GET','POST'])
 def recommend(request, user_pk):
     genres = Genre.objects.all()
     prefer_genre_datas = PreferGenre.objects.all()

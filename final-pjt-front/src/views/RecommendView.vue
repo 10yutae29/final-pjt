@@ -2,28 +2,29 @@
   <div>
     <h1>영화 추천</h1>
     <!-- 이 div에는 selected_genres가 있을때 추천 영화를 출력 -->
-    <div v-if="selected_genres">
+    <div v-if="genres_length">
       <MoviesListItem/>
     </div>
 
     <!-- 이 div에는 selected_genres가 비었을 때 영화 선택 -->
-    <div v-if="!selected_genres">
-      <button @click="getRandomMovies">다른 영화</button>
-      <div>
-      <RandomItem
-      v-for="random_movie in random_movies"
-      :key="random_movie.id"
-      :random_movie="random_movie"
-
-      />
+    <div v-if="!genres_length">
+      <button @click='getRandomMovies'>다른 영화</button>
+      <div id="randomcase">
+        <RandomItem
+        v-for="random_movie in random_movies"
+        :key="random_movie.id"
+        :random_movie="random_movie"
+        @movie-plus="makeMovieList"
+        />
       </div>
+      <button @click="goGenres">제출</button>
     </div>
 
   </div>
 </template>
 
 <script>
-import _ from 'lodash'
+// import _ from 'lodash'
 import RandomItem from '@/components/RandomItem'
 import MoviesListItem from '@/components/MoviesListItem'
 
@@ -37,36 +38,58 @@ export default {
     selected_genres(){
       return this.$store.state.selected_genres
     },
+    genres_length(){
+      return this.selected_genres.length
+    },
     isLogin() {
       return this.$store.getters.isLogin
+    },
+    random_movies() {
+      return this.$store.state.random_movies
     }
   },
   data() {
     return {
-      random_movies: null
+      picked_movies: []
     }
   },
   methods: {
     getRandomMovies(){
-      const movies = this.$store.state.movies
-      const random_movies = _.sampleSize(movies, 9)
-      this.random_movies = random_movies
-      console.log(this.random_movies)
+      this.$store.dispatch('getRandomMovies')
+      this.picked_movies = []
+      console.log(this.picked_movies)
     },
     getSelectedGenres() {
       this.$store.dispatch('getSelectedGenres')
+    },
+    makeMovieList(movie_id) {
+      if (this.picked_movies.includes(movie_id)) {
+        this.picked_movies.splice(this.picked_movies.indexOf(movie_id),1)
+      } else {
+        this.picked_movies.push(movie_id)     
+      }
+      console.log(this.picked_movies)
+    },
+    goGenres() {
+      this.$store.dispatch('goGenres', this.picked_movies)
     }
   },
   created() {
     this.getSelectedGenres()
-    if (!this.selected_genres) {
-      this.getRandomMovies()
-    }
-
-  }
+    
+  },
+  // updated() {
+  //   if (!this.genres_length) {
+  //     // this.getRandomMovies()
+  //   }
+  // }
 }
 </script>
 
 <style>
-
+#randomcase {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 </style>

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import router from '../router'
 import createPersistedState from 'vuex-persistedstate'
+import _ from 'lodash'
 
 
 Vue.use(Vuex)
@@ -22,7 +23,8 @@ export default new Vuex.Store({
     movie_comments: null,
     selected_genres: [],
     user_detail: null,
-
+    random_movies: null,
+    genres_length: null,
   },
   getters: {
     isLogin(state) {
@@ -107,9 +109,22 @@ export default new Vuex.Store({
     },
     GET_SELECTED_GENRES(state, selected_genres){
       state.selected_genres = selected_genres
+      state.genres_length = selected_genres.result.length
+      if (state.genres_length == 0) {
+        const movies = state.movies
+        const random_movies = _.sampleSize(movies, 12)
+        state.random_movies = random_movies
+        console.log(state.random_movies)
+      }
+
     },
     GET_USER_INFO(state, user_detail) {
       state.user_detail = user_detail
+    },
+    GET_RANDOM_MOVIES(state) {
+      const movies = state.movies
+        const random_movies = _.sampleSize(movies, 12)
+        state.random_movies = random_movies
     }
   },
   actions: {
@@ -283,6 +298,7 @@ export default new Vuex.Store({
       .then((response) => {
         console.log(response.data)
         context.commit('GET_SELECTED_GENRES', response.data)
+
       })
       .catch((error) => {
         console.log(error)
@@ -303,6 +319,27 @@ export default new Vuex.Store({
       .catch((error) => {
         console.log(error)
         console.log('에러남 ㄷ')
+      })
+    },
+    getRandomMovies(context){
+      context.commit('GET_RANDOM_MOVIES')
+    },
+    goGenres(context, picked_movies) {
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts_detail/recommend/${this.state.logedin_user.pk}/`,
+        data: {
+          picked_movies: picked_movies
+        },
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((error) => {
+        console.log(error)
       })
     }
   },
