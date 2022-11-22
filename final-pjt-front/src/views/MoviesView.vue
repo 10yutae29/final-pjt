@@ -15,6 +15,7 @@
           <!-- <li class="dropdown-item"> -->
             <li
             class="dropdown-item"
+            @click="showAll"
             >전체</li>
             <GenresItem
             v-for="genre in genres"
@@ -110,11 +111,12 @@ export default {
       const search = document.querySelector('.search')
       search.classList.toggle('active')
     },
+    showAll(){
+      this.$store.commit('SHOW_ALL')
+    }
   },
   created() {
-    console.log('durl')
-    console.log(this.genres)
-    console.log(this.$store.state.movies)
+    this.showAll()
   }
 }
 

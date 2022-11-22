@@ -39,6 +39,10 @@ export default new Vuex.Store({
       state.movies = movies
       state.movies_filtered = state.movies
     },
+    SHOW_ALL(state){
+      state.movies_filtered = state.movies
+      state.sorting_genre = '전체'
+    },
     GET_GENRES(state, genres) {
       state.genres = genres
     },
@@ -84,6 +88,11 @@ export default new Vuex.Store({
       movies_filtered.sort(function(a, b) {
         return new Date(a.release_date) - new Date(b.release_date)
       })
+    },
+    SORT_GENRE(state, sort_genre){
+      const movies_filtered = state.movies
+      state.movies_filtered = movies_filtered.filter(movie => movie.genres.includes(sort_genre.id))
+      state.sorting_genre = sort_genre.name
     },
     SAVE_TOKEN(state, token) {
       state.token = token
