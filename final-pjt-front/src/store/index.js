@@ -22,7 +22,6 @@ export default new Vuex.Store({
     logedin_user: null,
     user_info: null,
     movie_comments: null,
-    selected_genres: [],
     user_detail: null,
     random_movies: null,
     genres_length: null,
@@ -105,7 +104,7 @@ export default new Vuex.Store({
     },
     LOG_OUT(state) {
       // console.log('여기')
-      
+      state.recommend_movies = null
       state.logedin_user = null
       state.token = null
     
@@ -123,10 +122,9 @@ export default new Vuex.Store({
     GET_MOVIE_COMMENTS(state, comments) {
       state.movie_comments = comments
     },
-    GET_SELECTED_GENRES(state, selected_genres){
-      state.selected_genres = selected_genres
-      state.genres_length = selected_genres.length
-      if (state.genres_length == 0) {
+    GET_SELECTED_GENRES(state, recommend_movies){
+      state.recommend_movies = recommend_movies
+      if (state.recommend_movies == 0) {
         const movies = state.movies
         const random_movies = _.sampleSize(movies, 15)
         state.random_movies = random_movies

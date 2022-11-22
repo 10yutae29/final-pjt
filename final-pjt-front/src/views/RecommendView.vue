@@ -2,7 +2,7 @@
   <div>
     <h1>영화 추천</h1>
     <!-- 이 div에는 selected_genres가 있을때 추천 영화를 출력 -->
-    <div v-if="genres_length">
+    <div v-if="recommend_movies.length">
       <h1>장르가 있어용</h1>
       <MoviesListItem
       v-for="movie in recommend_movies"
@@ -12,7 +12,7 @@
     </div>
 
     <!-- 이 div에는 selected_genres가 비었을 때 영화 선택 -->
-    <div v-if="!genres_length">
+    <div v-if="!recommend_movies.length">
       <button id="reset-random" @click='getRandomMovies'>다른 영화</button>
       <div id="randomcase">
         <RandomItem
@@ -40,12 +40,7 @@ export default {
     MoviesListItem
   },
   computed: {
-    selected_genres(){
-      return this.$store.state.selected_genres
-    },
-    genres_length(){
-      return this.$store.state.genres_length
-    },
+
     isLogin() {
       return this.$store.getters.isLogin
     },
@@ -88,6 +83,8 @@ export default {
   },
   created() {
     this.getSelectedGenres()
+    console.log('여기')
+    console.log(this.$store.state.recommend_movies)
     
   },
   // updated() {
