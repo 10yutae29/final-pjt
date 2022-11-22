@@ -100,10 +100,7 @@ def recommend(request, user_pk):
             prefer_genres = []
 
         if len(prefer_genres) == 0:
-            context = {
-                'prefer_genres': prefer_genres
-            }
-            return Response(context)
+            return []
             
         elif len(prefer_genres) == 1:
             genre = Genre.objects.get(pk=prefer_genres)
