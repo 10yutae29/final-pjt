@@ -88,7 +88,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #000000;
-  background: #e0fdff;
+  background: #82b1ff;
   height: 100%;
 
   /* background: #115264; */
@@ -133,7 +133,7 @@ export default {
 
 nav {
   padding: 10px;
-  background: #020048;
+  background: #000063;
 }
 
 nav a {

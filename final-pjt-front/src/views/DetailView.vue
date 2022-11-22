@@ -16,7 +16,7 @@
       <div id="like-button">
         <div v-if="logedin">
           <ion-icon size="large" v-if="is_liked_conition" @click="toggleLike" name="heart" id="heart"></ion-icon>
-          <ion-icon size="large" v-if="!is_liked_conition" @click="toggleLike" name="heart"></ion-icon>
+          <ion-icon size="large" v-if="!is_liked_conition" @click="toggleLike" name="heart" id="noheart"></ion-icon>
         </div>
       </div>
 
@@ -133,6 +133,10 @@ export default {
 <style>
 #heart {
   color: red;
+}
+
+#heart, #noheart{
+  cursor: pointer;
 }
 
 #poster-detail {

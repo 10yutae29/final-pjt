@@ -134,8 +134,6 @@ export default {
 #back { 
   /* background: rgb(255, 255, 255);  */
   transform: rotateY(180deg);
-  cursor: pointer;
-
 }
 
 #movie-info {

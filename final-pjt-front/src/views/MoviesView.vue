@@ -3,9 +3,9 @@
     <div id="main" class="container">
       <h1>전체 영화</h1>
       <div>
-        <span>평점</span>  <span @click="scoreUp">위</span> <span @click="scoreDown">아래</span> |
-        <span>제목</span>  <span @click="titleUp">위</span> <span @click="titleDown">아래</span> |
-        <span>개봉일</span>  <span @click="dateUp">위</span> <span @click="dateDown">아래</span>
+        <span>평점</span>  <span @click="scoreUp" style="cursor: pointer;">위</span> <span @click="scoreDown" style="cursor: pointer;">아래</span> |
+        <span>제목</span>  <span @click="titleUp" style="cursor: pointer;">위</span> <span @click="titleDown" style="cursor: pointer;">아래</span> |
+        <span>개봉일</span>  <span @click="dateUp" style="cursor: pointer;">위</span> <span @click="dateDown" style="cursor: pointer;">아래</span>
       </div>
       <div class="dropdown">
         <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -23,11 +23,7 @@
             :genre="genre"
             class="dropdown-item"
             />
-          <!-- </li> -->
-          <!-- <li><a href="" class="dropdown-item">a</a></li>
-          <li><a href="" class="dropdown-item">b</a></li>
-          <li><a href="" class="dropdown-item">c</a></li>
-          <li><a href="" class="dropdown-item">d</a></li> -->
+
         </ul>
       </div>
 
@@ -155,6 +151,19 @@ export default {
 
 .search.active {
   width: 360px;
+}
+
+li {
+  cursor: pointer;
+}
+
+.dropdown{
+  z-index: 1100;;
+
+}
+
+.dropdown-item{
+  cursor: pointer;
 }
 
 .search .icon{
