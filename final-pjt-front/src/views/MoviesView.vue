@@ -16,7 +16,7 @@
         </div>
       </div>
 
-      <div class="row justify-content-around" id="movie-item-box">
+      <div id="movie-item-box">
         <MoviesListItem
         v-for="movie in movieGo"
         :key="movie.id"
@@ -99,8 +99,12 @@ export default {
 
 
 #movie-item-box{
+  
   display: flex;
   justify-content: start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  align-content: space-between;
 }
 
 .search {

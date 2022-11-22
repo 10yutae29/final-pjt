@@ -91,7 +91,9 @@ export default {
 }
 
 #view {
-  background: #F5E8C7;
+  /* background: #F5E8C7; */
+  background: #eee;
+
   height: 100%;
 }
 
@@ -99,7 +101,9 @@ export default {
   padding: 20px 20px 20px 20px;
 }
 #main-content{
-  background: #eee;
+  background: #F5E8C7;
+
+  /* background: #eee; */
   border: solid black;
   border-radius: 5px;
   position: relative;
@@ -175,17 +179,18 @@ nav a.router-link-exact-active {
   -18px 18px 50px rgba(0,0,0,0.5);
 }
 .liquid h1:nth-child(2) {
-  color: #2196f3;
+  /* color: #2196f3; */
+  color: #55d7ff;
   opacity: 0.5;
   animation: animate 3s ease-in-out infinite;
 }
 .liquid h1:nth-child(3) {
-  color: #2196f3;
+  color: #55d7ff;
   /* opacity: 0.5; */
   animation: animate 5s ease-in-out infinite;
 }
 .liquid h1:nth-child(4) {
-  color: #2196f3;
+  color: #55d7ff;
   opacity: 0.7;
   animation: animate 11s ease-in-out infinite;
 }
