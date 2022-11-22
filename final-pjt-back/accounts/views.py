@@ -3,10 +3,12 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .serializers import UserDetailSerializers
-from movies.serializers import MovieSerializer
+from movies.serializers import MovieSerializer, MovieListSerializer
 from django.contrib.auth import get_user_model
 import random
 from movies.models import Genre, Movie, Prefer
+from itertools import chain
+
 # # Create your views here.
 
 
@@ -59,7 +61,7 @@ def recommend(request, user_pk):
                     break 
             # 추천 장르 세가지 보내기
             all_genre_cnt = 0
-            result = []
+            prefer_genres = []
             # 장르 선호 정보가 있다면
             if result_datas:
                 for result_data in result_datas:
@@ -68,37 +70,61 @@ def recommend(request, user_pk):
                 if all_genre_cnt < 4:
                     for result_data in result_datas:
                         for result_d in result_data:
-                            result.append(result_d)
+                            prefer_genres.append(result_d)
                 # 선호장르 개수가 3보다 많을 때
                 else:
                     # 가중치 값이 3개라면
                     if len(result_datas) == 3:
                         # 1위, 2위를 결과에 먼저 포함하고
-                        result = result_datas[0] +result_datas[1]
+                        prefer_genres = result_datas[0] +result_datas[1]
                         # 세번째 장르 리스트 중에서 하나를 랜덤으로 선택
                         third_genre = random.sample(result_datas[2], k=1)
                         # 결과에 더해서 반환
-                        result += third_genre
+                        prefer_genres += third_genre
                     # 가중치 값이 2개라면
                     elif len(result_datas) == 2:
                         # 1위를 먼저 결과에 포함 하고
-                        result = result_datas[0]
+                        prefer_genres = result_datas[0]
                         # 2위에서 선택해야 하는 장르 수를 계산해서
                         need_random_cnt = 3 - len(result_datas[0])
                         # 2위 장르 리스트 중에서 계산한 값 만큼 랜덤으로 선택
                         second_genre = random.sample(result_datas[1], k = need_random_cnt)
                         # 결과에 더해서 반환
-                        result += second_genre
+                        prefer_genres += second_genre
                     # 가중치 값이 1개라면
                     elif len(result_datas) == 1:
                         # 3개 랜덤으로 선택해서 반환
-                        result = random.sample(result_datas[0], k=3)
-            # 장르 선호 정보가 없다면 빈리스트 반환(POST method로 연결됨)
-
+                        prefer_genres = random.sample(result_datas[0], k=3)
+        # 장르 선호 정보가 없다면 빈리스트 반환(POST method로 연결됨)
         else:
-            result = []
+            prefer_genres = []
 
-        context = {
-            'prefer_genres' : result
-        }
-        return Response(context)
+        if len(prefer_genres) == 0:
+            context = {
+                'prefer_genres': prefer_genres
+            }
+            return Response(context)
+            
+        elif len(prefer_genres) == 1:
+            genre = Genre.objects.get(pk=prefer_genres)
+            movies = Movie.objects.filter(genres = genre).order_by('?')[:12]
+            serializer = MovieListSerializer(movies, many=True)
+            return Response(serializer.data)
+
+        elif len(prefer_genres) == 2:
+            random_movie_querysets = []
+            for prefer_genre in prefer_genres:
+                genre = Genre.objects.get(pk=prefer_genre)
+                movies = Movie.objects.filter(genres = genre).order_by('?')[:6]
+                random_movie_querysets += list(chain(movies))
+            serializer = MovieListSerializer(random_movie_querysets, many=True)
+            return Response(serializer.data)
+
+        elif len(prefer_genres) == 3:
+            random_movie_querysets = []
+            for prefer_genre in prefer_genres:
+                genre = Genre.objects.get(pk=prefer_genre)
+                movies = Movie.objects.filter(genres = genre).order_by('?')[:4]
+                random_movie_querysets += list(chain(movies))
+            serializer = MovieListSerializer(random_movie_querysets, many=True)
+            return Response(serializer.data)
