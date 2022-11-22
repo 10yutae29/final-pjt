@@ -4,6 +4,7 @@ from . import views
 app_name = 'movies'
 urlpatterns = [
     path('',views.movie_list),
+    path('genres/',views.genre_list),
     path('<int:movie_pk>/',views.movie_detail),
     path('<int:movie_pk>/likes/',views.movie_likes),
     # path('<int:movie_pk>/comments/',views.),

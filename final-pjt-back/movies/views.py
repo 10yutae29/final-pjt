@@ -5,7 +5,7 @@ import requests
 
 from rest_framework import status
 from .models import Movie, Genre, Prefer
-from .serializers import MovieListSerializer, MovieSerializer
+from .serializers import MovieListSerializer, MovieSerializer, GenreSerializer
 
 # Create your views here.
 
@@ -16,6 +16,13 @@ def movie_list(request):
     serializer = MovieListSerializer(movies, many=True)
     return Response(serializer.data)
     
+
+@api_view(['GET', 'POST'])
+def genre_list(request):
+    genres = Genre.objects.all()
+    serializer = GenreSerializer(genres, many=True)
+    return Response(serializer.data)
+
 
 @api_view(['GET', 'POST'])
 def movie_detail(request, movie_pk):
