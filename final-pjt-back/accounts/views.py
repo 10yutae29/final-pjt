@@ -39,9 +39,6 @@ def recommend(request, user_pk):
                 result_cnt += len(genre_prefer_count[cnt_val])
             if result_cnt >= 3 :
                 break 
-        print('result_datas')
-        print(result_datas)
-
         # 추천 장르 세가지 보내기
         all_genre_cnt = 0
         result = []
