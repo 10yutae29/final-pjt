@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="sortGenre">
     {{ genres_data?.name}}
   </div>
 </template>
@@ -15,7 +15,12 @@ export default {
       console.log(this.genre)
       return this.genre
     }
-  }
+  },
+  methods: {
+    sortGenre(){
+      this.$store.commit('SORT_GENRE', this.genres_data)
+    }
+  },
 }
 </script>
 
