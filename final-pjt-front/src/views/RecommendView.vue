@@ -6,8 +6,8 @@
       <h1>장르가 있어용</h1>
       <MoviesListItem
       v-for="movie in recommend_movies"
-        :key="movie.id"
-        :movie="movie"
+      :key="movie.id"
+      :movie="movie"
       />
     </div>
 
@@ -82,7 +82,6 @@ export default {
     goGenres() {
       this.$store.dispatch('goGenres', this.picked_movies)
     },
-   
   },
   created() {
     this.getSelectedGenres()
