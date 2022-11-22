@@ -65,10 +65,14 @@ export default {
     },
     goMain() {
       this.$router.push('/')
+    },
+    getGenres(){
+      this.$store.dispatch('getGenres')
     }
   },
   created() {
     this.getMovieData()
+    this.getGenres()
   },
 }
 </script>

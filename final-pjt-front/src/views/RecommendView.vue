@@ -44,7 +44,7 @@ export default {
       return this.$store.state.selected_genres
     },
     genres_length(){
-      return this.selected_genres.length
+      return this.$store.state.genres_length
     },
     isLogin() {
       return this.$store.getters.isLogin
