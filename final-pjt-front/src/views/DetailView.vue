@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="container" id="movie-container">
-      <div id="movie-info">
-        <img :src="`https://image.tmdb.org/t/p/original${movie_info?.poster_path}`" alt=""  id="poster">
+      <div id="movie-info2">
+        <img :src="`https://image.tmdb.org/t/p/original${movie_info?.poster_path}`" alt=""  id="poster-detail">
       </div>
-      <div id="movie-info">
-        <h1 id="title">{{ movie_info?.title }}</h1>
+      <div id="movie-info2">
+        <h1 id="title-detail">{{ movie_info?.title }}</h1>
         <p>평점 : {{ movie_info?.vote_average }}</p>
         <p>개봉일자 : {{ movie_info?.release_date }}</p>    
         <h5>영화 줄거리</h5>
@@ -134,15 +134,15 @@ export default {
   color: red;
 }
 
-#poster {
+#poster-detail {
   width: 70%;
 }
 
-#title{
+#title-detail{
   flex-basis: 100%;
 }
 
-#movie-info{
+#movie-info2{
   position: relative;
   flex-basis: 50%;
 }
