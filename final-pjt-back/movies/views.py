@@ -67,27 +67,27 @@ def movie_likes(request, movie_pk):
 
 
 def get_movie(request):
-    for i in range(10):
-        results = requests.get(f"https://api.themoviedb.org/3/list/{i}?api_key=f5c70cf3de1ffb0fae4f5469051c4be3&language=ko-kr").json()
-        
-        pprint(results)
-        print(type(results))
+    for i in range(1,10):
+        print(i)
+        response = requests.get(f"https://api.themoviedb.org/3/list/{i}?api_key=f5c70cf3de1ffb0fae4f5469051c4be3&language=ko-kr").json()
+        results = response.get('items')
         for result in results:
             pprint(result)
-            print(type(result))        #     movie = Movie()
-        #     movie.id = result.get('id')
-        #     movie.poster_path = result.get('poster_path')
-        #     movie.popularity = result.get('popularity')
-        #     movie.vote_average = result.get('vote_average')
-        #     movie.overview = result.get('overview')
-        #     movie.release_date = result.get('release_date')
-        #     movie.title = result.get('title')
-        #     movie.save()
+            pprint(type(result))
+            movie = Movie()
+            movie.id = result.get('id')
+            movie.poster_path = result.get('poster_path')
+            movie.popularity = result.get('popularity')
+            movie.vote_average = result.get('vote_average')
+            movie.overview = result.get('overview')
+            movie.release_date = result.get('release_date')
+            movie.title = result.get('title')
+            movie.save()
 
-        # genre_ids = result.get('genre_ids')
-        # for genre_id in genre_ids:
-        #     genre = Genre.objects.get(pk=genre_id)
-        #     movie.genres.add(genre)
+            genre_ids = result.get('genre_ids')
+            for genre_id in genre_ids:
+                genre = Genre.objects.get(pk=genre_id)
+                movie.genres.add(genre)
             
 
 def get_genres(request):
