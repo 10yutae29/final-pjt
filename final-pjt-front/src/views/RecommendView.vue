@@ -24,7 +24,7 @@
       </div>
       <button @click="goGenres"><h1>제출</h1></button>
     </div>
-
+  <button @click="test">TEST</button>
   </div>
 </template>
 
@@ -82,6 +82,9 @@ export default {
     goGenres() {
       this.$store.dispatch('goGenres', this.picked_movies)
     },
+    test() {
+      console.log(this.$store.state.selected_genres)
+    }
   },
   created() {
     this.getSelectedGenres()

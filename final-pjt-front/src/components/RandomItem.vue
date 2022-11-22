@@ -25,12 +25,6 @@ export default {
   },
   methods: {
     sendPicked() {
-      // this.picked = !this.picked
-
-      // const data = {
-      //   to_pick: this.picked,
-      //   movie_id: this.movie.pk
-      // }
       const movie_id = this.movie.id
       this.$emit('movie-plus', movie_id)
 
