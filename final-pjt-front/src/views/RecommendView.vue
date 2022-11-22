@@ -10,7 +10,7 @@
         :movie="movie"
       />
     </div>
-    <button @click="test"></button>
+
     <!-- 이 div에는 selected_genres가 비었을 때 영화 선택 -->
     <div v-if="!genres_length">
       <button id="reset-random" @click='getRandomMovies'>다른 영화</button>
@@ -53,7 +53,7 @@ export default {
       return this.$store.state.random_movies
     },
     recommend_movies() {
-      console.log(this.$store.state.recommend_movies)
+      // console.log(this.$store.state.recommend_movies)
       return this.$store.state.recommend_movies
     },
   },
@@ -66,7 +66,7 @@ export default {
     getRandomMovies(){
       this.$store.dispatch('getRandomMovies')
       this.picked_movies = []
-      console.log(this.picked_movies)
+      // console.log(this.picked_movies)
     },
     getSelectedGenres() {
       this.$store.dispatch('getSelectedGenres')
@@ -82,11 +82,7 @@ export default {
     goGenres() {
       this.$store.dispatch('goGenres', this.picked_movies)
     },
-    test() {
-      this.$store.commit('TEST')
-      // console.log(this.$store.state)
-      console.log(this.$store.state.genres)
-    }
+   
   },
   created() {
     this.getSelectedGenres()

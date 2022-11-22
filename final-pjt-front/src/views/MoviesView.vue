@@ -7,6 +7,29 @@
         <span>제목</span>  <span @click="titleUp">위</span> <span @click="titleDown">아래</span> |
         <span>개봉일</span>  <span @click="dateUp">위</span> <span @click="dateDown">아래</span>
       </div>
+      <div class="dropdown">
+        <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          {{ sorting_genre }}
+        </button>
+        <ul class="dropdown-menu">
+          <!-- <li class="dropdown-item"> -->
+            <li
+            class="dropdown-item"
+            >전체</li>
+            <GenresItem
+            v-for="genre in genres"
+            :key="genre.pk"
+            :genre="genre"
+            class="dropdown-item"
+            />
+          <!-- </li> -->
+          <!-- <li><a href="" class="dropdown-item">a</a></li>
+          <li><a href="" class="dropdown-item">b</a></li>
+          <li><a href="" class="dropdown-item">c</a></li>
+          <li><a href="" class="dropdown-item">d</a></li> -->
+        </ul>
+      </div>
+
       <div class="searchbody my-5">
         <div class="search">
           <div class="icon" @click="activateSearch"></div>
@@ -31,10 +54,13 @@
 
 <script>
 import MoviesListItem from '@/components/MoviesListItem'
+import GenresItem from '@/components/GenresItem'
+
 export default {
   name: 'MoviesView',
   components:{
-    MoviesListItem
+    MoviesListItem,
+    GenresItem
   },
   data() {
     return {
@@ -44,6 +70,12 @@ export default {
   computed: {
     movieGo(){
       return this.$store.state.movies_filtered
+    },
+    genres() {
+      return this.$store.state.genres
+    },
+    sorting_genre(){
+      return this.$store.state.sorting_genre
     }
   },
   methods: {
@@ -80,6 +112,9 @@ export default {
     },
   },
   created() {
+    console.log('durl')
+    console.log(this.genres)
+    console.log(this.$store.state.movies)
   }
 }
 
