@@ -1,13 +1,12 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from django.shortcuts import render
 from django.http import JsonResponse
 import requests
 
 from rest_framework import status
 from .models import Movie, Genre, Prefer
 from .serializers import MovieListSerializer, MovieSerializer
-from pprint import pprint
+
 # Create your views here.
 
 
@@ -22,6 +21,7 @@ def movie_list(request):
 def movie_detail(request, movie_pk):
     if request.method == 'GET':
         movie = Movie.objects.get(pk=movie_pk)
+        genres = movie.genres.all()
         serializer = MovieSerializer(movie)
         return Response(serializer.data)
 

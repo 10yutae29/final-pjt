@@ -20,7 +20,7 @@ def user_detail(request, user_pk):
 @api_view(['GET','POST'])
 def recommend(request, user_pk):
     if request.method == 'POST':
-        print(request)
+        print(request.data)
         pass
     elif request.method == 'GET':
         user = get_user_model().objects.get(pk=user_pk)
@@ -30,9 +30,9 @@ def recommend(request, user_pk):
             genre_prefer_count = {}
             for user_prefer in user_prefers:
                 if user_prefer.count in genre_prefer_count.keys():
-                    genre_prefer_count[user_prefer.count].append(user_prefer.genre.name)
+                    genre_prefer_count[user_prefer.count].append(user_prefer.genre.id)
                 else: 
-                    genre_prefer_count[user_prefer.count] = [user_prefer.genre.name]
+                    genre_prefer_count[user_prefer.count] = [user_prefer.genre.id]
             cnt_val_list = sorted(genre_prefer_count.keys(), reverse=True)
             # 가중치 값에 따라 장르 추출
             result_cnt = 0
