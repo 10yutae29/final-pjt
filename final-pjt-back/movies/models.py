@@ -21,13 +21,16 @@ class Movie(models.Model):
 
 
 class Prefer(models.Model):
-    class Meta:
-        unique_together = (('user', 'genre'),)
-
+    
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     count = models.IntegerField(null=True)
     
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'genre'], name='user_prefer_value'),
+        ]
+        
 # class PreferGenre(models.Model):
 #     id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
 #     sciencefiction = models.IntegerField()

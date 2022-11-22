@@ -11,9 +11,6 @@ class MovieListSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
-
-
 class MovieSerializer(serializers.ModelSerializer):
 
     class CommentSerializer(serializers.ModelSerializer):
