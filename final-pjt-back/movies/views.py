@@ -5,7 +5,7 @@ from django.http import JsonResponse
 import requests
 
 from rest_framework import status
-from .models import Movie, Genre
+from .models import Movie, Genre, Prefer
 from .serializers import MovieListSerializer, MovieSerializer
 from pprint import pprint
 # Create your views here.
@@ -29,12 +29,24 @@ def movie_detail(request, movie_pk):
 @api_view(['POST'])
 def movie_likes(request, movie_pk):
     movie = Movie.objects.get(pk=movie_pk)
+    genres = movie.genres.all()
+    # 좋아요 취소
     if movie.like_users.filter(pk=request.user.pk).exists():
         movie.like_users.remove(request.user)
         is_liked = False
+        for genre in genres:
+            prefer = Prefer.objects.get(user=request.user, genre=genre)
+            prefer.count -= 1
+            prefer.save()
+    # 좋아요
     else:
         movie.like_users.add(request.user)
         is_liked = True
+        for genre in genres:
+            prefer = Prefer.objects.get(user=request.user, genre=genre)
+            prefer.count += 1
+            prefer.save()
+
     context = {
         'is_liked': is_liked,
     }
