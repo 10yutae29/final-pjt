@@ -3,6 +3,7 @@
     <h1>영화 추천</h1>
     <!-- 이 div에는 selected_genres가 있을때 추천 영화를 출력 -->
     <div v-if="genres_length">
+      <h1>장르가 있어용</h1>
       <MoviesListItem/>
     </div>
 

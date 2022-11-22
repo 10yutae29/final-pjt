@@ -335,7 +335,21 @@ export default new Vuex.Store({
       })
       .then((response) => {
         console.log(response)
-        this.getSelectedGenres()
+        axios({
+          method: 'get',
+          // django에서 이 url로 현재 로그인한 사람이 선택한 장르 리스트를 올려줌
+          url: `${API_URL}/accounts_detail/recommend/${this.state.logedin_user.pk}/`,
+          headers: {
+            Authorization: `Token ${context.state.token}`
+          },
+        })
+        .then((response) => {
+          console.log(response.data)
+          context.commit('GET_SELECTED_GENRES', response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
       })
       .catch((error) => {
         console.log(error)
