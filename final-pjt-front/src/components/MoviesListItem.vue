@@ -5,16 +5,17 @@
         <img id="poster" style="display:block; margin:0 auto;"  :src="`https://image.tmdb.org/t/p/original${movieItemInfo?.poster_path}`" alt="">
       </div>
       <div id="back">
-        <div id="movie-info" @click="goDetail">
+        <div id="movie-info" >
           <p id="title">{{ movieItemInfo?.title }}</p>
           <p id="score">평점 : {{ movieItemInfo?.vote_average }}</p>
           <p id="date">개봉일 : {{ movieItemInfo?.release_date }}</p>
+          <div v-if="logedin">
+            <ion-icon size="large" v-if="is_liked_conition" @click="toggleLike" name="heart" id="heart"></ion-icon>
+            <ion-icon size="large" v-if="!is_liked_conition" @click="toggleLike" name="heart" id="noheart"></ion-icon>
+          </div>
+          <button @click="goDetail">영화 세부 정보</button>
         </div>
       </div>
-    </div>
-    <div v-if="logedin">
-      <ion-icon size="large" v-if="is_liked_conition" @click="toggleLike" name="heart" id="heart"></ion-icon>
-      <ion-icon size="large" v-if="!is_liked_conition" @click="toggleLike" name="heart" id="noheart"></ion-icon>
     </div>
   </div>
 </template>
@@ -39,7 +40,7 @@ export default {
       },
     is_liked_conition() {
       if (this.$store.state.logedin_user) {
-        return this.movieItemInfo.like_users.includes(this.$store.state.logedin_user.pk)
+        return this.movieItemInfo?.like_users.includes(this.$store.state.logedin_user.pk)
       } else {
         return false
       }
@@ -53,7 +54,7 @@ export default {
   },
   methods: {
     toggleLike() {
-      console.log(this.logedin)
+      // console.log(this.logedin)
       const movie_id = this.movie.id
       axios({
         method: 'post',
@@ -68,7 +69,7 @@ export default {
       .catch((error) => {
         console.log(error)
       })
-      console.log(this.is_liked_conition)
+      // console.log(this.is_liked_conition)
 
     },
     goDetail() {
@@ -133,6 +134,7 @@ export default {
 #back { 
   /* background: rgb(255, 255, 255);  */
   transform: rotateY(180deg);
+  cursor: pointer;
 
 }
 
@@ -177,14 +179,18 @@ export default {
 
 #heart {
   color: red;
+  cursor: pointer;
+
 }
 
 .heart {
-  color: black
+  color: black;
 }
 
 #noheart {
   color: black;
+  cursor: pointer;
+
 }
 
 

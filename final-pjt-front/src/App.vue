@@ -170,6 +170,7 @@ nav a.router-link-exact-active {
   font:bold;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-family: 'Black Han Sans', sans-serif;
+  cursor: pointer;
 }
 
 .liquid h1:nth-child(1)
