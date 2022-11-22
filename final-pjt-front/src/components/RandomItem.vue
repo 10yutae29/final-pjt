@@ -1,6 +1,6 @@
 <template>
   <div id="box">
-    <img id="poster" class="img-fluid" :src="`https://image.tmdb.org/t/p/original${movie?.poster_path}`" alt="">
+    <img @click="sendPicked" id="poster" class="img-fluid" :src="`https://image.tmdb.org/t/p/original${movie?.poster_path}`" alt="">
   </div>
 </template>
 

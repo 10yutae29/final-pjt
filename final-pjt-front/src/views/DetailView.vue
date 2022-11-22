@@ -8,6 +8,7 @@
         <h1 id="title-detail">{{ movie_info?.title }}</h1>
         <p>평점 : {{ movie_info?.vote_average }}</p>
         <p>개봉일자 : {{ movie_info?.release_date }}</p>    
+        <p>장르 : {{ movie_info?.genres }}</p>
         <h5>영화 줄거리</h5>
         <p>{{ movie_info?.overview }}</p>
       </div>
