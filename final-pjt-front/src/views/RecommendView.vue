@@ -4,9 +4,13 @@
     <!-- 이 div에는 selected_genres가 있을때 추천 영화를 출력 -->
     <div v-if="genres_length">
       <h1>장르가 있어용</h1>
-      <MoviesListItem/>
+      <MoviesListItem
+      v-for="movie in recommend_movies"
+        :key="movie.id"
+        :movie="movie"
+      />
     </div>
-
+    <button @click="test"></button>
     <!-- 이 div에는 selected_genres가 비었을 때 영화 선택 -->
     <div v-if="!genres_length">
       <button id="reset-random" @click='getRandomMovies'>다른 영화</button>
@@ -47,7 +51,11 @@ export default {
     },
     random_movies() {
       return this.$store.state.random_movies
-    }
+    },
+    recommend_movies() {
+      console.log(this.$store.state.recommend_movies)
+      return this.$store.state.recommend_movies
+    },
   },
   data() {
     return {
@@ -73,6 +81,11 @@ export default {
     },
     goGenres() {
       this.$store.dispatch('goGenres', this.picked_movies)
+    },
+    test() {
+      this.$store.commit('TEST')
+      // console.log(this.$store.state)
+      console.log(this.$store.state.genres)
     }
   },
   created() {
