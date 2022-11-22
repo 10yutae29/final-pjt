@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -20,8 +20,22 @@ def user_detail(request, user_pk):
 @api_view(['GET','POST'])
 def recommend(request, user_pk):
     if request.method == 'POST':
-        print(request.data)
-        pass
+        user_picked_movie_ids = request.data['picked_movies']
+        print(user_picked_movie_ids)
+        for user_picked_movie_id in user_picked_movie_ids:
+            user_picked_movie = Movie.objects.get(pk=user_picked_movie_id)
+            user_picked_genres = user_picked_movie.genres.all()
+            for user_picked_genre in user_picked_genres:
+                prefers = Prefer.objects.all()
+                if prefers.filter(user=request.user, genre=user_picked_genre).exists():
+                    prefer = Prefer.objects.get(user=request.user, genre=user_picked_genre)
+                    prefer.count += 1
+                    prefer.save()
+                else:
+                    prefer = Prefer.objects.create(user=request.user, genre=user_picked_genre, count=1)
+        context = { }
+        return Response(context)
+
     elif request.method == 'GET':
         user = get_user_model().objects.get(pk=user_pk)
         prefers = Prefer.objects.all()
