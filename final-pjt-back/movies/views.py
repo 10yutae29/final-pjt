@@ -43,9 +43,14 @@ def movie_likes(request, movie_pk):
         movie.like_users.add(request.user)
         is_liked = True
         for genre in genres:
-            prefer = Prefer.objects.get(user=request.user, genre=genre)
-            prefer.count += 1
-            prefer.save()
+            prefers = Prefer.objects.all()
+            if prefers.filter(user=request.user, genre=genre).exists():
+                prefer = Prefer.objects.get(user=request.user, genre=genre)
+                prefer.count += 1
+                prefer.save()
+            else:
+                prefer = Prefer.objects.create(user=request.user, genre=genre, count=1)
+
 
     context = {
         'is_liked': is_liked,
