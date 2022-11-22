@@ -2,13 +2,13 @@
   <div id="box">
     <div id="card">
       <div id="front">
-        <img id="poster" style="display:block; margin:0 auto;"  :src="`https://image.tmdb.org/t/p/original${movie?.poster_path}`" alt="">
+        <img id="poster" style="display:block; margin:0 auto;"  :src="`https://image.tmdb.org/t/p/original${movieItemInfo?.poster_path}`" alt="">
       </div>
       <div id="back">
         <div id="movie-info" @click="goDetail">
-          <p id="title">{{ movie?.title }}</p>
-          <p id="score">평점 : {{ movie?.vote_average }}</p>
-          <p id="date">개봉일 : {{ movie?.release_date }}</p>
+          <p id="title">{{ movieItemInfo?.title }}</p>
+          <p id="score">평점 : {{ movieItemInfo?.vote_average }}</p>
+          <p id="date">개봉일 : {{ movieItemInfo?.release_date }}</p>
         </div>
       </div>
     </div>
@@ -30,12 +30,16 @@ export default {
   },
   data() {
     return{  
+      movieItem: null
     }
   },
   computed: {
+    movieItemInfo() {
+        return this.movieItem
+      },
     is_liked_conition() {
       if (this.$store.state.logedin_user) {
-        return this.movie.like_users.includes(this.$store.state.logedin_user.pk)
+        return this.movieItemInfo.like_users.includes(this.$store.state.logedin_user.pk)
       } else {
         return false
       }
@@ -59,7 +63,7 @@ export default {
         },
       })
       .then(() => {
-        this.$emit('likechanged')
+        this.getMovieDetail()
       })
       .catch((error) => {
         console.log(error)
@@ -70,9 +74,21 @@ export default {
     goDetail() {
       this.$router.push(`/moviesview/${this.movie.id}/`)
     },
+    getMovieDetail() {
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/${this.movie.id}`
+      })
+      .then((response) => {
+        this.movieItem = response.data
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    },
   },
   created() {
-  
+    this.getMovieDetail()
   }
 }
 </script>

@@ -45,7 +45,6 @@
         v-for="movie in movieGo"
         :key="movie.id"
         :movie="movie"
-        @likechanged="getMovieData"
         />
       </div>
 
