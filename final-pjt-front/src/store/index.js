@@ -124,8 +124,8 @@ export default new Vuex.Store({
       state.movie_comments = comments
     },
     GET_SELECTED_GENRES(state, selected_genres){
-      state.selected_genres = selected_genres.prefer_genres
-      state.genres_length = selected_genres.prefer_genres.length
+      state.selected_genres = selected_genres
+      state.genres_length = selected_genres.length
       if (state.genres_length == 0) {
         const movies = state.movies
         const random_movies = _.sampleSize(movies, 15)
