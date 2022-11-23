@@ -16,15 +16,15 @@
       <p>{{ movie_info?.overview }}</p>
     </div>
     <div class="detailview-comment">
-      <form @submit.prevent="createComment">
-        <input type="textarea" v-model="comment_create">
-        <input type="submit" value="작성">
-      </form>
       <div>
         <CommentsList
         :comments="comments"
         />
       </div>
+      <form @submit.prevent="createComment">
+        <input type="textarea" v-model="comment_create">
+        <input type="submit" value="작성">
+      </form>
     </div>
   </div>
 </template>
@@ -146,7 +146,7 @@ export default {
 
 .detailview-poster-box{
   width:100%;
-  border-radius: 5px;
+  border-radius: white 5px;
   aspect-ratio: 5 / 7 auto ;
 }
 
@@ -168,6 +168,7 @@ export default {
   text-align: center;
 }
 .detailview-comment{
+  margin-top:20px;
   grid-column: 1/3;
 }
 
