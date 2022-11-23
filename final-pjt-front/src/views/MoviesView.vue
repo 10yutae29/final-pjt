@@ -167,19 +167,7 @@ export default {
   align-content: space-between;
 }
 
-.search {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  background: rgb(255, 255, 255);
-  border-radius: 60px;
-  transition: 0.5s;
-  overflow:hidden;
-}
 
-.search.active {
-  width: 360px;
-}
 
 li {
   cursor: pointer;
@@ -209,6 +197,20 @@ li {
 .dropdown-item{
   cursor: pointer;
 
+}
+
+.search {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background: rgb(255, 255, 255);
+  border-radius: 60px;
+  transition: 0.5s;
+  overflow:hidden;
+}
+
+.search.active {
+  width: 360px;
 }
 
 .search .icon{

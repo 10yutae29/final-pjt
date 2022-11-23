@@ -107,10 +107,11 @@ export default {
 
 #content {
   background: url(https://cdn.pixabay.com/photo/2014/11/30/17/15/theater-551797__340.jpg) no-repeat;
+  /* background: url(https://cdn.pixabay.com/photo/2014/03/25/16/30/movie-297239__340.png) no-repeat; */
   /* background: #484848; */
   grid-column: 1 / -1;
   display: fixed;
-  
+  min-height: 100vh;
   background-size: cover;
   background-attachment: fixed;
 }

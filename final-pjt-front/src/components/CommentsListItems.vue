@@ -1,12 +1,15 @@
 <template>
-  <div>
-    <div id="comment">
-      <div id="comment-box">
-        <p>{{ commentItem.user.username }}</p>
+  <div class="comment-grid">
+    <div class="comment-username">
+      <p>{{ commentItem.user.username }}</p>
+    </div>
+    <div class="comment-box">
         <p>{{ commentItem.content }}</p>
-        <p>작성 시간 : {{ commentItem.updated_at}}</p>
-        <button @click="deleteComment" v-if="this.commentItem.user.id == this.$store.state.logedin_user.pk">댓글삭제</button>
-      </div>
+        <div>
+          <span>{{ commentItem.updated_at}}</span>
+          <span @click="deleteComment" v-if="this.commentItem.user.id == this.$store.state.logedin_user.pk">댓글삭제</span>
+          <hr>
+        </div>
     </div>
   </div>
 </template>
@@ -42,15 +45,53 @@ export default {
 </script>
 
 <style>
-#comment{
-  
+.comment-grid{
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto auto;
 }
 
-#comment-box{
-  background: black;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  color: white;
+
+.comment-username p{
+  font-size: 3vw;
+  padding-left: 20px;
+  margin-bottom: 0;
+
+}
+
+.comment-box{
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 100%;
+  gap: 1vw;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+.comment-box p{
+  width: 100%;
+  font-weight: bold;
+  padding: 5px 5px 5px 5px;
+  background: rgb(223, 223, 223);
+  border-radius: 5px;
+  height: auto;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.comment-box div span{
+  padding-right: 20px;
+  padding-left: 5px;
+  color: rgb(160, 160, 160);
+  /* font:bold; */
+}
+
+.comment-display{
+  width: 100%;
+}
+
+.comment-box div span:nth-child(2){
+  cursor: pointer;
 }
 /* #comment:last-child{
   border-bottom: 1px;

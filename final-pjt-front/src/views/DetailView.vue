@@ -1,31 +1,51 @@
 <template>
   <div class="detailview-grid">
-    <div class="detailview-poster-box">
-      <img class="detailview-poster" :src="`https://image.tmdb.org/t/p/original${movie_info?.poster_path}`" alt="">
-    </div>
-    <div class="detailview-movie-info">
-      <h1>{{ movie_info?.title }}</h1>
-      <div v-if="logedin">
-        <ion-icon size="large" v-if="is_liked_conition" @click="toggleLike" name="heart" id="heart"></ion-icon>
-        <ion-icon size="large" v-if="!is_liked_conition" @click="toggleLike" name="heart" id="noheart"></ion-icon>
+    <div></div>
+    <div class="detailview-movie-box">
+      <div class="detailview-poster-box">
+        <img class="detailview-poster" :src="`https://image.tmdb.org/t/p/original${movie_info?.poster_path}`" alt="">
       </div>
-      <p>평점 : {{ movie_info?.vote_average }}</p>
-      <p>개봉일자 : {{ movie_info?.release_date }}</p>    
-      <p>장르 : {{ movie_genres }}</p>
-      <h5>영화 줄거리</h5>
-      <p>{{ movie_info?.overview }}</p>
+      <div class="detailview-movie-info">
+        <h1>{{ movie_info?.title }}</h1> <hr> 
+        <p>평점 : {{ movie_info?.vote_average }}</p><br>
+        <p>개봉일자 : {{ movie_info?.release_date }}</p>  <br>  
+        <p>장르 : {{ movie_genres }}</p><br>
+        <div class="heart-box" v-if="logedin">
+          <ion-icon  v-if="is_liked_conition" @click="toggleLike" name="heart" id="heart"></ion-icon>
+          <ion-icon  v-if="!is_liked_conition" @click="toggleLike" name="heart" id="noheart"></ion-icon>
+        </div>
+      </div>
+      <div class="movie-content-tag">
+        <h5>영화 줄거리</h5>
+      </div>
+      <div class="overview-total-box">
+        <div class="overview-box">
+          <p>{{ movie_info?.overview }}</p>
+        </div>
+      </div>
     </div>
+    <div></div>
+    <div></div>
     <div class="detailview-comment">
       <div>
         <CommentsList
         :comments="comments"
         />
       </div>
-      <form @submit.prevent="createComment">
-        <input type="textarea" v-model="comment_create">
-        <input type="submit" value="작성">
-      </form>
+      <div class="detailview-createcomment">
+        <div class="comment-create-tag">
+          <p>리뷰 작성</p>
+        </div>
+        <div>
+          <textarea name="comment" class="comment-textarea" v-model="comment_create"></textarea>
+        </div>
+        <!-- <input type="textarea" v-model="comment_create"> -->
+        <div class="createcomment-btn">
+          <input @click="createComment" type="submit" value="작성">
+        </div>
+      </div>
     </div>
+    <div></div>
   </div>
 </template>
 
@@ -138,38 +158,99 @@ export default {
 
 <style>
 .detailview-grid{
-  margin: 50px 50px 50px 50px;
+  margin-top: 10vh;
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 10% 80% 10%;
   grid-template-rows: auto auto;
+}
+
+.detailview-movie-box{
+  border-radius: 5px;
+  background: white;
+  display: grid;
+  grid-template-columns: 25% 75%;
+  grid-template-rows: auto auto auto;
+  padding: 5vh 5vh 5vh 5vh;
 }
 
 .detailview-poster-box{
   width:100%;
+  height: 100%;
   border-radius: white 5px;
-  aspect-ratio: 5 / 7 auto ;
+  display:flex;
+  justify-content: center;
 }
 
 .detailview-poster{
-  object-fit: cover;
+  /* object-fit: cover; */
   border-radius: 5px;
   height: 100%;
+  width: 100%;
   
 }
 
 .detailview-movie-info{
   width: 100%;
-  background: white;
   border-radius: 5px;
   padding: 20px 20px 20px 20px;
 }
 .detailview-movie-info h1{
-  font-size: 7vw;
-  text-align: center;
+  font-size: 3vw;
 }
+.detailview-movie-info p{
+  margin-left: 10px;
+  font-size: 1.5vw;
+}
+
+.heart-box{
+  margin-left: 10px;
+  height: 3vw;
+  width: 3vw;
+}
+
+.overview-total-box{
+  padding: 1.5vw 1.5vw 1.5vw 1.5vw;
+}
+
+.overview-box{
+  border-radius: 5px;
+  border: solid 0.1px;
+  padding: 1vw;
+  font-size: 1vw;
+}
+
+.movie-content-tag{
+  display: flex;
+  justify-content: center;
+  padding-top: 3vw;
+}
+
+.comment-create-tag{
+  font-size: 2vw;
+}
+
+.movie-content-tag h5{
+  font-size: 1.5vw;
+}
+
 .detailview-comment{
-  margin-top:20px;
-  grid-column: 1/3;
+  background: white;
+  margin-bottom: 20px;
+}
+
+.detailview-createcomment{
+  padding: 20px 20px 20px 20px;
+  display: grid;
+  grid-template-rows: auto auto auto;
+}
+
+.createcomment-btn{
+  display: flex;
+  justify-content: right;
+}
+
+.comment-textarea{
+  width: 100%;
 }
 
 #heart {
@@ -178,5 +259,7 @@ export default {
 
 #heart, #noheart{
   cursor: pointer;
+  width: 100%;
+  height: 100%;
 }
 </style>
