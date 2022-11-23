@@ -1,39 +1,39 @@
 <template>
   <div>
-    <div id="user" >
-       <div class="row">
-      <div id="user-block" class="col-6">
-        <h1 id="greeting">안녕하세요 {{ user_detail?.username }} 님!</h1>
+    <div id="userview-grid">
+      <div id="user-block">
+        <h1>안녕하세요 {{ user_detail?.username }} 님!</h1>
         <button @click="goChangePassword">비밀번호 변경</button>
       </div>
 
-        <div class="col-6 my-auto" id="comments">
+        <div id="comments">
           <UserCommentList
           :comments="user_detail.comment_set"
           />
         </div>
 
-        <div class="col-12 my-auto">
-          <LikeMovieList
-          :liked_movies="user_detail.liked_movies"
+        <div id="like-movie-list">
+          <h3 id="like-movie-list-title">좋아하는 영화 목록</h3>
+          <MoviesListItem
+          v-for="movie in like_movies"
+          :key="movie.id"
+          :movie="movie"
           />
         </div>
-
-    </div>
     </div>
   </div>
 </template>
 
 <script>
 import UserCommentList from '@/components/UserCommentList'
-import LikeMovieList from '@/components/LikeMovieList'
+import MoviesListItem from '@/components/MoviesListItem'
 
 export default {
+  name: 'UserView',
   components:{
     UserCommentList,
-    LikeMovieList
+    MoviesListItem,
   },
-  name: 'UserView',
   data() {
     return {
     }
@@ -44,7 +44,10 @@ export default {
     },
     user_detail() {
       return this.$store.state.user_detail
-    }
+    },
+    like_movies() {
+      return this.$store.state.movies.filter(movie => this.user_detail.liked_movies.includes(movie.id))
+      }
   },
   methods: {  
     goChangePassword() {
@@ -62,13 +65,13 @@ export default {
 </script>
 
 <style>
-#user{
-  justify-content: center;
-  padding: 20px 20px 20px 20px;
-  display: flex;
+#userview-grid{
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
 }
 
 #user-block{
+  grid-column: 1 / span 2;
   color: white;
 
   /* background: rgba(238, 221, 60, 0.762);
@@ -79,11 +82,8 @@ export default {
   text-align: center; */
 }
 
-#greeting{
-
-}
-
 #comments{
+  grid-column: 3 / span 2;
   color: white;
 
   /* background: rgba(238, 221, 60, 0.762);
@@ -95,8 +95,18 @@ export default {
 }
 
 #like-movie-list-title{
+  grid-column: 1 / span 5; 
   text-decoration-line: underline;
   margin-top: 5px;
   color: white;
+}
+
+#like-movie-list{
+  grid-column: 1 / span 4; 
+  display: grid;
+  grid-template-columns: 18% 18% 18% 18% 18%;
+  padding: 20px;
+  column-gap: 2.5%;
+  row-gap: 20px;
 }
 </style>

@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h3 id="like-movie-list-title">좋아요 누른 영화 목록</h3>
-    <div class="row">
+    <h3>좋아요 누른 영화 목록</h3>
   <div  id="like-movies-items">   
       <LikeMoviesItem
       v-for="liked_movie_info in liked_movies_info"
@@ -11,7 +10,6 @@
     </div>
       
     </div>
-  </div>
 </template>
 
 <script>
