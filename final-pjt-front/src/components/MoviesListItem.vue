@@ -5,7 +5,7 @@
       <div class="card">
     <!-- 앞면 -->
         <div class="front">
-          <img class="poster" :src="`https://image.tmdb.org/t/p/original${movieItemInfo?.poster_path}`" alt="">
+          <img class="poster" v-if="movieItemInfo" :src="`https://image.tmdb.org/t/p/original${movieItemInfo?.poster_path}`" alt="">
           <div class="front-title"><span>{{ movieItemInfo?.title }}</span></div>
           <div class="front-date"><span>{{ movieItemInfo?.release_date }}</span></div>
         </div>
