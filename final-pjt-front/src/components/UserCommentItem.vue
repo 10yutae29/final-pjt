@@ -1,7 +1,8 @@
 <template>
   <div>
     <div @click="goDetail">
-      <h1>{{ comment.content }}</h1>
+      <h5 id="comment-content">{{ comment.content }}</h5>
+      <span id="comment-update">{{ comment.updated_at }}</span>
     </div>
   </div>
 </template>
@@ -26,5 +27,14 @@ export default {
 </script>
 
 <style>
+#comment-content{
+  text-align: left;
+  margin-bottom: 0px;
+}
 
+#comment-update{
+  text-align: left;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
 </style>
