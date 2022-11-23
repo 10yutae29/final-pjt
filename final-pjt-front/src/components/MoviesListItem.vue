@@ -1,11 +1,13 @@
 <template>
-  <div id="movieslistitem-grid">
+  <div class="movieslistitem-grid">
     <div></div>
     <div class="flip">  
       <div class="card">
     <!-- 앞면 -->
         <div class="front">
-          <img id="poster" :src="`https://image.tmdb.org/t/p/original${movieItemInfo?.poster_path}`" alt="">
+          <img class="poster" :src="`https://image.tmdb.org/t/p/original${movieItemInfo?.poster_path}`" alt="">
+          <div class="front-title"><span>{{ movieItemInfo?.title }}</span></div>
+          <div class="front-date"><span>{{ movieItemInfo?.release_date }}</span></div>
         </div>
     <!-- 뒷면 -->
         <div class="back">
@@ -61,7 +63,8 @@ export default {
       return this.$store.state.logedin_user
     },
     date() {
-      return new this.movie.release_date
+      const date = new this.movie.release_date.toDateString()
+      return date
     }
   },
   methods: {
@@ -102,9 +105,13 @@ export default {
   }
 }
 </script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
+</style>
 
 <style>
-#movieslistitem-grid{
+.movieslistitem-grid{
+  aspect-ratio: 5 / 7 auto ;
   display: grid;
   grid-template-columns: 10% 80% 10%;
 }
@@ -116,7 +123,7 @@ export default {
   border-radius: 5px;
 }
 
-#poster{
+.poster{
   height: 100%;
   width:100%;
   object-fit: cover;
@@ -133,18 +140,28 @@ export default {
 .front, .back {
   position: absolute;
   width: 100%; 
-  height: 80%;
+  height: 100%;
   backface-visibility: hidden;
   display: flex;
   justify-content: center;
+  padding: 10px 5px 5px 5px;
+  border-radius: 5px;
+
 }
 
 .front {
   background: rgb(255, 255, 255); 
-  border-radius: 5px;
-
-
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 75% 15% 10%;
+  
 }
+.front .front-title, .front-date{
+  font-family: 'Nanum Brush Script', cursive;
+  font-size: 2vw;
+  text-align: center;
+}
+
 #movie-info {
   background: rgb(255, 255, 255);
   /* width: 80%; */
@@ -186,7 +203,6 @@ export default {
 .back { 
   background: rgb(255, 255, 255); 
   height: 100%;
-  border-radius: 5px;
   transform: rotateY(180deg);
 }
 

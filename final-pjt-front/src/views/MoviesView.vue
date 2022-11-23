@@ -41,7 +41,7 @@
       <span>개봉일</span>  <span @click="dateUp" style="cursor: pointer;">위 </span> <span @click="dateDown" style="cursor: pointer;">아래 </span>
     </div>
 
-    <div id="moviesview-items">
+    <div class="moviesview-items">
       <MoviesListItem
       v-for="movie in movieGo"
       :key="movie.id"
@@ -149,14 +149,13 @@ export default {
   align-items: center;
 }
 
-#moviesview-items{
+.moviesview-items{
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: 18% 18% 18% 18% 18%;
   padding: 20px;
   column-gap: 2.5%;
   row-gap: 20px;
-  aspect-ratio: 5 / 60;
 }
 
 #movie-item-box{
