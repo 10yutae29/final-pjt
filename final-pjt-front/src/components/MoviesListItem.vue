@@ -1,22 +1,36 @@
 <template>
-  <div id="box">
-    <div id="card">
-      <div id="front">
-        <img id="poster" style="display:block; margin:0 auto;"  :src="`https://image.tmdb.org/t/p/original${movieItemInfo?.poster_path}`" alt="">
-      </div>
-      <div id="back">
-        <div id="movie-info" >
-          <p id="title">{{ movieItemInfo?.title }}</p>
-          <p id="score">평점 : {{ movieItemInfo?.vote_average }}</p>
-          <p id="date">개봉일 : {{ movieItemInfo?.release_date }}</p>
-          <div v-if="logedin">
-            <ion-icon size="large" v-if="is_liked_conition" @click="toggleLike" name="heart" id="heart"></ion-icon>
-            <ion-icon size="large" v-if="!is_liked_conition" @click="toggleLike" name="heart" id="noheart"></ion-icon>
+  <div id="movieslistitem-grid">
+    <div></div>
+    <div class="flip">  
+      <div class="card">
+    <!-- 앞면 -->
+        <div class="front">
+          <img id="poster" :src="`https://image.tmdb.org/t/p/original${movieItemInfo?.poster_path}`" alt="">
+        </div>
+    <!-- 뒷면 -->
+        <div class="back">
+          <div>
+            <div id="movie-info" >
+              <p id="movielistitem-title">{{ movieItemInfo?.title }}</p>
+              <p id="score">평점 : {{ movieItemInfo?.vote_average }}</p>
+              <p id="date">개봉일 : {{ movieItemInfo?.release_date }}</p>
+            </div>
+              <div v-if="logedin">
+              <ion-icon size="large" v-if="is_liked_conition" @click="toggleLike" name="heart" id="heart"></ion-icon>
+              <ion-icon size="large" v-if="!is_liked_conition" @click="toggleLike" name="heart" id="noheart"></ion-icon>
+            </div>
+            <button @click="goDetail">영화 세부 정보</button>
           </div>
-          <button @click="goDetail">영화 세부 정보</button>
         </div>
       </div>
     </div>
+
+    <div>
+
+    </div>
+            
+
+          
   </div>
 </template>
 
@@ -95,66 +109,72 @@ export default {
 </script>
 
 <style>
-#box{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 20%;
-  height: 17vw;
+#movieslistitem-grid{
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+}
+
+.flip { 
+  width: 100%;
+  height: 100%;
   perspective: 1100px;
 }
 
 #poster{
-  /* width: 100% */
   height: 100%;
-  border: solid 1px;
-  /* border-radius: 5px; */
-
+  width:100%;
+  object-fit: cover;
 }
 
-#card{
+.card {
   width: 100%; 
   height: 100%; 
   position: relative;
-  transition: .8s;
+  transition: .4s;
   transform-style: preserve-3d;
-}
+}	
 
-#front, #back {
+.front, .back {
   position: absolute;
   width: 100%; 
-  height: 100%;
+  height: 80%;
   backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
 }
 
-#front{
+.front {
+  background: rgb(255, 255, 255); 
 
 }
-
-#back { 
-  /* background: rgb(255, 255, 255);  */
-  transform: rotateY(180deg);
-}
-
 #movie-info {
   background: rgb(255, 255, 255);
-  width: 80%;
+  /* width: 80%; */
   height: 100%;
   overflow: hidden;
-  border: solid 1px;
-  border-radius: 5px;
+  /* border: solid 1px; */
+  /* border-radius: 5px; */
   display: flex;
   /* flex-wrap: wrap; */
   padding: 5px 5px 5px 5px;
   flex-direction: column;
   margin: 0 auto;
-  /* flex-direction: column; */
-  /* margin: 5px 5px 5px 5px; */
+
 }
 
-#title{
-  font-weight: bold;
+.back { 
+  background: rgb(255, 255, 255); 
+  transform: rotateY(180deg);
 
+}
+
+
+.flip:hover .card {
+  transform: rotateY(180deg);
+}
+
+#movielistitem-title{
+  font-weight: bold;
 
 }
 
@@ -170,9 +190,7 @@ export default {
   font-weight: bold;
 }
 
-#card:hover {
-  transform: rotateY(180deg);
-}
+
 
 
 #heart {

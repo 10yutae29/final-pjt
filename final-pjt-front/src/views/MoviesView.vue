@@ -1,49 +1,52 @@
 <template>
-  <div>
-    <div id="main" class="container">
+  <div id="moviesview-grid">
+    
+    <div id="moviesview-title">
       <h1>전체 영화</h1>
-      <div>
-        <span>평점</span>  <span @click="scoreUp" style="cursor: pointer;">위</span> <span @click="scoreDown" style="cursor: pointer;">아래</span> |
-        <span>제목</span>  <span @click="titleUp" style="cursor: pointer;">위</span> <span @click="titleDown" style="cursor: pointer;">아래</span> |
-        <span>개봉일</span>  <span @click="dateUp" style="cursor: pointer;">위</span> <span @click="dateDown" style="cursor: pointer;">아래</span>
-      </div>
-      <div class="dropdown">
-        <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-          {{ sorting_genre }}
-        </button>
-        <ul class="dropdown-menu">
-          <!-- <li class="dropdown-item"> -->
-            <li
-            class="dropdown-item"
-            @click="showAll"
-            >전체</li>
-            <GenresItem
-            v-for="genre in genres"
-            :key="genre.pk"
-            :genre="genre"
-            class="dropdown-item"
-            />
+    </div>
+    
+    
+    <div id="dropdown" class="dropdown">
+      <button id="dropdown-btn" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        {{ sorting_genre }}
+      </button>
+      <ul class="dropdown-menu">
+        <!-- <li class="dropdown-item"> -->
+          <li
+          class="dropdown-item"
+          @click="showAll"
+          >전체</li>
+          <GenresItem
+          v-for="genre in genres"
+          :key="genre.pk"
+          :genre="genre"
+          class="dropdown-item"
+          />
 
-        </ul>
-      </div>
+      </ul>
+    </div>
 
-      <div class="searchbody my-5">
-        <div class="search">
-          <div class="icon" @click="activateSearch"></div>
-          <div class="input">
-            <input type="search" placeholder="Search" v-model="search" @input="searchFilter">
-          </div>
+    <div class="searchbody">
+      <div class="search">
+        <div class="icon" @click="activateSearch"></div>
+        <div class="input">
+          <input type="search" placeholder="Search" v-model="search" @input="searchFilter">
         </div>
       </div>
+    </div>
 
-      <div id="movie-item-box">
-        <MoviesListItem
-        v-for="movie in movieGo"
-        :key="movie.id"
-        :movie="movie"
-        />
-      </div>
+    <div id="moviesview-sort">
+      <span>평점</span>  <span @click="scoreUp" style="cursor: pointer;">위 </span> <span @click="scoreDown" style="cursor: pointer;">아래 </span> |
+      <span>제목</span>  <span @click="titleUp" style="cursor: pointer;">위 </span> <span @click="titleDown" style="cursor: pointer;">아래 </span> |
+      <span>개봉일</span>  <span @click="dateUp" style="cursor: pointer;">위 </span> <span @click="dateDown" style="cursor: pointer;">아래 </span>
+    </div>
 
+    <div id="moviesview-items">
+      <MoviesListItem
+      v-for="movie in movieGo"
+      :key="movie.id"
+      :movie="movie"
+      />
     </div>
   </div>
 </template>
@@ -125,10 +128,37 @@ export default {
 
 }
 
-#main{
-  padding: 20px 20px 20px 20px;
+#moviesview-grid{
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  grid-template-rows: 100px 80px auto;
 }
 
+#moviesview-title{
+  grid-column: 1 / span 3;
+  /* background: rgb(255, 255, 255); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+#moviesview-sort{
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#moviesview-items{
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 18% 18% 18% 18% 18%;
+  padding: 20px;
+  column-gap: 2.5%;
+  row-gap: 20px;
+  aspect-ratio: 5 / 60;
+}
 
 #movie-item-box{
   
@@ -143,7 +173,7 @@ export default {
   position: relative;
   width: 60px;
   height: 60px;
-  background: #000;
+  background: rgb(255, 255, 255);
   border-radius: 60px;
   transition: 0.5s;
   overflow:hidden;
@@ -157,6 +187,20 @@ li {
   cursor: pointer;
 }
 
+#dropdown{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+
+}
+
+#dropdown-btn{
+  color: white;
+  border: solid white;
+}
+
 .dropdown{
   z-index: 1100;;
 
@@ -164,6 +208,7 @@ li {
 
 .dropdown-item{
   cursor: pointer;
+
 }
 
 .search .icon{
@@ -172,7 +217,7 @@ li {
   left: 0;
   width: 60px;
   height: 60px;
-  background: #000;
+  background: rgb(255, 255, 255);
   border-radius: 60px;
   display: flex;
   justify-content: center;
@@ -186,7 +231,7 @@ li {
   width: 15px;
   height: 15px;
   /* border: 3px solid rgb(225, 36, 36); */
-  border: 3px solid rgb(82, 252, 255);
+  border: 3px solid rgb(255, 0, 0);
 
   border-radius: 50%;
   transform: translate(-4px, -4px);
@@ -198,13 +243,14 @@ li {
   width: 3px;
   height: 12px;
   /* background: rgb(225, 36, 36); */
-  background: rgb(82, 252, 255);
+  background: rgb(255, 0, 0);
   transform: translate(6px, 6px) rotate(315deg);
 }
 .search .input{
   position: relative;
   width: 300px;
-  height: 60px;
+  /* height: 60px; */
+  top:30%;
   left: 60px;
   display: flex;
   justify-content: center;
@@ -221,8 +267,8 @@ li {
   outline: none;
   font-size: 18px;
   padding: 10px 0;
-  background: #000;
-  color: #fff;
+  background: rgb(255, 255, 255);
+  color: #000;
 }
 
 
