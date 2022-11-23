@@ -9,17 +9,15 @@
         </div>
     <!-- 뒷면 -->
         <div class="back">
-          <div>
-            <div id="movie-info" >
-              <p id="movielistitem-title">{{ movieItemInfo?.title }}</p>
-              <p id="score">평점 : {{ movieItemInfo?.vote_average }}</p>
-              <p id="date">개봉일 : {{ movieItemInfo?.release_date }}</p>
-            </div>
-              <div v-if="logedin">
+          <div id="movie-info" >
+            <div class="movie-info-item movielistitem-title"><span>{{ movieItemInfo?.title }}</span></div>
+            <div class="movielistitem-score movie-info-item"><p>평점 : {{ movieItemInfo?.vote_average }}</p></div>
+            <div class="movielistitem-date movie-info-item"><p>개봉일 : {{ movieItemInfo?.release_date }}</p></div>
+            <button class="movie-info-item movielistitem-btn" @click="goDetail">DETAIL</button>
+            <div class="movie-info-item movielistitem-heart" v-if="logedin">
               <ion-icon size="large" v-if="is_liked_conition" @click="toggleLike" name="heart" id="heart"></ion-icon>
               <ion-icon size="large" v-if="!is_liked_conition" @click="toggleLike" name="heart" id="noheart"></ion-icon>
             </div>
-            <button @click="goDetail">영화 세부 정보</button>
           </div>
         </div>
       </div>
@@ -68,7 +66,6 @@ export default {
   },
   methods: {
     toggleLike() {
-      // console.log(this.logedin)
       const movie_id = this.movie.id
       axios({
         method: 'post',
@@ -83,8 +80,6 @@ export default {
       .catch((error) => {
         console.log(error)
       })
-      // console.log(this.is_liked_conition)
-
     },
     goDetail() {
       this.$router.push(`/moviesview/${this.movie.id}/`)
@@ -118,6 +113,7 @@ export default {
   width: 100%;
   height: 100%;
   perspective: 1100px;
+  border-radius: 5px;
 }
 
 #poster{
@@ -145,6 +141,8 @@ export default {
 
 .front {
   background: rgb(255, 255, 255); 
+  border-radius: 5px;
+
 
 }
 #movie-info {
@@ -152,20 +150,44 @@ export default {
   /* width: 80%; */
   height: 100%;
   overflow: hidden;
-  /* border: solid 1px; */
-  /* border-radius: 5px; */
-  display: flex;
-  /* flex-wrap: wrap; */
-  padding: 5px 5px 5px 5px;
-  flex-direction: column;
-  margin: 0 auto;
+  display: grid;
+  padding-left: 5px;
+  padding-right: 5px;
+  grid-template-columns: 100%;
+  grid-template-rows: 28% 10% 30% 15% 15%;
+  border-radius: 5px;
+}
 
+.movie-info-item{
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  /* left: 50%; */
+  font-size: 1vw;
+  margin: 0;
+  
+
+}
+
+.movie-info-item p{
+  margin: 0;
+
+
+}
+
+.movielistitem-btn{
+  justify-content: center;
+  font-size: 1vw;
+  border-radius: 5px;
+  background: black;
+  color: white;
 }
 
 .back { 
   background: rgb(255, 255, 255); 
+  height: 100%;
+  border-radius: 5px;
   transform: rotateY(180deg);
-
 }
 
 
@@ -173,9 +195,21 @@ export default {
   transform: rotateY(180deg);
 }
 
-#movielistitem-title{
+.movielistitem-title{
   font-weight: bold;
+  justify-content: center;
+}
 
+.movielistitem-score{
+  padding-left: 4px;
+}
+
+.movielistitem-date{
+  padding-left: 4px;
+}
+
+.movielistitem-heart{
+  justify-content: center;
 }
 
 #score{

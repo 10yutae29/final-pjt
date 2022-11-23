@@ -103,20 +103,15 @@ export default new Vuex.Store({
       state.user_info = logedin_user
     },
     LOG_OUT(state) {
-      // console.log('여기')
       state.recommend_movies = null
       state.logedin_user = null
       state.token = null
     
       localStorage.removeItem('logedin_user')
       localStorage.removeItem('token')
-      // console.log('사이')
-      // localStorage.removeItem('vuex')
-      // console.log(localStorage.vuex)
+
       router.push('/')
 
-      // if(this.$route.path !=='/moviesview') router.push('/moviesview')
-      // console.log(this.$route.path)
 
     },
     GET_MOVIE_COMMENTS(state, comments) {
@@ -128,7 +123,6 @@ export default new Vuex.Store({
         const movies = state.movies
         const random_movies = _.sampleSize(movies, 15)
         state.random_movies = random_movies
-        console.log(state.random_movies)
       }
 
     },
@@ -207,7 +201,6 @@ export default new Vuex.Store({
       })
       .then((response) => {
         context.commit('SAVE_TOKEN', response.data.key)
-        console.log(response)
         axios({
           method: 'get',
           url: `${API_URL}/accounts/user/`,
@@ -303,8 +296,7 @@ export default new Vuex.Store({
           movie: payload.movie,
         },
       })
-      .then((response) => {
-        console.log(response)
+      .then(() => {
         this.dispatch('getMovieComments',payload.movie)
       })
       .catch((error) => {
@@ -320,12 +312,10 @@ export default new Vuex.Store({
         },
       })
       .then((response) => {
-        console.log(response.data)
         context.commit('GET_USER_INFO', response.data)
       })
       .catch((error) => {
         console.log(error)
-        console.log('에러남 ㄷ')
       })
     },
     getRandomMovies(context){
@@ -341,7 +331,6 @@ export default new Vuex.Store({
         },
       })
       .then((response) => {
-        console.log(response.data)
         context.commit('GET_SELECTED_GENRES', response.data)
       })
       .catch((error) => {
@@ -359,41 +348,13 @@ export default new Vuex.Store({
           Authorization: `Token ${context.state.token}`
         },
       })
-      .then((response) => {
-        console.log('데이터')
-        console.log(response.data)
+      .then(() => {
         this.dispatch('getSelectedGenres')
-        // axios({
-        //   method: 'get',
-        //   // django에서 이 url로 현재 로그인한 사람이 선택한 장르 리스트를 올려줌
-        //   url: `${API_URL}/accounts_detail/recommend/${this.state.logedin_user.pk}/`,
-        //   headers: {
-        //     Authorization: `Token ${context.state.token}`
-        //   },
-        // })
-        // .then((response) => {
-        //   console.log(response.data)
-        //   context.commit('GET_SELECTED_GENRES', response.data)
-        // })
-        // .catch((error) => {
-        //   console.log(error)
-        // })
-
       })
       .catch((error) => {
-        console.log('여기서 안넘어가....')
         console.log(error)
       })
     },
-    // makeRecommendMovies(context, prefer_genres){
-    //   if (prefer_genres.length == 3){
-    //     console.log('3!')
-    //     const total_movie = this.movies.filter(movie => prefer_genres.includes)
-        
-    //   } else {
-    //     console.log('no!')
-    //   }
-    // }
   },
   modules: {
   }

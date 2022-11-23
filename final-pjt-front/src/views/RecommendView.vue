@@ -48,7 +48,6 @@ export default {
       return this.$store.state.random_movies
     },
     recommend_movies() {
-      // console.log(this.$store.state.recommend_movies)
       return this.$store.state.recommend_movies
     },
   },
@@ -61,7 +60,6 @@ export default {
     getRandomMovies(){
       this.$store.dispatch('getRandomMovies')
       this.picked_movies = []
-      // console.log(this.picked_movies)
     },
     getSelectedGenres() {
       this.$store.dispatch('getSelectedGenres')
@@ -72,7 +70,6 @@ export default {
       } else {
         this.picked_movies.push(movie_id)     
       }
-      console.log(this.picked_movies)
     },
     goGenres() {
       this.$store.dispatch('goGenres', this.picked_movies)
@@ -83,15 +80,8 @@ export default {
   },
   created() {
     this.getSelectedGenres()
-    console.log('여기')
-    console.log(this.$store.state.recommend_movies)
     
   },
-  // updated() {
-  //   if (!this.genres_length) {
-  //     // this.getRandomMovies()
-  //   }
-  // }
 }
 </script>
 

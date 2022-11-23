@@ -50,7 +50,6 @@ export default {
       this.$router.push('/passwordchangeview/')
     },
     getUserInfo() {
-      console.log(this.user)
       this.$store.dispatch('getUserInfo', this.user.pk)
     }
   },

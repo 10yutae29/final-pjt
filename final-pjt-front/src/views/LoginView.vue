@@ -34,7 +34,6 @@ export default {
         password,
       }
       
-      console.log(payload)
       this.$store.dispatch('logIn', payload)
     }
   }

@@ -19,7 +19,6 @@ export default {
   },
   methods: {
     goDetail(){
-      // console.log(this.comment)
       this.$router.push(`/moviesview/${this.comment.movie}/`)
     }
   }

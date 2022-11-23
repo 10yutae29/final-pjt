@@ -80,7 +80,6 @@ export default {
   methods: {
     getMovieData(){
       this.$store.dispatch('getMovies')
-      console.log('바뀜')
     },
     searchFilter() {
       const word = this.search.toLowerCase()
@@ -197,8 +196,10 @@ li {
 }
 
 #dropdown-btn{
-  color: white;
+  color: black;
   border: solid white;
+  background: white;
+  
 }
 
 .dropdown{
