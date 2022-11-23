@@ -1,6 +1,6 @@
 <template>
   <div>
-    UserCommentList
+    <h3 id="user-comment-list">작성한 댓글 목록</h3>
     <UserCommentItem
     v-for="comment_info in comments_info"
     :key="comment_info.id"
@@ -28,5 +28,8 @@ export default {
 </script>
 
 <style>
+#user-comment-list{
+  text-decoration-line: underline;
+}
 
 </style>
