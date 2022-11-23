@@ -1,5 +1,5 @@
 <template>
-  <div id="moviesview-grid">
+  <div class="moviesview-grid">
     
     <div id="moviesview-title">
       <h1>전체 영화</h1>
@@ -127,7 +127,7 @@ export default {
 
 }
 
-#moviesview-grid{
+.moviesview-grid{
   display: grid;
   grid-template-columns: 30% 40% 30%;
   grid-template-rows: 100px 80px auto;
@@ -243,7 +243,7 @@ li {
   width: 3px;
   height: 12px;
   /* background: rgb(225, 36, 36); */
-  background: rgb(255, 0, 0);
+  background: rgb(255, 19, 19);
   transform: translate(6px, 6px) rotate(315deg);
 }
 .search .input{
@@ -269,6 +269,7 @@ li {
   padding: 10px 0;
   background: rgb(255, 255, 255);
   color: #000;
+  
 }
 
 

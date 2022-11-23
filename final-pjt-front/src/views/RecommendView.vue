@@ -1,6 +1,10 @@
 <template>
-  <div>
-    <h1>영화 추천</h1>
+  <div class="recommendview-grid">
+    <div>
+      <h1>영화 추천</h1>
+    </div>
+
+
     <!-- 이 div에는 selected_genres가 있을때 추천 영화를 출력 -->
     <div v-if="recommend_movies.length">
       <h1>장르가 있어용</h1>
@@ -24,7 +28,7 @@
       </div>
       <button @click="goGenres"><h1>제출</h1></button>
     </div>
-  <button @click="test">TEST</button>
+  
   </div>
 </template>
 
@@ -78,14 +82,18 @@ export default {
       console.log(this.$store.state.selected_genres)
     }
   },
-  created() {
-    this.getSelectedGenres()
-    
-  },
 }
 </script>
 
 <style>
+.recommendview-grid{
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 100px auto;
+}
+
+
+
 #randomcase {
   display: flex;
   flex-wrap: wrap;
