@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+  <div  id="like-movies-items">   
       <LikeMoviesItem
       v-for="liked_movie_info in liked_movies_info"
       :key="liked_movie_info.pk"
@@ -30,5 +30,14 @@ export default {
 </script>
 
 <style>
+#like-movies-items{
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 18% 18% 18% 18% 18%;
+  padding: 20px;
+  column-gap: 2.5%;
+  row-gap: 20px;
+  aspect-ratio: 5 / 60;
+}
 
 </style>
