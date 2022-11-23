@@ -1,38 +1,28 @@
 <template>
   <div id="app">
-    <div style="height:200px; margin-bottom: 10px;">
+    <div id="title">
       <div class="liquid" @click="goMain">
-            <h1>SEE원한 영화</h1>
-            <h1>SEE원한 영화</h1>
-            <h1>SEE원한 영화</h1>
-            <h1>SEE원한 영화</h1>
+        <h1>SEE원한 영화</h1>
+        <h1>SEE원한 영화</h1>
+        <h1>SEE원한 영화</h1>
+        <h1>SEE원한 영화</h1>
       </div>
     </div>
-    <nav>
-      <router-link to="/moviesview">전체영화</router-link> |
-      <router-link to="/recommendview">영화추천</router-link>  |
-      <router-link v-if="!isLogin" to="/loginview">로그인</router-link> <span v-if="!isLogin">| </span>
+    
+    <div id="navbar">
+      
+      <router-link to="/moviesview">전체영화</router-link> 
+      <router-link to="/recommendview">영화추천</router-link>  
+      <router-link v-if="!isLogin" to="/loginview">로그인</router-link> 
       <router-link v-if="!isLogin" to="/signupview">회원가입</router-link>
       <span>
-        <router-link v-if="isLogin" to="/userview">내정보</router-link> <span v-if="isLogin">| </span>
+        <router-link v-if="isLogin" to="/userview">내정보</router-link> 
       </span>
       <a id="logout" v-if="isLogin" href="#" @click="logOut">로그아웃</a>
-    </nav>
-    <!-- 체크한번하자 -->
-    <div id="view">
-      <div id="main">
-        <div id="main-content">
-          <!-- <section>
-            <div id="wave"></div>
-            <div id="wave"></div>
-            <div id="wave"></div>
-
-          </section> -->
-          <router-view/>
-        </div>
-
-      </div>
     </div>
+    
+    <div id="content"><router-view/></div>
+    
   </div>
 </template>
 
@@ -83,79 +73,51 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #000000;
   background: #82b1ff;
-  height: 100%;
-
-  /* background: #115264; */
+  height: 100%; */
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 150px auto;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
 }
 
-#view {
-  /* background: #F5E8C7; */
-  background: #eee;
-
-  height: 100%;
+#title {
+  background: #000051;
 }
 
-#main{
-  padding: 20px 20px 20px 20px;
-}
-#main-content{
-  background: #F5E8C7;
-
-  /* background: #eee; */
-  border: solid black;
-  border-radius: 5px;
-  position: relative;
-  /* width: 100%; */
-  /* padding: 20px 20px 20px 20px; */
-  opacity: 0.95;
-  /* margin: 20px 20px 20px 20px; */
-}
-
-#view-part{
+#navbar {
+  background: #000051;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-#logout {
-  font-weight: bold;
-  color: #FFE652;
-}
-
-#logout:hover {
-  color: rgb(154, 154, 250);
-}
-
-nav {
-  padding: 10px;
-  background: #000063;
-}
-
-nav a {
-  font-weight: bold;
-  color: #FFE652;
+#navbar a {
   text-decoration: none;
+  color: white;
 }
 
-nav a:hover {
-  color: rgb(154, 154, 250);
-
+#content {
+  background: url(https://cdn.pixabay.com/photo/2015/03/03/05/56/avenue-656969__340.jpg) no-repeat;
+  /* background: #484848; */
+  grid-column: 1 / -1;
+  display: fixed;
+  /* height: 100%; */
+  width: 100%;
+  background-size: 100%;
 }
 
-nav a.router-link-exact-active {
-  color: #F07B3F;
-}
-
-/* 여기서부터 물 스타일 */
 .liquid{
   margin-top: 25px;
   margin-bottom: 25px ;
-  position: absolute;
+  position: relative;
   width: 100%;
   /* height: 100%; */
   display: flex;
@@ -163,16 +125,14 @@ nav a.router-link-exact-active {
   /* align-items: center; */
   background: #183954;
 }
-
 .liquid h1{
   position: absolute;
-  font-size: 6vw;
+  font-size: 5vw;
   font:bold;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-family: 'Black Han Sans', sans-serif;
   cursor: pointer;
 }
-
 .liquid h1:nth-child(1)
 {
   color: #fff;
@@ -185,17 +145,17 @@ nav a.router-link-exact-active {
 }
 .liquid h1:nth-child(2) {
   /* color: #2196f3; */
-  color: #55d7ff;
+  color: #606060;
   opacity: 0.5;
   animation: animate 3s ease-in-out infinite;
 }
 .liquid h1:nth-child(3) {
-  color: #55d7ff;
+  color: #606060;
   /* opacity: 0.5; */
   animation: animate 5s ease-in-out infinite;
 }
 .liquid h1:nth-child(4) {
-  color: #55d7ff;
+  color: #606060;
   opacity: 0.7;
   animation: animate 11s ease-in-out infinite;
 }
@@ -213,73 +173,5 @@ nav a.router-link-exact-active {
   75%{
     clip-path: polygon(0 19%, 10% 25%, 19% 35%, 25% 50%, 32% 67%, 40% 80%, 50% 85%, 59% 80%, 68% 67%, 75% 50%, 84% 36%, 92% 29%, 100% 23%, 100% 99%, 0 100%);
   }
-
 }
-/* 여기서부터 파도 */
-/* section{
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  z-index: -0.5;
-}
-
-section #wave:nth-child(1){
-  width: 100%;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  background: #4973ff;
-  animation: animate2 8s ease-in-out infinite;
-}
-
-section #wave:nth-child(2){
-  width: 100%;
-  height: 100%;
-  left: 0;
-  opacity: 0.6;
-  position: absolute;
-  background: #4973ff;
-  animation: animate2 7s ease-in-out infinite;
-}
-
-section #wave:nth-child(3){
-  width: 100%;
-  height: 100%;
-  left: 0;
-  opacity: 0.7;
-  position: absolute;
-  background: #4973ff;
-  animation: animate2 9s ease-in-out infinite;
-}
-
-
-
-
-@keyframes animate2 {
-  0%, 100% {
-    clip-path: polygon(70% 0%, 54% 10%, 48% 17%, 47% 24%, 51% 36%, 61% 47%, 71% 59%, 77% 66%, 73% 73%, 65% 82%, 58% 88%, 56% 95%, 58% 100%, 100% 100%, 100% 0);
-  }
-  20%{
-    clip-path: polygon(90% 0, 84% 7%, 86% 14%, 90% 22%, 85% 29%, 82% 36%, 88% 43%, 83% 54%, 82% 64%, 87% 73%, 79% 82%, 73% 90%, 81% 100%, 100% 100%, 100% 0);
-  }
-  40%{
-    clip-path: polygon(82% 0, 64% 9%, 58% 18%, 66% 29%, 74% 37%, 77% 46%, 71% 55%, 60% 65%, 55% 74%, 52% 82%, 55% 90%, 63% 97%, 76% 100%, 100% 100%, 100% 0);
-  }
-  60%{
-    clip-path: polygon(90% 0, 84% 7%, 86% 14%, 90% 22%, 85% 29%, 82% 36%, 88% 43%, 83% 54%, 82% 64%, 87% 73%, 79% 82%, 73% 90%, 81% 100%, 100% 100%, 100% 0);
-  }
-  80%{
-    clip-path: polygon(64% 0, 37% 13%, 29% 24%, 39% 31%, 33% 42%, 34% 49%, 41% 56%, 56% 64%, 63% 70%, 62% 81%, 49% 90%, 52% 97%, 76% 100%, 100% 100%, 100% 0);
-  }
-}
-
-#wave div{
-  width: 100%;
-  position: absolute;
-} */
-
 </style>
