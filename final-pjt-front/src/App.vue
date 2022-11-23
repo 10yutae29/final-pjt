@@ -47,9 +47,6 @@ export default {
     //   this.$store.dispatch('getLoginUser')
     // },
     logOut() {
-      console.log(this.$store.state.token)
-      console.log(this.$store.state.logedin_user)
-      console.log('logout pushed')
       this.$store.commit('LOG_OUT')
       // this.$store.dispatch('logOut')
     },
@@ -85,15 +82,18 @@ export default {
   grid-template-rows: 150px auto;
   margin: 0;
   padding: 0;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 #title {
-  background: #000051;
+  background: #3f0000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #navbar {
-  background: #000051;
+  background: #3f0000;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -102,16 +102,17 @@ export default {
 #navbar a {
   text-decoration: none;
   color: white;
+  font-size: 3vw;
 }
 
 #content {
-  background: url(https://cdn.pixabay.com/photo/2015/03/03/05/56/avenue-656969__340.jpg) no-repeat;
+  background: url(https://cdn.pixabay.com/photo/2014/11/30/17/15/theater-551797__340.jpg) no-repeat;
   /* background: #484848; */
   grid-column: 1 / -1;
   display: fixed;
-  /* height: 100%; */
-  width: 100%;
-  background-size: 100%;
+  
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .liquid{
@@ -119,11 +120,12 @@ export default {
   margin-bottom: 25px ;
   position: relative;
   width: 100%;
-  /* height: 100%; */
+  height: 100%;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
-  background: #183954;
+  align-items: center;
+  /* top: 50%; */
+  /* background: #183954; */
 }
 .liquid h1{
   position: absolute;

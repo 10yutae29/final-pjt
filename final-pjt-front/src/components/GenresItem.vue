@@ -12,7 +12,6 @@ export default {
   },
   computed: {
     genres_data() {
-      console.log(this.genre)
       return this.genre
     }
   },
