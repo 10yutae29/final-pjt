@@ -1,13 +1,12 @@
 <template>
   <div class="recommendview-grid">
-    <div>
-      <h1>영화 추천</h1>
+    <div class="recommendview-name">
+      <span>영화 추천</span>
     </div>
 
 
     <!-- 이 div에는 selected_genres가 있을때 추천 영화를 출력 -->
-    <div v-if="recommend_movies.length">
-      <h1>장르가 있어용</h1>
+    <div class="recommendview-items" v-if="recommend_movies.length">
       <MoviesListItem
       v-for="movie in recommend_movies"
       :key="movie.id"
@@ -16,9 +15,11 @@
     </div>
 
     <!-- 이 div에는 selected_genres가 비었을 때 영화 선택 -->
-    <div v-if="!recommend_movies.length">
-      <button id="reset-random" @click='getRandomMovies'>다른 영화</button>
-      <div id="randomcase">
+    <div class="recommendview-random-grid" v-if="!recommend_movies.length">
+      <div class="reset-random">
+        <button @click='getRandomMovies'>다른 영화</button>
+      </div>
+      <div class="recommendview-random-items">
         <RandomItem
         v-for="random_movie in random_movies"
         :key="random_movie.id"
@@ -26,7 +27,9 @@
         @movie-plus="makeMovieList"
         />
       </div>
-      <button @click="goGenres"><h1>제출</h1></button>
+      <div class="random-submit">
+        <button @click="goGenres">제출</button>
+      </div>
     </div>
   
   </div>
@@ -78,9 +81,9 @@ export default {
     goGenres() {
       this.$store.dispatch('goGenres', this.picked_movies)
     },
-    test() {
-      console.log(this.$store.state.selected_genres)
-    }
+  },
+  created() {
+    this.getSelectedGenres()
   },
 }
 </script>
@@ -92,17 +95,49 @@ export default {
   grid-template-rows: 100px auto;
 }
 
-
-
-#randomcase {
+.recommendview-name{
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.recommendview-name span{
+  color: #fff;
+  font-size: 3vw;
+}
+
+.recommendview-items{
+  display: grid;
+  grid-template-columns: 18% 18% 18% 18% 18%;
+  padding: 20px;
+  column-gap: 2.5%;
+  row-gap: 20px;
+}
+
+.recommendview-random-items{
+  display: grid;
+  grid-template-columns: 18% 18% 18% 18% 18%;
+  padding: 20px;
+  column-gap: 2.5%;
+  row-gap: 20px;
+}
+
+.recommendview-random-grid{
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 200px auto 200px;
   justify-content: center;
 }
 
-#reset-random{
-  width: 200px;
-  padding: 1vw;
-  /* font-size: 1vh; */
+.reset-random{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.random-submit{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

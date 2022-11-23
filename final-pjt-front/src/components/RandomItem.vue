@@ -1,5 +1,5 @@
 <template>
-  <div id="box">
+  <div class="random-item">
     <img @click="sendPicked" id="poster" class="img-fluid" :src="`https://image.tmdb.org/t/p/original${movie?.poster_path}`" alt="">
   </div>
 </template>
@@ -36,11 +36,8 @@ export default {
 </script>
 
 <style>
-#box{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 20%;
+.random-item{
+  width: 100%;
 }
 
 #poster{
