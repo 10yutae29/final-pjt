@@ -1,17 +1,22 @@
 <template>
   <div class="recommendview-grid">
     <div class="recommendview-name">
-      <span>영화 추천</span>
+        <span>영화 추천</span>
     </div>
 
 
     <!-- 이 div에는 selected_genres가 있을때 추천 영화를 출력 -->
-    <div class="recommendview-items" v-if="recommend_movies.length">
-      <MoviesListItem
-      v-for="movie in recommend_movies"
-      :key="movie.id"
-      :movie="movie"
-      />
+    <div class="recommendview-recommend" v-if="recommend_movies.length">
+      <div class="recommendview-items-button">
+        <button @click="getSelectedGenres">다른 영화 추천</button>
+      </div>
+      <div class="recommendview-items">
+        <MoviesListItem
+        v-for="movie in recommend_movies"
+        :key="movie.id"
+        :movie="movie"
+        />
+      </div>
     </div>
 
     <!-- 이 div에는 selected_genres가 비었을 때 영화 선택 -->
@@ -92,7 +97,7 @@ export default {
 .recommendview-grid{
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 100px auto;
+  grid-template-rows: 200px auto;
 }
 
 .recommendview-name{
@@ -102,8 +107,19 @@ export default {
 }
 
 .recommendview-name span{
+  /* display: flex;
+  justify-content: center; */
   color: #fff;
   font-size: 3vw;
+}
+
+
+
+
+.recommendview-recommend{
+  display: grid;
+  grid-template-rows: 100px auto;
+
 }
 
 .recommendview-items{
@@ -112,6 +128,12 @@ export default {
   padding: 20px;
   column-gap: 2.5%;
   row-gap: 20px;
+}
+
+.recommendview-items-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .recommendview-random-items{

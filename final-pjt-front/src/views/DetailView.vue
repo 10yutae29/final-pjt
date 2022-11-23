@@ -1,30 +1,26 @@
 <template>
-  <div>
-    <div class="container" id="movie-container">
-      <div id="movie-info2">
-        <img :src="`https://image.tmdb.org/t/p/original${movie_info?.poster_path}`" alt=""  id="poster-detail">
+  <div class="detailview-grid">
+    <div class="detailview-poster-box">
+      <img class="detailview-poster" :src="`https://image.tmdb.org/t/p/original${movie_info?.poster_path}`" alt="">
+    </div>
+    <div class="detailview-movie-info">
+      <h1>{{ movie_info?.title }}</h1>
+      <div v-if="logedin">
+        <ion-icon size="large" v-if="is_liked_conition" @click="toggleLike" name="heart" id="heart"></ion-icon>
+        <ion-icon size="large" v-if="!is_liked_conition" @click="toggleLike" name="heart" id="noheart"></ion-icon>
       </div>
-      <div id="movie-info2">
-        <h1 id="title-detail">{{ movie_info?.title }}</h1>
-        <p>평점 : {{ movie_info?.vote_average }}</p>
-        <p>개봉일자 : {{ movie_info?.release_date }}</p>    
-        <p>장르 : {{ movie_info?.genres }}</p>
-        <h5>영화 줄거리</h5>
-        <p>{{ movie_info?.overview }}</p>
-      </div>
-
-      <div id="like-button">
-        <div v-if="logedin">
-          <ion-icon size="large" v-if="is_liked_conition" @click="toggleLike" name="heart" id="heart"></ion-icon>
-          <ion-icon size="large" v-if="!is_liked_conition" @click="toggleLike" name="heart" id="noheart"></ion-icon>
-        </div>
-      </div>
-
-      <form id="form" @submit.prevent="createComment">
-        <input id="" type="textarea" v-model="comment_create">
+      <p>평점 : {{ movie_info?.vote_average }}</p>
+      <p>개봉일자 : {{ movie_info?.release_date }}</p>    
+      <p>장르 : {{ movie_genres }}</p>
+      <h5>영화 줄거리</h5>
+      <p>{{ movie_info?.overview }}</p>
+    </div>
+    <div class="detailview-comment">
+      <form @submit.prevent="createComment">
+        <input type="textarea" v-model="comment_create">
         <input type="submit" value="작성">
       </form>
-      <div id="comment-list">
+      <div>
         <CommentsList
         :comments="comments"
         />
@@ -47,10 +43,14 @@ export default {
   data() {
     return{
       movie: null,
-      comment_create: null
+      comment_create: null,
+      movie_genres: null
     }
   },
   computed: {
+    movie_genres_info(){
+      return this.movie_genres
+    },
     movie_info() {
       return this.movie
     },
@@ -77,6 +77,12 @@ export default {
       })
       .then((response) => {
         this.movie = response.data
+        const genres_list = []
+        for (let movie_genre in this.movie.genres) {
+          genres_list.push(this.$store.state.genres[movie_genre].name)
+        }
+        const genres_string = genres_list.join(', ')
+        this.movie_genres = genres_string
       })
       .catch((error) => {
         console.log(error)
@@ -131,43 +137,45 @@ export default {
 </script>
 
 <style>
+.detailview-grid{
+  margin: 50px 50px 50px 50px;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: auto auto;
+}
+
+.detailview-poster-box{
+  width:100%;
+  border-radius: 5px;
+  aspect-ratio: 5 / 7 auto ;
+}
+
+.detailview-poster{
+  object-fit: cover;
+  border-radius: 5px;
+  height: 100%;
+  
+}
+
+.detailview-movie-info{
+  width: 100%;
+  background: white;
+  border-radius: 5px;
+  padding: 20px 20px 20px 20px;
+}
+.detailview-movie-info h1{
+  font-size: 7vw;
+  text-align: center;
+}
+.detailview-comment{
+  grid-column: 1/3;
+}
+
 #heart {
   color: red;
 }
 
 #heart, #noheart{
   cursor: pointer;
-}
-
-#poster-detail {
-  width: 70%;
-}
-
-#title-detail{
-  flex-basis: 100%;
-}
-
-#movie-info2{
-  position: relative;
-  flex-basis: 50%;
-}
-
-#movie-container{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-#like-button{
-  flex-basis: 100%;
-}
-
-#form{
-  flex-basis: 100%;
-}
-
-#comment-list{
-  flex-basis: 100%;
 }
 </style>
