@@ -127,6 +127,7 @@ export default {
   height: 100%;
   width:100%;
   object-fit: cover;
+  border:solid black 0.5px
 }
 
 .card {
@@ -153,13 +154,23 @@ export default {
   background: rgb(255, 255, 255); 
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 75% 15% 10%;
+  grid-template-rows: 70% 20% 10%;
   
 }
-.front .front-title, .front-date{
+.front-title, .front-date{
   font-family: 'Nanum Brush Script', cursive;
-  font-size: 2vw;
   text-align: center;
+}
+
+.front-title{
+  display: flex;
+  font-size: 1.5vw;
+  justify-content: center;
+  align-items: center;
+}
+
+.front-date{
+  font-size: 2vw;
 }
 
 #movie-info {

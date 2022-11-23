@@ -1,6 +1,11 @@
 <template>
-  <div>
-    <div id="comments-case">
+  <div class="commentlist-grid">
+    <div class="movie-recommend-tag">
+      <hr><br>
+      <h1>영화 리뷰</h1><br>
+      <hr>
+    </div>
+    <div class="comments-case">
       <CommentsListItems
       v-for="comment in commentsList"
       :key="comment.id"
@@ -30,9 +35,18 @@ export default {
 </script>
 
 <style>
-#comments-case{
-  border: solid;
-  border-radius: 5px;
-  margin: 5px;
+.commentlist-grid{
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 100%;
+  padding: 20px 20px 20px 20px;
+}
+
+.comments-case{
+  width: 100%;
+}
+
+.movie-recommend-tag h1{
+  padding-left: 20px;
 }
 </style>
