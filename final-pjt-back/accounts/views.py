@@ -110,10 +110,12 @@ def recommend(request, user_pk):
 
         elif len(prefer_genres) == 2:
             random_movie_querysets = []
-            for prefer_genre in prefer_genres:
-                genre = Genre.objects.get(pk=prefer_genre)
-                movies = Movie.objects.filter(genres = genre).order_by('?')[:6]
-                random_movie_querysets += list(chain(movies))
+            genre1 = Genre.objects.get(pk=prefer_genres[0])
+            movies1 = Movie.objects.filter(genres = genre1).order_by('?')[:8]
+            random_movie_querysets += list(chain(movies1))
+            genre2 = Genre.objects.get(pk=prefer_genres[1])
+            movies2 = Movie.objects.filter(genres = genre2).order_by('?')[:7]
+            random_movie_querysets += list(chain(movies2))
             serializer = MovieListSerializer(random_movie_querysets, many=True)
             return Response(serializer.data)
 
@@ -121,7 +123,7 @@ def recommend(request, user_pk):
             random_movie_querysets = []
             for prefer_genre in prefer_genres:
                 genre = Genre.objects.get(pk=prefer_genre)
-                movies = Movie.objects.filter(genres = genre).order_by('?')[:4]
+                movies = Movie.objects.filter(genres = genre).order_by('?')[:5]
                 random_movie_querysets += list(chain(movies))
             serializer = MovieListSerializer(random_movie_querysets, many=True)
             return Response(serializer.data)
