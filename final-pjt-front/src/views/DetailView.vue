@@ -9,7 +9,7 @@
         <h1>{{ movie_info?.title }}</h1> <hr> 
         <p>평점 : {{ movie_info?.vote_average }}점</p>
         <p>개봉일자 : {{ movie_info?.release_date }}</p>  
-        <p>장르 : {{ movie_genres }}</p>
+        <p>장르 : {{ movie_genres_info }}</p>
         <div class="heart-box">
           <ion-icon  v-if="is_liked_conition" @click="toggleLike" name="heart" id="heart"></ion-icon>
           <ion-icon  v-if="!is_liked_conition" @click="toggleLike" name="heart" id="noheart"></ion-icon>
@@ -276,6 +276,17 @@ export default {
 
 .createcomment-btn input{
   font-size: 2vw;
+  width: 15%;
+  aspect-ratio: 4/1;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.705);
+  color: black;
+}
+
+.createcomment-btn input:hover{
+  color: white;
+  background: rgba(14, 0, 75, 0.24);
+
 }
 
 .comment-textarea{

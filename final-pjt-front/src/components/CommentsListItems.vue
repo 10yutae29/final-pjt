@@ -7,7 +7,7 @@
         <p>{{ commentItem.content }}</p>
         <div>
           <span>{{ updated_time }}</span>
-          <span @click="deleteComment" v-if="this.commentItem.user.id == this.$store.state.logedin_user.pk">댓글삭제</span>
+          <span class="comment-delete" @click="deleteComment" v-if="this.commentItem.user.id == this.$store.state.logedin_user.pk">댓글삭제</span>
           <hr>
         </div>
     </div>
@@ -26,7 +26,6 @@ export default {
   },
   data(){
     return{
-   
     }
   },
   computed: {
@@ -41,7 +40,6 @@ export default {
       const day = comment_time.substring(0,10)
       const time = comment_time.substring(11,19)
       return day+ ' ' + time
-      
     }
   },
   methods: {
@@ -108,6 +106,10 @@ export default {
 
 .comment-box div span:nth-child(2){
   cursor: pointer;
+}
+
+.comment-delete:hover{
+  color: rgb(0, 0, 0);
 }
 /* #comment:last-child{
   border-bottom: 1px;

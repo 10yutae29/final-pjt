@@ -44,7 +44,8 @@ export default {
   grid-template: 20% auto;
   padding: 5vw;
   /* background: radial-gradient(white , rgb(13, 97, 207)); */
-  background: white;
+  background: rgba(14, 0, 75, 0.24);
+  border: solid rgb(255, 255, 255) 0.5px;
   border-radius: 5px;
 }
 
@@ -54,7 +55,7 @@ export default {
 }
 
 .mainview-title h1{
-  color: rgb(0, 0, 0);
+  color: white;
   text-align: center;
   font-size: 4vw;
 }

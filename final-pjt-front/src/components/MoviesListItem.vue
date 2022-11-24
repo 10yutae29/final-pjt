@@ -217,6 +217,10 @@ export default {
   color: white;
 }
 
+.movielistitem-btn:hover{
+  color: rgb(69, 255, 18);
+}
+
 .back { 
   background: rgb(255, 255, 255); 
   height: 100%;

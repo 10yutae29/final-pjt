@@ -2,8 +2,12 @@
   <div class="user-total">
     <div id="userview-grid">
       <div id="user-block">
-        <h1>안녕하세요 {{ user_detail?.username }} 님!</h1>
-        <button @click="goChangePassword">비밀번호 변경</button>
+        <div>
+          <h1>안녕하세요 {{ user_detail?.username }} 님!</h1>
+        </div>
+        <div class="user-block-btn">
+          <button @click="goChangePassword">비밀번호 변경</button>
+        </div>
       </div>
 
         <div id="comments">
@@ -13,7 +17,9 @@
         </div>
 
         <div id="like-movie-list">
-          <h3 id="like-movie-list-title">좋아하는 영화 목록</h3>
+          <div class="like-movie-list-title">
+            <p >좋아하는 영화 목록</p><hr>
+          </div>
           <MoviesListItem
           v-for="movie in like_movies"
           :key="movie.id"
@@ -71,7 +77,9 @@ export default {
 #userview-grid{
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  background: white;
+  grid-template-rows: 20vh auto;
+  background: rgba(14, 0, 75, 0.24);
+  border: solid rgb(255, 255, 255) 0.5px;
   border-radius: 5px;
   padding: 2vw 2vw 2vw 2vw; 
 
@@ -80,44 +88,52 @@ export default {
 #user-block{
   padding: 10px 0 0 10px;
   grid-column: 1 / span 2;
-  color: rgb(8, 0, 53);
-
-
-  /* background: rgba(238, 221, 60, 0.762);
-  border-radius: 5px;
-  border: solid rgb(6, 8, 66);
-  position: relative;
-  width: 50%;
-  text-align: center; */
+  color: white;
+  display: grid;
+  grid-template-rows: 50% 50%;
 }
 
 #comments{
   grid-column: 3 / span 2;
-  color: rgb(8, 0, 53);
-
-
-  /* background: rgba(238, 221, 60, 0.762);
-  border-radius: 5px;
-  border: solid rgb(6, 8, 66);
-  position: relative;
-  width: 50%;
-  text-align: center; */
+  color: white
 }
 
-#like-movie-list-title{
+.like-movie-list-title{
   grid-column: 1 / span 5; 
-  text-decoration-line: underline;
   margin-top: 5px;
-  color: rgb(8, 0, 53);
+  color: white;
+  font-size: 2vw;
+}
 
+.like-movie-list-title p{
+  font-size: 2vw;
+}
+
+#user-block div h1{
+  font-size: 2.7vw;
 }
 
 #like-movie-list{
   grid-column: 1 / span 4; 
   display: grid;
   grid-template-columns: 18% 18% 18% 18% 18%;
+  grid-template-rows: auto auto;
   padding: 20px;
   column-gap: 2.5%;
   row-gap: 20px;
+}
+
+.user-block-btn button{
+  width: 60%;
+  aspect-ratio: 6/1;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.705);
+  color: rgb(10, 0, 56);
+  font-size: 1.5vw;
+}
+
+.user-block-btn button:hover{
+  color: white;
+  background: rgba(14, 0, 75, 0.24);
 }
 </style>

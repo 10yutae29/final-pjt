@@ -52,9 +52,9 @@ export default {
   grid-template: 20% auto;
   padding: 5vw;
   /* background: radial-gradient(white , rgb(13, 97, 207)); */
-  background: white;
+  background: rgba(14, 0, 75, 0.24);
+  border: solid rgb(255, 255, 255) 0.5px;
   border-radius: 5px;
-  color: rgb(10, 0, 56);
 }
 
 #login-title{
@@ -63,6 +63,7 @@ export default {
   margin-top: 20px;
   text-align: center;
   font-size: 3vw;
+  color: white;
 }
 
 #login-form{
@@ -76,6 +77,7 @@ export default {
 
 #login-form label{
   font-size: 2vw;
+  color: white;
 }
 
 #login-input{
@@ -83,19 +85,23 @@ export default {
   width: 20%;
   aspect-ratio: 4/1;
   font-size: 2vw;
+  color: white;
   border-radius: 5px;
 }
 
 #login-submit{
   margin-top: 5px;
-  background: rgba(58, 110, 255, 0.486);
+  background: rgba(255, 255, 255, 0.705);
   width: 15%;
   aspect-ratio: 4/1;
   border-radius: 5px;
   font-size: 2vw;
 }
 
-
+#login-submit:hover{
+  color: white;
+  background: rgba(14, 0, 75, 0.24);
+}
 
 /* #login-label{
   margin-bottom: 3px;
