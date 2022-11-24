@@ -108,6 +108,7 @@ export default {
         console.log(error)
         if (!this.movie){
           this.$router.push({ name: 'NotFound404'})
+          // 404맨
         }
       })
     },
