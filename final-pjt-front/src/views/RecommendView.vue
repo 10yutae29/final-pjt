@@ -17,8 +17,12 @@
 
     <!-- 이 div에는 selected_genres가 비었을 때 영화 선택 -->
     <div class="recommendview-random-grid" v-if="!recommend_movies.length">
+      <div class="explain">
+        <!-- 설명 -->
+        <p>마음에 드는 영화를 모두 선택하고 화면 하단의 제출버튼을 눌러주세요.</p>
+      </div>
       <div class="reset-random">
-        <button @click='getRandomMovies'>다른 영화</button>
+        <button @click='getRandomMovies'>마음에 드는 영화가 없다면?</button>
       </div>
       <div class="recommendview-random-items">
         <RandomItem
@@ -113,7 +117,12 @@ export default {
   /* color: #fff; */
 }
 
-
+.explain{
+  font-size: 3vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 
 .recommendview-recommend{
@@ -157,7 +166,7 @@ export default {
 .recommendview-random-grid{
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 200px auto 200px;
+  grid-template-rows: 100px 200px auto 200px;
   justify-content: center;
 }
 
@@ -174,7 +183,7 @@ export default {
   background: rgba(255, 255, 255, 0.705);
   width: 20%;
   aspect-ratio: 5/1;
-  font-size: 1.7vw; 
+  font-size: 1.3vw; 
   border-radius: 5px;
   color: rgb(10, 0, 56);
 }

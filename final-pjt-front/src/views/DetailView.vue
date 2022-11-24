@@ -10,10 +10,11 @@
         <p>평점 : {{ movie_info?.vote_average }}점</p>
         <p>개봉일자 : {{ movie_info?.release_date }}</p>  
         <p>장르 : {{ movie_genres }}</p>
-        <div class="heart-box" v-if="logedin">
+        <div class="heart-box">
           <ion-icon  v-if="is_liked_conition" @click="toggleLike" name="heart" id="heart"></ion-icon>
           <ion-icon  v-if="!is_liked_conition" @click="toggleLike" name="heart" id="noheart"></ion-icon>
         </div>
+        <p class="user-num">{{ movie_info?.like_users.length }}명이 이 영화를 좋아합니다.</p>
         <h5>영화 줄거리</h5>
         <div class="overview-box">
           <hr>
@@ -36,7 +37,7 @@
           <p>리뷰 작성</p>
         </div>
         <div>
-          <textarea name="comment" class="comment-textarea" v-model="comment_create"></textarea>
+          <textarea name="comment" class="comment-textarea comment-input-tag" v-model="comment_create"></textarea>
         </div>
         <!-- <input type="textarea" v-model="comment_create"> -->
         <div class="createcomment-btn">
@@ -212,10 +213,8 @@ export default {
 }
 
 .heart-box{
-  margin-left: 10px;
   height: 3vw;
   width: 3vw;
-  margin-bottom: 40px;
 }
 
 .overview-total-box{
@@ -244,6 +243,8 @@ export default {
 
 .detailview-movie-info h5{
   font-size: 1.5vw;
+  margin-top: 50px;
+  margin-left: 10px;
 }
 
 .detailview-comment{
@@ -254,15 +255,27 @@ export default {
   margin-bottom: 20px;
 }
 
+.user-num{
+  font-size: 1.5vw;
+}
+
 .detailview-createcomment{
   padding: 20px 20px 20px 20px;
   display: grid;
   grid-template-rows: auto auto auto;
 }
 
+.comment-input-tag{
+  font-size: 2vw;
+}
+
 .createcomment-btn{
   display: flex;
   justify-content: right;
+}
+
+.createcomment-btn input{
+  font-size: 2vw;
 }
 
 .comment-textarea{

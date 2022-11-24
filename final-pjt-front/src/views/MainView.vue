@@ -22,7 +22,7 @@
       <div class="drop" style="--clr:#2196f3">
         <div class="water-content">
           <h2>03</h2>
-          <p>프로젝트에 대한 자세한 내용을 확인하시려면 저희의 깃헙으로 들어오세요.</p><br>
+          <p>프로젝트에 대한 자세한 내용을 확인하시려면 저희의 GitHub에 방문해주세요.</p><br>
           <a href="https://github.com/10yutae29/final-pjt">GO</a>
         </div>
       </div>
@@ -56,7 +56,7 @@ export default {
 .mainview-title h1{
   color: rgb(0, 0, 0);
   text-align: center;
-  font-size: 4.5vw;
+  font-size: 4vw;
 }
 
 .mainview-content{
