@@ -7,19 +7,25 @@ from rest_framework import status
 from .models import Movie, Genre, Prefer
 from .serializers import MovieListSerializer, MovieSerializer, GenreSerializer
 from pprint import pprint
-from .pagination import StandardResultsSetPagination
+# from .pagination import StandardResultsSetPagination
 from rest_framework.viewsets import ModelViewSet
 # Create your views here.
 
 
-class MoviesSet(ModelViewSet):
-    queryset = Movie.objects.all()
-    serializer_class = MovieListSerializer
-    pagination_class = StandardResultsSetPagination
+# class MoviesSet(ModelViewSet):
+#     queryset = Movie.objects.all()
+#     serializer_class = MovieListSerializer
+#     pagination_class = StandardResultsSetPagination
 
-    def get_queryset(self):
-        return super().get_queryset()
-    
+#     def get_queryset(self):
+#         return super().get_queryset()
+
+
+@api_view(['GET'])
+def movie_list(request):
+    movies = Movie.objects.all()
+    serializer = MovieSerializer(movies, many=True)
+    return Response(serializer.data)
 
 @api_view(['GET', 'POST'])
 def genre_list(request):

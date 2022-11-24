@@ -140,10 +140,10 @@ export default new Vuex.Store({
     getMovies(context) {
       axios({
         method: 'get',
-        url: `${API_URL}/movies/get/`
+        url: `${API_URL}/movies/`
       })
       .then(response => {
-        context.commit('GET_MOVIES', response.data.results) 
+        context.commit('GET_MOVIES', response.data) 
       })
       .catch(error => {
         console.log(error)
