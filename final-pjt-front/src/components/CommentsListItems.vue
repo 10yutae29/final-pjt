@@ -7,7 +7,7 @@
         <p>{{ commentItem.content }}</p>
         <div>
           <span>{{ updated_time }}</span>
-          <span class="comment-delete" @click="deleteComment" v-if="this.commentItem.user.id == this.$store.state.logedin_user.pk">댓글삭제</span>
+          <span class="comment-delete" @click="deleteComment" v-if="this.commentItem.user.id == this.$store.state.logedin_user.pk">리뷰 삭제</span>
           <hr>
         </div>
     </div>

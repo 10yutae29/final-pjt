@@ -9,7 +9,7 @@ import DetailView from '../views/DetailView.vue'
 import PasswordChangeView from '../views/PasswordChangeView.vue'
 import MainView from '../views/MainView.vue'
 import store from '../store/index.js'
-
+import NotFound404 from '../views/NotFound404.vue'
 
 Vue.use(VueRouter)
 
@@ -45,14 +45,23 @@ const routes = [
     component: UserView
   },
   {
+    path: '/passwordchangeview/',
+    name: 'PasswordChangeView',
+    component: PasswordChangeView
+  },
+  {
+    path: '/404-not-found',
+    name: 'NotFound404',
+    component: NotFound404
+  },
+  {
     path: '/moviesview/:id',
     name: 'DetailView',
     component: DetailView
   },
   {
-    path: '/passwordchangeview/',
-    name: 'PasswordChangeView',
-    component: PasswordChangeView
+    path:'*',
+    redirect: { name: 'NotFound404' }
   }
 ]
 
