@@ -34,12 +34,13 @@ export default {
 
 <style>
 .mainview-grid{
-  margin: 5vh 5vh 5vh 5vh;
+  margin: 10vh 10vh 10vh 10vh;
   display: grid;
   grid-template-columns: 100%;
   grid-template: 20% auto auto;
   padding: 10vw;
-  background: radial-gradient(white , rgb(255, 168, 168));
+  /* background: radial-gradient(white , rgb(13, 97, 207)); */
+  background: white;
   border-radius: 5px;
 }
 

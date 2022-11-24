@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="user-total">
     <div id="userview-grid">
       <div id="user-block">
         <h1>안녕하세요 {{ user_detail?.username }} 님!</h1>
@@ -65,14 +65,22 @@ export default {
 </script>
 
 <style>
+.user-total{
+  margin: 10vh 10vh 10vh 10vh;
+}
 #userview-grid{
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
+  background: white;
+  border-radius: 5px;
+  padding: 2vw 2vw 2vw 2vw; 
+
 }
 
 #user-block{
   grid-column: 1 / span 2;
-  color: white;
+  color: rgb(8, 0, 53);
+
 
   /* background: rgba(238, 221, 60, 0.762);
   border-radius: 5px;
@@ -84,7 +92,8 @@ export default {
 
 #comments{
   grid-column: 3 / span 2;
-  color: white;
+  color: rgb(8, 0, 53);
+
 
   /* background: rgba(238, 221, 60, 0.762);
   border-radius: 5px;
@@ -98,7 +107,8 @@ export default {
   grid-column: 1 / span 5; 
   text-decoration-line: underline;
   margin-top: 5px;
-  color: white;
+  color: rgb(8, 0, 53);
+
 }
 
 #like-movie-list{

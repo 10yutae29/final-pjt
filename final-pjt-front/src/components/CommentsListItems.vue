@@ -53,7 +53,7 @@ export default {
 
 
 .comment-username p{
-  font-size: 3vw;
+  font-size: 2vw;
   padding-left: 20px;
   margin-bottom: 0;
 
@@ -66,23 +66,27 @@ export default {
   gap: 1vw;
   padding-left: 20px;
   padding-top: 20px;
+
 }
 
 .comment-box p{
   width: 100%;
   font-weight: bold;
-  padding: 5px 5px 5px 5px;
-  background: rgb(223, 223, 223);
+  padding: 5px 5px 5px 15px;
+  background: rgba(9, 0, 88, 0.192);
   border-radius: 5px;
   height: auto;
   word-break: break-all;
   word-wrap: break-word;
+  font-size: 2vw;
+  margin-bottom: 0;
+  font-weight: lighter;
 }
 
 .comment-box div span{
   padding-right: 20px;
   padding-left: 5px;
-  color: rgb(160, 160, 160);
+  color: rgb(190, 190, 190);
   /* font:bold; */
 }
 

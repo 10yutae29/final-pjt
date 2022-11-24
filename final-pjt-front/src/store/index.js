@@ -26,7 +26,7 @@ export default new Vuex.Store({
     random_movies: null,
     genres_length: null,
     recommend_movies: null,
-    sorting_genre: '전체',
+    sorting_genre: '',
     search_word: ''
   },
   getters: {
@@ -41,7 +41,7 @@ export default new Vuex.Store({
     },
     SHOW_ALL(state){
       state.movies_filtered = state.movies
-      state.sorting_genre = '전체'
+      state.sorting_genre = '보고싶은 장르를 선택하세요.'
     },
     SORT_GENRE(state, sort_genre){
       state.movies_filtered = state.movies.filter(movie => movie.genres.includes(sort_genre.id))
@@ -52,6 +52,8 @@ export default new Vuex.Store({
     },
     SEARCH_FILTER(state, word) {
       state.movies_filtered = state.movies.filter(movie => movie.title.toLowerCase().includes(word))
+      state.sorting_genre = '보고싶은 장르를 선택하세요.'
+
     },
     SCORE_UP(state) {
       const movies_filtered = state.movies_filtered

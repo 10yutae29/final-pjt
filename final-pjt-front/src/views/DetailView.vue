@@ -1,32 +1,30 @@
 <template>
   <div class="detailview-grid">
-    <div></div>
+    
     <div class="detailview-movie-box">
       <div class="detailview-poster-box">
         <img class="detailview-poster" :src="`https://image.tmdb.org/t/p/original${movie_info?.poster_path}`" alt="">
       </div>
       <div class="detailview-movie-info">
         <h1>{{ movie_info?.title }}</h1> <hr> 
-        <p>평점  {{ movie_info?.vote_average }}점</p><br>
-        <p>개봉일자  {{ movie_info?.release_date }}</p>  <br>  
-        <p>장르  {{ movie_genres }}</p><br>
+        <p>평점 : {{ movie_info?.vote_average }}점</p>
+        <p>개봉일자 : {{ movie_info?.release_date }}</p>  
+        <p>장르 : {{ movie_genres }}</p>
         <div class="heart-box" v-if="logedin">
           <ion-icon  v-if="is_liked_conition" @click="toggleLike" name="heart" id="heart"></ion-icon>
           <ion-icon  v-if="!is_liked_conition" @click="toggleLike" name="heart" id="noheart"></ion-icon>
         </div>
-      </div>
-      <div class="movie-content-tag">
         <h5>영화 줄거리</h5>
-      </div>
-      <div class="overview-total-box">
         <div class="overview-box">
           <hr>
           <p>{{ movie_info?.overview }}</p>
         </div>
       </div>
+      
+      <div class="overview-total-box">
+      </div>
     </div>
-    <div></div>
-    <div></div>
+    
     <div class="detailview-comment">
       <div>
         <CommentsList
@@ -46,7 +44,7 @@
         </div>
       </div>
     </div>
-    <div></div>
+    
   </div>
 </template>
 
@@ -159,24 +157,29 @@ export default {
 
 <style>
 .detailview-grid{
-  margin-top: 10vh;
+  margin: 10vh 10vh 10vh 10vh;
   display: grid;
-  grid-template-columns: 10% 80% 10%;
+  grid-template-columns: 100%;
   grid-template-rows: auto auto;
+  color: white;
 }
 
 .detailview-movie-box{
   border-radius: 5px;
-  background: radial-gradient(white , rgb(223, 255, 232));
+  /* background: radial-gradient(white , rgb(223, 255, 232)); */
+  background: rgba(14, 0, 75, 0.24);
+  border: solid rgb(255, 255, 255) 0.5px;
   display: grid;
   grid-template-columns: 25% 75%;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: auto ;
   padding: 5vh 5vh 5vh 5vh;
 }
 
 .detailview-poster-box{
   width:100%;
-  height: 100%;
+  aspect-ratio: 5 / 8 auto ;
+
+  /* height: 100%; */
   border-radius: 5px;
   border: solid 0.2px;
   display:flex;
@@ -192,22 +195,27 @@ export default {
 }
 
 .detailview-movie-info{
+  /* grid-row: 1/2; */
   width: 100%;
   border-radius: 5px;
   padding: 20px 20px 20px 20px;
 }
 .detailview-movie-info h1{
   font-size: 3vw;
+  color: white;
 }
 .detailview-movie-info p{
   margin-left: 10px;
+  color: white;
   font-size: 1.5vw;
+  margin-bottom: 10px;
 }
 
 .heart-box{
   margin-left: 10px;
   height: 3vw;
   width: 3vw;
+  margin-bottom: 40px;
 }
 
 .overview-total-box{
@@ -218,7 +226,7 @@ export default {
 .overview-box{
   /* border-radius: 5px;
   border: solid 0.1px; */
-  padding: 1vw;
+  /* padding: 1vw; */
   font-size: 1vw;
 }
 
@@ -227,6 +235,8 @@ export default {
   justify-content: center;
   padding-top: 3vw;
 }
+
+
 
 .comment-create-tag{
   font-size: 2vw;
@@ -238,7 +248,8 @@ export default {
 
 .detailview-comment{
   margin-top: 20px;
-  background: radial-gradient(white , rgb(223, 255, 232));
+  background: rgba(14, 0, 75, 0.24);
+  border: solid rgb(255, 255, 255) 0.5px;
   border-radius: 5px;
   margin-bottom: 20px;
 }

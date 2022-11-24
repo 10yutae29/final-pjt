@@ -1,7 +1,7 @@
 <template>
   <div class="recommendview-grid">
     <div class="recommendview-name">
-        <span>영화 추천</span>
+        <h1>영화 추천</h1>
     </div>
 
 
@@ -98,7 +98,9 @@ export default {
 .recommendview-grid{
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 200px auto;
+  grid-template-rows: 100px auto;
+  font-family: 'Jua', sans-serif;
+  
 }
 
 .recommendview-name{
@@ -107,11 +109,12 @@ export default {
   align-items: center;
 }
 
-.recommendview-name span{
+.recommendview-name h1{
   /* display: flex;
   justify-content: center; */
-  color: #fff;
-  font-size: 3vw;  
+  color: rgb(8, 0, 53);
+
+  /* color: #fff; */
 }
 
 

@@ -1,8 +1,7 @@
 <template>
   <div class="commentlist-grid">
     <div class="movie-recommend-tag">
-      <hr><br>
-      <h1>영화 리뷰</h1><br>
+      <h1>영화 리뷰</h1>
       <hr>
     </div>
     <div class="comments-case">
@@ -47,6 +46,7 @@ export default {
 }
 
 .movie-recommend-tag h1{
+  margin-top: 10px;
   padding-left: 20px;
 }
 </style>
