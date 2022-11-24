@@ -2,7 +2,7 @@
   <div class="moviesview-grid">
     
     <div id="moviesview-title">
-      <h1>전체 영화</h1>
+      <h1>Total Movies</h1>
     </div>
     
     
@@ -36,9 +36,11 @@
     </div>
 
     <div id="moviesview-sort">
-      <span>평점</span>  <span @click="scoreUp" style="cursor: pointer;">위 </span> <span @click="scoreDown" style="cursor: pointer;">아래 </span> |
-      <span>제목</span>  <span @click="titleUp" style="cursor: pointer;">위 </span> <span @click="titleDown" style="cursor: pointer;">아래 </span> |
-      <span>개봉일</span>  <span @click="dateUp" style="cursor: pointer;">위 </span> <span @click="dateDown" style="cursor: pointer;">아래 </span>
+      <span @click="scoreUp">평점</span> 
+      <span @click="titleUp">제목</span>
+      <span @click="dateUp">개봉일</span> 
+      <ion-icon v-if="sort_direction == 1" name="arrow-up-outline" class="sort" @click="sortUp"></ion-icon> 
+      <ion-icon v-if="sort_direction == 0" name="arrow-down-outline" class="sort" @click="sortDown"></ion-icon>
     </div>
 
     <div class="moviesview-items">
@@ -63,7 +65,9 @@ export default {
   },
   data() {
     return {
-      search: ''
+      search: '',
+      sortstatus: 1,
+      sort_direction: 0,
     }
   },
   computed: {
@@ -87,21 +91,30 @@ export default {
     },
     scoreUp() {
       this.$store.commit('SCORE_UP')
+      this.sortstatus = 1
+      this.sort_direction = 0
     },
     scoreDown() {
       this.$store.commit('SCORE_DOWN')
+      this.sort_direction = 1
     },
     titleUp() {
       this.$store.commit('TITLE_UP')
+      this.sortstatus = 2
+      this.sort_direction = 0
     },
     titleDown() {
       this.$store.commit('TITLE_DOWN')
+      this.sort_direction = 1
     },
     dateUp() {
       this.$store.commit('DATE_UP')
+      this.sortstatus = 3
+      this.sort_direction = 0
     },
     dateDown() {
       this.$store.commit('DATE_DOWN')
+      this.sort_direction = 1
     },
     activateSearch() {
       
@@ -110,6 +123,24 @@ export default {
     },
     showAll(){
       this.$store.commit('SHOW_ALL')
+    },
+    sortDown(){
+      if (this.sortstatus == 1){
+        this.scoreDown()
+      } else if (this.sortstatus == 2){
+        this.titleDown()
+      } else if (this.sortstatus == 3){
+        this.dateDown()
+      }
+    },
+    sortUp(){
+      if (this.sortstatus == 1){
+        this.scoreUp()
+      } else if (this.sortstatus == 2){
+        this.titleUp()
+      } else if (this.sortstatus == 3){
+        this.dateUp()
+      }
     }
   },
   created() {
@@ -144,10 +175,28 @@ export default {
 
 #moviesview-sort{
   color: white;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-rows: 100%;
+  grid-template-columns: 17% 17% 26% 20%;
+  justify-content: space-evenly;
   align-items: center;
+  font-size: 2vw;
+  gap: 5%;
+  padding-right: 5%;
 }
+
+#moviesview-sort .sort{
+  width: 80%;
+  height: 50%;
+  background: white;
+  color: #000;
+  border-radius: 10px;
+}
+
+#moviesview-sort *{
+  cursor: pointer
+}
+
 
 .moviesview-items{
   grid-column: 1 / -1;
@@ -184,18 +233,22 @@ li {
 
 #dropdown-btn{
   color: black;
-  border: solid white;
+  border: solid rgb(0, 0, 0);
   background: white;
-  
+  width:50%;
 }
 
 .dropdown{
   z-index: 1100;;
-
 }
 
 .dropdown-item{
   cursor: pointer;
+}
+
+.dropdown-menu{
+  width:50%;
+  border: solid rgb(0, 0, 0);
 
 }
 

@@ -1,19 +1,24 @@
 <template>
-  <div>
-    <h1>SEE원한 영화에 오신것을 환영합니다.</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique consequuntur omnis aperiam ipsum, laudantium ullam officia deleniti vel excepturi blanditiis sit et veniam ipsam facilis dolorum esse est quo placeat. Lorem ipsum dolor sit amet consectetur adipisicing elit. At officia ex tempora voluptatum facere placeat minima adipisci, voluptates necessitatibus perferendis architecto dolorem illo quibusdam a. Quos dignissimos magnam numquam nemo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam eos ullam sint minima alias, est corrupti neque enim ducimus veritatis. Necessitatibus incidunt amet rem excepturi tempore ducimus asperiores, ipsa error!</p>
+  <div class="mainview-grid">
+    <div class="mainview-title">
+      <h1>SEE원한 영화에 오신것을 환영합니다.</h1>
+    </div>
+    <div class="mainview-content">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique consequuntur omnis aperiam ipsum, laudantium ullam officia deleniti vel excepturi blanditiis sit et veniam ipsam facilis dolorum esse est quo placeat. Lorem ipsum dolor sit amet consectetur adipisicing elit. At officia ex tempora voluptatum facere placeat minima adipisci, voluptates necessitatibus perferendis architecto dolorem illo quibusdam a. Quos dignissimos magnam numquam nemo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam eos ullam sint minima alias, est corrupti neque enim ducimus veritatis. Necessitatibus incidunt amet rem excepturi tempore ducimus asperiores, ipsa error!</p>
+    </div>
     <div class="water-box">
       <div class="drop" style="--clr:#1B03DB">
         <div class="water-content">
           <h2>01</h2>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt debitis id sit sequi </p>
+          <p>모든 영화에 대한 정보를 확인할 수 있습니다. 검색 밑 필터 기능을 통해 원하는 영화 정보를 확인할 수 있습니다</p>
           <router-link to="/moviesview">GO</router-link>
         </div>
       </div>
       <div class="drop" style="--clr:#9000FF">
         <div class="water-content">
           <h2>02</h2>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt debitis id sit sequi </p>
+          <p>사용자가 좋아요를 누른 영화를 기반으로 영화를 추천해줍니다.</p>
+          <p>로그인이 필요한 서비스입니다.</p>
           <router-link to="/recommendview">GO</router-link>
         </div>
       </div>
@@ -28,6 +33,36 @@ export default {
 </script>
 
 <style>
+.mainview-grid{
+  margin: 5vh 5vh 5vh 5vh;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template: 20% auto auto;
+  padding: 10vw;
+  background: radial-gradient(white , rgb(255, 168, 168));
+  border-radius: 5px;
+}
+
+.mainview-title{
+  display: flex;
+  justify-content: center;
+}
+
+.mainview-title h1{
+  color: rgb(0, 0, 0);
+  text-align: center;
+}
+
+.mainview-content{
+  padding-top: 5vh;
+  display: flex;
+  justify-content: center;
+}
+
+.mainview-content p{
+  color: rgb(0, 0, 0);
+  text-align: center;
+}
 
 
 /* 여기서부터 물방울 */

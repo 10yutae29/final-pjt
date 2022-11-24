@@ -82,6 +82,7 @@ export default {
       } else {
         this.picked_movies.push(movie_id)     
       }
+      console.log(this.picked_movies)
     },
     goGenres() {
       this.$store.dispatch('goGenres', this.picked_movies)
@@ -110,7 +111,7 @@ export default {
   /* display: flex;
   justify-content: center; */
   color: #fff;
-  font-size: 3vw;
+  font-size: 3vw;  
 }
 
 
