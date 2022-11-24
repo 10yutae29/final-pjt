@@ -239,7 +239,7 @@ li {
 #dropdown-btn{
   color: black;
   border: solid rgb(0, 0, 0);
-  background: rgba(255, 255, 255, 0.705);
+  background: rgba(255, 255, 255, 0.879);
   width:50%;
   height: 100%;
   font-size: 1.2vw;
@@ -257,7 +257,7 @@ li {
 .dropdown-menu{
   width:50%;
   border: solid rgb(0, 0, 0);
-  background: rgba(255, 255, 255, 0.705);
+  background: rgba(255, 255, 255, 0.879);
   font-size: 1.2vw;
   
   

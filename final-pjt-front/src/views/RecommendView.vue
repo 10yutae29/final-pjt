@@ -155,6 +155,11 @@ export default {
 
 }
 
+.recommendview-items-button button:hover{
+  color: white;
+  background: rgba(14, 0, 75, 0.24);
+}
+
 .recommendview-random-items{
   display: grid;
   grid-template-columns: 18% 18% 18% 18% 18%;
@@ -186,5 +191,10 @@ export default {
   font-size: 1.3vw; 
   border-radius: 5px;
   color: rgb(10, 0, 56);
+}
+
+.reset-random button:hover , .random-submit button:hover{
+  color: white;
+  background: rgba(14, 0, 75, 0.24);
 }
 </style>

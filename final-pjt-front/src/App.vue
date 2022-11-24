@@ -152,7 +152,7 @@ export default {
 .liquid h1:nth-child(4) {
   color: #2196f3;
   opacity: 0.7;
-  animation: animate 11s ease-in-out infinite;
+  animation: animate 8s ease-in-out infinite;
 }
 @keyframes animate
 {
