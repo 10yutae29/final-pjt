@@ -7,9 +7,9 @@
       <!-- <label for="userName">닉네임</label>
       <input type="text" name="userName" id="userName"> <br> -->
       <label id="signup-label" for="password1">비밀번호</label> <br>
-      <input type="text" name="password1" id="signup-input" v-model="password1"> <br>
+      <input type="password" name="password1" id="signup-input" v-model="password1"> <br>
       <label id="signup-label" for="password2">비밀번호 확인</label> <br>
-      <input type="text" name="password2" id="signup-input" v-model="password2"> <br>
+      <input type="password" name="password2" id="signup-input" v-model="password2"> <br>
 
       <input id="signup-submit" type="submit" value="회원가입">
     </form>
@@ -46,39 +46,55 @@ export default {
 
 <style>
 #signup-view {
+  margin: 10vh 10vh 10vh 10vh;
   display: grid;
-  grid-template-columns: 40% 20% 40%;
-  grid-template-rows: auto auto;
+  grid-template-columns: 100%;
+  grid-template: 20% auto;
+  padding: 5vw;
+  /* background: radial-gradient(white , rgb(13, 97, 207)); */
+  background: white;
+  border-radius: 5px;
+  color: rgb(10, 0, 56);
 }
 
 #signup-title{
-  grid-column: 2;
   justify-content: center;
   align-items: center;
-  color: white;
   margin-top: 20px;
   text-align: center;
+  font-size: 3vw;
 }
 
 #signup-form{
-  grid-column: 2;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
   margin-top: 10px;
+  gap: 0;
 }
 
+#signup-form label{
+  font-size: 2vw;
+}
 #signup-input{
   background: rgba(255, 255, 255, 0.15);
+  width: 25%;
+  aspect-ratio: 4/1;
+  font-size: 2vw;
+  border-radius: 5px;
 }
 
 #signup-submit{
   margin-top: 5px;
-  background: rgba(218, 165, 32, 0.421);
+  background: rgba(58, 110, 255, 0.486);
+  width: 15%;
+  aspect-ratio: 4/1;
+  border-radius: 5px;
+  font-size: 2vw;
+
 }
 
-#signup-label{
-  margin-bottom: 3px;
-}
+
 
 </style>

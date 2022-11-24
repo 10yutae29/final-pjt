@@ -34,21 +34,13 @@ export default {
     }
   },
   methods: {
-    // checkAuth(){
-    //   if (!this.isLogin) {
-    //     window.alert('로그인 페이지로 이동합니다.')
-    //     this.$router.push('/loginview')
-    //   }
-    // },
     getMovieData(){
       this.$store.dispatch('getMovies')
     },
-    // getLoginUser() {
-    //   this.$store.dispatch('getLoginUser')
-    // },
+
     logOut() {
       this.$store.commit('LOG_OUT')
-      // this.$store.dispatch('logOut')
+
     },
     goMain() {
       this.$router.push('/')
@@ -111,10 +103,7 @@ export default {
 }
 
 #content {
-  /* background: url(https://cdn.pixabay.com/photo/2014/11/30/17/15/theater-551797__340.jpg) no-repeat; */
-  /* background: radial-gradient(white , rgba(47, 116, 206, 0.795)); */
   background: #2195f37c;
-  /* background: #484848; */
   grid-column: 1 / -1;
   display: fixed;
   min-height: 100vh;
@@ -130,8 +119,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* top: 50%; */
-  /* background: #183954; */
 }
 .liquid h1{
   position: absolute;
@@ -154,7 +141,6 @@ export default {
 }
 .liquid h1:nth-child(2) {
   color: #2196f3;
-  /* color: #606060; */
   opacity: 0.5;
   animation: animate 3s ease-in-out infinite;
 }

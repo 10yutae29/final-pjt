@@ -78,6 +78,7 @@ export default {
 }
 
 #user-block{
+  padding: 10px 0 0 10px;
   grid-column: 1 / span 2;
   color: rgb(8, 0, 53);
 

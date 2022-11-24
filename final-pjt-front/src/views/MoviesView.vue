@@ -233,7 +233,6 @@ li {
   color: white;
   font-weight: bold;
   
-  
 
 }
 
@@ -242,6 +241,9 @@ li {
   border: solid rgb(0, 0, 0);
   background: rgba(255, 255, 255, 0.705);
   width:50%;
+  height: 100%;
+  font-size: 1.2vw;
+
 }
 
 .dropdown{
@@ -256,6 +258,8 @@ li {
   width:50%;
   border: solid rgb(0, 0, 0);
   background: rgba(255, 255, 255, 0.705);
+  font-size: 1.2vw;
+  
   
 }
 

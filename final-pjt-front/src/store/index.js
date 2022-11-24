@@ -97,7 +97,7 @@ export default new Vuex.Store({
     },
     SAVE_TOKEN(state, token) {
       state.token = token
-      router.push('/moviesview')
+      router.push('/')
     },
     GET_LOGIN_USER(state, logedin_user) {
       state.logedin_user = logedin_user

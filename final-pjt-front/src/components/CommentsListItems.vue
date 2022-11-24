@@ -6,7 +6,7 @@
     <div class="comment-box">
         <p>{{ commentItem.content }}</p>
         <div>
-          <span>{{ commentItem.updated_at}}</span>
+          <span>{{ updated_time }}</span>
           <span @click="deleteComment" v-if="this.commentItem.user.id == this.$store.state.logedin_user.pk">댓글삭제</span>
           <hr>
         </div>
@@ -24,12 +24,24 @@ export default {
   props: {
     comment: Object
   },
+  data(){
+    return{
+   
+    }
+  },
   computed: {
     commentItem(){
       return this.comment
     },
     logedinUser(){
       return this.$store.state.logedin_user
+    },
+    updated_time(){
+      const comment_time = this.comment.updated_at
+      const day = comment_time.substring(0,10)
+      const time = comment_time.substring(11,19)
+      return day+ ' ' + time
+      
     }
   },
   methods: {
