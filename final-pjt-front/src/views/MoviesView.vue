@@ -2,7 +2,7 @@
   <div class="moviesview-grid">
     
     <div id="moviesview-title">
-      <h1>전체 영화</h1>
+      <h1>Total Movies</h1>
     </div>
     
     
