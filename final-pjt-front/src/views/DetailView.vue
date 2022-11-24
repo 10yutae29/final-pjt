@@ -7,9 +7,9 @@
       </div>
       <div class="detailview-movie-info">
         <h1>{{ movie_info?.title }}</h1> <hr> 
-        <p>평점 : {{ movie_info?.vote_average }}</p><br>
-        <p>개봉일자 : {{ movie_info?.release_date }}</p>  <br>  
-        <p>장르 : {{ movie_genres }}</p><br>
+        <p>평점  {{ movie_info?.vote_average }}점</p><br>
+        <p>개봉일자  {{ movie_info?.release_date }}</p>  <br>  
+        <p>장르  {{ movie_genres }}</p><br>
         <div class="heart-box" v-if="logedin">
           <ion-icon  v-if="is_liked_conition" @click="toggleLike" name="heart" id="heart"></ion-icon>
           <ion-icon  v-if="!is_liked_conition" @click="toggleLike" name="heart" id="noheart"></ion-icon>
@@ -20,6 +20,7 @@
       </div>
       <div class="overview-total-box">
         <div class="overview-box">
+          <hr>
           <p>{{ movie_info?.overview }}</p>
         </div>
       </div>
@@ -166,7 +167,7 @@ export default {
 
 .detailview-movie-box{
   border-radius: 5px;
-  background: white;
+  background: radial-gradient(white , rgb(223, 255, 232));
   display: grid;
   grid-template-columns: 25% 75%;
   grid-template-rows: auto auto auto;
@@ -176,7 +177,8 @@ export default {
 .detailview-poster-box{
   width:100%;
   height: 100%;
-  border-radius: white 5px;
+  border-radius: 5px;
+  border: solid 0.2px;
   display:flex;
   justify-content: center;
 }
@@ -209,12 +211,13 @@ export default {
 }
 
 .overview-total-box{
-  padding: 1.5vw 1.5vw 1.5vw 1.5vw;
+  padding-left: 1.5vw;
+  padding-right: 1.5vw;
 }
 
 .overview-box{
-  border-radius: 5px;
-  border: solid 0.1px;
+  /* border-radius: 5px;
+  border: solid 0.1px; */
   padding: 1vw;
   font-size: 1vw;
 }
@@ -234,7 +237,9 @@ export default {
 }
 
 .detailview-comment{
-  background: white;
+  margin-top: 20px;
+  background: radial-gradient(white , rgb(223, 255, 232));
+  border-radius: 5px;
   margin-bottom: 20px;
 }
 
@@ -251,6 +256,7 @@ export default {
 
 .comment-textarea{
   width: 100%;
+  border-radius: 5px;
 }
 
 #heart {

@@ -1,6 +1,8 @@
 <template>
-  <div class="random-item">
-    <img @click="sendPicked" id="poster" class="img-fluid" :src="`https://image.tmdb.org/t/p/original${movie?.poster_path}`" alt="">
+  <div :class="[`random-item${movie.id}`]" id="randomitem-grid">
+    <div class="poster-box">
+      <img @click="[sendPicked(), selected()]" id="poster" :src="`https://image.tmdb.org/t/p/original${movie?.poster_path}`" alt="">
+    </div>
   </div>
 </template>
 
@@ -28,6 +30,13 @@ export default {
       const movie_id = this.movie.id
       this.$emit('movie-plus', movie_id)
 
+    },
+    selected(){
+      const selected_box = document.querySelector(`.random-item${this.movie.id}`)
+      // if selected_box.classList.contains('selected-style') {
+
+      // }
+      selected_box.classList.toggle('selected-style')
     }
   },
   created() {
@@ -36,8 +45,20 @@ export default {
 </script>
 
 <style>
+#randomitem-grid{
+  width: 100%;
+  padding: 1vh 1vh 1vh 1vh;
+  border-radius: 5px;
+}
+
+
 .random-item{
   width: 100%;
+}
+
+.poster-box{
+  width: 100%;
+  height: 100%;
 }
 
 #poster{
@@ -46,6 +67,14 @@ export default {
   overflow: hidden;
   border: solid 1px;
   border-radius: 5px;
-  margin: 5px 5px 5px 5px;
+  width: 100%;
+  object-fit: cover;
+
 }
+
+.selected-style{
+  background: rgba(229, 255, 0, 0.5);
+  backdrop-filter: blur(50px);
+}
+
 </style>
