@@ -87,7 +87,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ],
 
-    'DEFAULT_PAGINATION_CLASS': 'movies.pagination.StandardResultsSetPagination'
+    # 'DEFAULT_PAGINATION_CLASS': 'movies.pagination.StandardResultsSetPagination'
 }
 
 ROOT_URLCONF = 'finalpjt.urls'
