@@ -73,7 +73,7 @@ export default {
 }
 
 .selected-style{
-  background: rgba(229, 255, 0, 0.5);
+  background: rgb(10, 0, 56);
   backdrop-filter: blur(50px);
 }
 

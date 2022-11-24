@@ -3,23 +3,27 @@
     <div class="mainview-title">
       <h1>SEE원한 영화에 오신것을 환영합니다.</h1>
     </div>
-    <div class="mainview-content">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique consequuntur omnis aperiam ipsum, laudantium ullam officia deleniti vel excepturi blanditiis sit et veniam ipsam facilis dolorum esse est quo placeat. Lorem ipsum dolor sit amet consectetur adipisicing elit. At officia ex tempora voluptatum facere placeat minima adipisci, voluptates necessitatibus perferendis architecto dolorem illo quibusdam a. Quos dignissimos magnam numquam nemo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam eos ullam sint minima alias, est corrupti neque enim ducimus veritatis. Necessitatibus incidunt amet rem excepturi tempore ducimus asperiores, ipsa error!</p>
-    </div>
+    
     <div class="water-box">
-      <div class="drop" style="--clr:#1B03DB">
+      <div class="drop" style="--clr:#673ab7">
         <div class="water-content">
           <h2>01</h2>
           <p>모든 영화에 대한 정보를 확인할 수 있습니다. 검색 밑 필터 기능을 통해 원하는 영화 정보를 확인할 수 있습니다</p>
           <router-link to="/moviesview">GO</router-link>
         </div>
       </div>
-      <div class="drop" style="--clr:#9000FF">
+      <div class="drop" style="--clr:#3f51b5">
         <div class="water-content">
           <h2>02</h2>
-          <p>사용자가 좋아요를 누른 영화를 기반으로 영화를 추천해줍니다.</p>
-          <p>로그인이 필요한 서비스입니다.</p>
+          <p>사용자가 좋아요를 누른 영화를 기반으로 영화를 추천해줍니다. 로그인이 필요한 서비스입니다.</p>
           <router-link to="/recommendview">GO</router-link>
+        </div>
+      </div>
+      <div class="drop" style="--clr:#2196f3">
+        <div class="water-content">
+          <h2>03</h2>
+          <p>프로젝트에 대한 자세한 내용을 확인하시려면 저희의 깃헙으로 들어오세요.</p><br>
+          <a href="https://github.com/10yutae29/final-pjt">GO</a>
         </div>
       </div>
     </div>
@@ -37,8 +41,8 @@ export default {
   margin: 10vh 10vh 10vh 10vh;
   display: grid;
   grid-template-columns: 100%;
-  grid-template: 20% auto auto;
-  padding: 10vw;
+  grid-template: 20% auto;
+  padding: 5vw;
   /* background: radial-gradient(white , rgb(13, 97, 207)); */
   background: white;
   border-radius: 5px;
@@ -52,6 +56,7 @@ export default {
 .mainview-title h1{
   color: rgb(0, 0, 0);
   text-align: center;
+  font-size: 4.5vw;
 }
 
 .mainview-content{
@@ -63,6 +68,8 @@ export default {
 .mainview-content p{
   color: rgb(0, 0, 0);
   text-align: center;
+  font-size: 2vw;
+
 }
 
 
@@ -78,8 +85,8 @@ export default {
 }
 .water-box .drop{
   position: relative;
-  width: 350px;
-  height: 350px;
+  width: 450px;
+  height: 450px;
   background: rgb(237, 237, 237);
   box-shadow: inset 20px 20px 20px rgba(0, 0, 0, 0.05),
   25px 35px 20px rgba(0, 0, 0, 0.05),
@@ -91,10 +98,14 @@ export default {
   align-items: center;
 }
 .water-box .drop:nth-child(1){
-  border-radius: 44% 56% 70% 30% / 30% 41% 59% 70% ;
+  border-radius: 50% 50% 58% 42% / 34% 41% 59% 66%  ;
 }
 .water-box .drop:nth-child(2){
   border-radius: 37% 63% 49% 51% / 42% 20% 80% 58% ;
+}
+
+.water-box .drop:nth-child(3){
+  border-radius: 50% 50% 40% 60% / 46% 33% 67% 54%   ;
 }
 .water-box .drop:hover{
   border-radius: 50%;
@@ -151,6 +162,8 @@ export default {
   color: var(--clr);
 }
 .water-box .drop .water-content a{
+  width: 130px;
+  height: 50px;
   position: relative;
   padding: 10px 25px;
   background: var(--clr);
@@ -161,6 +174,11 @@ export default {
   text-shadow: 0, 2px, 2px rgba(0,0,0,0.25);
   opacity: 0.75;
   transition: 0.5s;
+  font-size: 25px;
+}
+
+.water-content p{
+  font-size: 2rem;
 }
 
 .water-box .drop .water-content a:hover{

@@ -242,7 +242,7 @@ export default {
   font-size: 2vw;
 }
 
-.movie-content-tag h5{
+.detailview-movie-info h5{
   font-size: 1.5vw;
 }
 

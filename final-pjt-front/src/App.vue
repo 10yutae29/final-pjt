@@ -80,7 +80,7 @@ export default {
   height: 100%; */
   display: grid;
   grid-template-columns: 30% 70%;
-  grid-template-rows: 130px auto;
+  grid-template-rows: 200px auto;
   margin: 0;
   padding: 0;
   font-family: 'Jua', sans-serif;
@@ -99,6 +99,7 @@ export default {
   display: flex;
   justify-content: right;
   align-items: center;
+  
 }
 
 #navbar a {
@@ -139,6 +140,7 @@ export default {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-family: 'Black Han Sans', sans-serif;
   cursor: pointer;
+  margin-bottom: 0;
 }
 .liquid h1:nth-child(1)
 {
