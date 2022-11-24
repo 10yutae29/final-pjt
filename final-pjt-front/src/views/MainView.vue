@@ -8,21 +8,21 @@
       <div class="drop" style="--clr:#673ab7">
         <div class="water-content">
           <h2>01</h2>
-          <p>모든 영화에 대한 정보를 확인할 수 있습니다. 검색 밑 필터 기능을 통해 원하는 영화 정보를 확인할 수 있습니다</p>
+          <p>검색 밑 필터 기능을 통해 원하는 모든 영화 정보를 확인할 수 있습니다</p>
           <router-link to="/moviesview">GO</router-link>
         </div>
       </div>
       <div class="drop" style="--clr:#3f51b5">
         <div class="water-content">
           <h2>02</h2>
-          <p>사용자가 좋아요를 누른 영화를 기반으로 영화를 추천해줍니다. 로그인이 필요한 서비스입니다.</p>
+          <p>사용자가 좋아요를 누른 영화를 기반으로 영화를 추천해줍니다.</p>
           <router-link to="/recommendview">GO</router-link>
         </div>
       </div>
       <div class="drop" style="--clr:#2196f3">
         <div class="water-content">
           <h2>03</h2>
-          <p>프로젝트에 대한 자세한 내용을 확인하시려면 저희의 GitHub에 방문해주세요.</p><br>
+          <p>프로젝트에 대한 자세한 내용을 확인하시려면 저희의 GitHub에 방문해주세요.</p>
           <a href="https://github.com/10yutae29/final-pjt">GO</a>
         </div>
       </div>

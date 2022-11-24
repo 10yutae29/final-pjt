@@ -62,25 +62,22 @@ export default {
 </style>
 
 <style>
+
 #app {
-  /* font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #000000;
-  background: #82b1ff;
-  height: 100%; */
   display: grid;
   grid-template-columns: 30% 70%;
   grid-template-rows: 200px auto;
   margin: 0;
   padding: 0;
   font-family: 'Jua', sans-serif;
-  /* height: 100vh; */
 }
 
 #navbar a.router-link-exact-active {
   color: #00ff51;
+}
+
+#navbar *:hover{
+  color: rgb(93, 93, 255); 
 }
 
 #title {
