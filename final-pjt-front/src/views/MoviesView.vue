@@ -1,31 +1,6 @@
 <template>
   <div class="moviesview-grid">
     
-    <div id="moviesview-title">
-      <h1>Total Movies</h1>
-    </div>
-    
-    
-    <div id="dropdown" class="dropdown">
-      <button id="dropdown-btn" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        {{ sorting_genre }}
-      </button>
-      <ul class="dropdown-menu">
-        <!-- <li class="dropdown-item"> -->
-          <li
-          class="dropdown-item"
-          @click="showAll"
-          >전체</li>
-          <GenresItem
-          v-for="genre in genres"
-          :key="genre.pk"
-          :genre="genre"
-          class="dropdown-item"
-          />
-
-      </ul>
-    </div>
-
     <div class="searchbody">
       <div class="search">
         <div class="icon" @click="activateSearch"></div>
@@ -34,13 +9,34 @@
         </div>
       </div>
     </div>
+    
+    <div id="dropdown" class="dropdown">
+      <button id="dropdown-btn" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        {{ sorting_genre }}
+      </button>
+      <ul class="dropdown-menu">
+        <!-- <li class="dropdown-item"> -->
+          <li
+          class="dropdown-item dropdown-text"
+          @click="showAll"
+          >전체</li>
+          <GenresItem
+          v-for="genre in genres"
+          :key="genre.pk"
+          :genre="genre"
+          class="dropdown-item dropdown-text"
+          />
+
+      </ul>
+    </div>
+
 
     <div id="moviesview-sort">
       <span @click="scoreUp">평점</span> 
       <span @click="titleUp">제목</span>
       <span @click="dateUp">개봉일</span> 
-      <ion-icon v-if="sort_direction == 1" name="arrow-up-outline" class="sort" @click="sortUp"></ion-icon> 
-      <ion-icon v-if="sort_direction == 0" name="arrow-down-outline" class="sort" @click="sortDown"></ion-icon>
+      <ion-icon v-if="sort_direction_info == 1" name="arrow-up-outline" class="sort" @click="sortUp"></ion-icon> 
+      <ion-icon v-if="sort_direction_info == 0" name="arrow-down-outline" class="sort" @click="sortDown"></ion-icon>
     </div>
 
     <div class="moviesview-items">
@@ -79,6 +75,9 @@ export default {
     },
     sorting_genre(){
       return this.$store.state.sorting_genre
+    },
+    sort_direction_info(){
+      return this.sort_direction
     }
   },
   methods: {
@@ -88,6 +87,8 @@ export default {
     searchFilter() {
       const word = this.search.toLowerCase()
       this.$store.commit('SEARCH_FILTER', word)
+      this.sort_direction = 0
+
     },
     scoreUp() {
       this.$store.commit('SCORE_UP')
@@ -161,7 +162,8 @@ export default {
 .moviesview-grid{
   display: grid;
   grid-template-columns: 30% 40% 30%;
-  grid-template-rows: 100px 80px auto;
+  grid-template-rows: 80px auto;
+  font-family: 'Jua', sans-serif;
 }
 
 #moviesview-title{
@@ -170,11 +172,11 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: rgb(8, 0, 53);
 }
 
 #moviesview-sort{
-  color: white;
+  color: rgb(8, 0, 53);
   display: grid;
   grid-template-rows: 100%;
   grid-template-columns: 17% 17% 26% 20%;
@@ -228,13 +230,15 @@ li {
   align-items: center;
   color: white;
   font-weight: bold;
+  
+  
 
 }
 
 #dropdown-btn{
   color: black;
   border: solid rgb(0, 0, 0);
-  background: white;
+  background: rgba(255, 255, 255, 0.705);
   width:50%;
 }
 
@@ -249,7 +253,12 @@ li {
 .dropdown-menu{
   width:50%;
   border: solid rgb(0, 0, 0);
+  background: rgba(255, 255, 255, 0.705);
+  
+}
 
+.dropdown-text{
+  text-align: center;
 }
 
 .search {
@@ -286,7 +295,7 @@ li {
   width: 15px;
   height: 15px;
   /* border: 3px solid rgb(225, 36, 36); */
-  border: 3px solid rgb(255, 0, 0);
+  border: 3px solid rgb(24, 0, 163);
 
   border-radius: 50%;
   transform: translate(-4px, -4px);
@@ -298,7 +307,8 @@ li {
   width: 3px;
   height: 12px;
   /* background: rgb(225, 36, 36); */
-  background: rgb(255, 19, 19);
+  background: rgb(24, 0, 163);
+  
   transform: translate(6px, 6px) rotate(315deg);
 }
 .search .input{

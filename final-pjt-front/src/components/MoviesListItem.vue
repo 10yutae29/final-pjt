@@ -79,6 +79,7 @@ export default {
       })
       .then(() => {
         this.getMovieDetail()
+        this.$emit()
       })
       .catch((error) => {
         console.log(error)
@@ -114,20 +115,22 @@ export default {
   aspect-ratio: 5 / 7 auto ;
   display: grid;
   grid-template-columns: 10% 80% 10%;
+  border-radius: 2px;
 }
 
 .flip { 
   width: 100%;
   height: 100%;
   perspective: 1100px;
-  border-radius: 5px;
+  border-radius: 2px;
+
 }
 
 .poster{
   height: 100%;
   width:100%;
   object-fit: cover;
-  border:solid black 0.5px
+  border:solid rgba(65, 65, 65, 0.397) 0.1px;
 }
 
 .card {
@@ -136,6 +139,9 @@ export default {
   position: relative;
   transition: .4s;
   transform-style: preserve-3d;
+  border: solid black 0.1px;
+  border-radius: 2px;
+
 }	
 
 .front, .back {
@@ -146,12 +152,10 @@ export default {
   display: flex;
   justify-content: center;
   padding: 10px 5px 5px 5px;
-  border-radius: 5px;
-
 }
 
 .front {
-  background: rgb(255, 255, 255); 
+  background: rgb(245, 245, 245); 
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 70% 20% 10%;
@@ -166,11 +170,13 @@ export default {
   display: flex;
   font-size: 1.5vw;
   justify-content: center;
+  rotate: -6deg;
   align-items: center;
 }
 
 .front-date{
-  font-size: 2vw;
+  font-size: 1.5vw;
+  rotate: -5deg;
 }
 
 #movie-info {
@@ -183,7 +189,7 @@ export default {
   padding-right: 5px;
   grid-template-columns: 100%;
   grid-template-rows: 28% 10% 30% 15% 15%;
-  border-radius: 5px;
+
 }
 
 .movie-info-item{

@@ -66,6 +66,7 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 </style>
 
 <style>
@@ -79,35 +80,39 @@ export default {
   height: 100%; */
   display: grid;
   grid-template-columns: 30% 70%;
-  grid-template-rows: 150px auto;
+  grid-template-rows: 130px auto;
   margin: 0;
   padding: 0;
+  font-family: 'Jua', sans-serif;
   /* height: 100vh; */
 }
 
 #title {
-  background: #3f0000;
+  background: #0c032e;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 #navbar {
-  background: #3f0000;
+  background: #0c032e;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: right;
   align-items: center;
 }
 
 #navbar a {
   text-decoration: none;
   color: white;
-  font-size: 3vw;
+  font-size: 2vw;
+  font-family: 'Jua', sans-serif;
+  margin-right: 3vw;
 }
 
 #content {
-  background: url(https://cdn.pixabay.com/photo/2014/11/30/17/15/theater-551797__340.jpg) no-repeat;
-  /* background: url(https://cdn.pixabay.com/photo/2014/03/25/16/30/movie-297239__340.png) no-repeat; */
+  /* background: url(https://cdn.pixabay.com/photo/2014/11/30/17/15/theater-551797__340.jpg) no-repeat; */
+  /* background: radial-gradient(white , rgba(47, 116, 206, 0.795)); */
+  background: #2195f37c;
   /* background: #484848; */
   grid-column: 1 / -1;
   display: fixed;
@@ -117,10 +122,9 @@ export default {
 }
 
 .liquid{
-  margin-top: 25px;
-  margin-bottom: 25px ;
+  padding-left: 5%;
   position: relative;
-  width: 100%;
+  width: 95%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -130,7 +134,7 @@ export default {
 }
 .liquid h1{
   position: absolute;
-  font-size: 5vw;
+  font-size: 4.5vw;
   font:bold;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-family: 'Black Han Sans', sans-serif;
@@ -147,18 +151,18 @@ export default {
   -18px 18px 50px rgba(0,0,0,0.5);
 }
 .liquid h1:nth-child(2) {
-  /* color: #2196f3; */
-  color: #606060;
+  color: #2196f3;
+  /* color: #606060; */
   opacity: 0.5;
   animation: animate 3s ease-in-out infinite;
 }
 .liquid h1:nth-child(3) {
-  color: #606060;
-  /* opacity: 0.5; */
+  color: #2196f3;
+  opacity: 0.5;
   animation: animate 5s ease-in-out infinite;
 }
 .liquid h1:nth-child(4) {
-  color: #606060;
+  color: #2196f3;
   opacity: 0.7;
   animation: animate 11s ease-in-out infinite;
 }
