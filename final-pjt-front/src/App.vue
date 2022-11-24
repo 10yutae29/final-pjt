@@ -79,6 +79,10 @@ export default {
   /* height: 100vh; */
 }
 
+#navbar a.router-link-exact-active {
+  color: #00ff51;
+}
+
 #title {
   background: #0c032e;
   display: flex;

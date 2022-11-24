@@ -159,6 +159,9 @@ export default {
 
 }
 
+#moviesview-sort *:hover{
+  color: rgb(255, 255, 255);  
+}
 
 .moviesview-grid{
   display: grid;
@@ -265,6 +268,10 @@ li {
 
 .dropdown-text{
   text-align: center;
+}
+
+.dropdown-text:hover{
+  color: rgb(107, 43, 255);
 }
 
 .search {
