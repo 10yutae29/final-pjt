@@ -1,17 +1,17 @@
 <template>
-  <div>
-    <h1>회원 가입</h1>
-    <form @submit.prevent="signUp">
-      <label for="username">아이디</label> <br>
-      <input type="text" name="username" id="username" v-model="username"> <br>
+  <div id="signup-view">
+    <h1 id="signup-title">회원 가입</h1>
+    <form id="signup-form" @submit.prevent="signUp">
+      <label id="signup-label" for="username">아이디</label> <br>
+      <input type="text" name="username" id="signup-input" v-model="username"> <br>
       <!-- <label for="userName">닉네임</label>
       <input type="text" name="userName" id="userName"> <br> -->
-      <label for="password1">비밀번호</label> <br>
-      <input type="text" name="password1" id="password1" v-model="password1"> <br>
-      <label for="password2">비밀번호 확인</label> <br>
-      <input type="text" name="password2" id="password2" v-model="password2"> <br>
+      <label id="signup-label" for="password1">비밀번호</label> <br>
+      <input type="text" name="password1" id="signup-input" v-model="password1"> <br>
+      <label id="signup-label" for="password2">비밀번호 확인</label> <br>
+      <input type="text" name="password2" id="signup-input" v-model="password2"> <br>
 
-      <input type="submit" value="회원가입">
+      <input id="signup-submit" type="submit" value="회원가입">
     </form>
   </div>
 </template>
@@ -45,5 +45,40 @@ export default {
 </script>
 
 <style>
+#signup-view {
+  display: grid;
+  grid-template-columns: 40% 20% 40%;
+  grid-template-rows: auto auto;
+}
+
+#signup-title{
+  grid-column: 2;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-top: 20px;
+  text-align: center;
+}
+
+#signup-form{
+  grid-column: 2;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-top: 10px;
+}
+
+#signup-input{
+  background: rgba(255, 255, 255, 0.15);
+}
+
+#signup-submit{
+  margin-top: 5px;
+  background: rgba(218, 165, 32, 0.421);
+}
+
+#signup-label{
+  margin-bottom: 3px;
+}
 
 </style>
