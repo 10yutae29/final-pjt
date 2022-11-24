@@ -1,10 +1,6 @@
 <template>
   <div class="recommendview-grid">
-    <div class="recommendview-name">
-        <h1>영화 추천</h1>
-    </div>
-
-
+  
     <!-- 이 div에는 selected_genres가 있을때 추천 영화를 출력 -->
     <div class="recommendview-recommend" v-if="recommend_movies.length">
       <div class="recommendview-items-button">
@@ -98,9 +94,9 @@ export default {
 .recommendview-grid{
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 100px auto;
+  grid-template-rows: auto;
   font-family: 'Jua', sans-serif;
-  
+  padding-top: 50px;
 }
 
 .recommendview-name{
@@ -129,7 +125,7 @@ export default {
 .recommendview-items{
   display: grid;
   grid-template-columns: 18% 18% 18% 18% 18%;
-  padding: 20px;
+  padding: 70px 20px 20px 20px;
   column-gap: 2.5%;
   row-gap: 20px;
 }
@@ -138,6 +134,16 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.recommendview-items-button button{
+  width:20%;
+  aspect-ratio: 5/1;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.705);
+  font-size: 1.7vw;
+  color: rgb(10, 0, 56);
+
 }
 
 .recommendview-random-items{
@@ -155,15 +161,21 @@ export default {
   justify-content: center;
 }
 
-.reset-random{
+.reset-random, .random-submit{
   display: flex;
   justify-content: center;
   align-items: center;
+  
+
 }
 
-.random-submit{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+.reset-random button , .random-submit button{
+  background: rgba(255, 255, 255, 0.705);
+  width: 20%;
+  aspect-ratio: 5/1;
+  font-size: 1.7vw; 
+  border-radius: 5px;
+  color: rgb(10, 0, 56);
 }
 </style>

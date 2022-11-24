@@ -159,11 +159,13 @@ export default {
 
 }
 
+
 .moviesview-grid{
   display: grid;
   grid-template-columns: 30% 40% 30%;
   grid-template-rows: 80px auto;
   font-family: 'Jua', sans-serif;
+  padding-top: 50px;
 }
 
 #moviesview-title{
@@ -204,7 +206,7 @@ export default {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: 18% 18% 18% 18% 18%;
-  padding: 20px;
+  padding: 50px 20px 20px 20px;
   column-gap: 2.5%;
   row-gap: 20px;
 }
