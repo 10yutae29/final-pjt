@@ -13,3 +13,12 @@ frontend
 cd final-pjt-front
 
 npm run serve
+
+
+db
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+python manage.py loaddata movies.json genres.json comments.json users.json
