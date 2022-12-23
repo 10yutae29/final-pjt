@@ -168,11 +168,19 @@ export default new Vuex.Store({
         data: {
           username: payload.username,
           password1: payload.password1,
-          password2: payload.password2
+          password2: payload.password2,
+          profile_image: payload.profile_image,
+          nickname: payload.nickname,
+          self_introduce: payload.self_introduce,
+          email: payload.email
+        },
+        headers: {
+          'Content-Type' : 'multipart/form-data',
         }
       })
       .then((response) => {
         context.commit('SAVE_TOKEN', response.data.key)
+        console.log('덴')
         axios({
           method: 'get',
           url: `${API_URL}/accounts/user/`,
@@ -188,6 +196,7 @@ export default new Vuex.Store({
         })
       })
       .catch((error) => {
+        console.log('캐치')
         console.log(error)
       })
     },
@@ -356,6 +365,28 @@ export default new Vuex.Store({
         console.log(error)
       })
     },
+    changeUser(context, changed_user_info) {
+      axios({
+        method: 'put',
+        url: `${API_URL}/accounts_detail/${this.state.logedin_user.pk}/userchange/`,
+        data: {
+          nickname: changed_user_info.nickname,
+          email: changed_user_info.email,
+          self_introduce: changed_user_info.self_introduce,
+          profile_image: changed_user_info.profile_image,
+        },
+        headers: {
+          Authorization: `Token ${context.state.token}`,
+          'Content-Type' : 'multipart/form-data',
+        },
+      })
+      .then(() => {
+        router.push('/userview/')
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    }
   },
   modules: {
   }

@@ -10,6 +10,7 @@ import PasswordChangeView from '../views/PasswordChangeView.vue'
 import MainView from '../views/MainView.vue'
 import store from '../store/index.js'
 import NotFound404 from '../views/NotFound404.vue'
+import UserChangeView from '../views/UserChangeView.vue'
 
 Vue.use(VueRouter)
 
@@ -58,6 +59,11 @@ const routes = [
     path: '/moviesview/:id',
     name: 'DetailView',
     component: DetailView
+  },
+  {
+    path: '/userchangeview/',
+    name: 'UserChangeView',
+    component: UserChangeView
   },
   {
     path:'*',

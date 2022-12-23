@@ -2,12 +2,13 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializers import UserDetailSerializers
+from .serializers import UserDetailSerializers, UserCangeSerializer
 from movies.serializers import MovieSerializer, MovieListSerializer
 from django.contrib.auth import get_user_model
 import random
 from movies.models import Genre, Movie, Prefer
 from itertools import chain
+from os import remove
 
 # # Create your views here.
 
@@ -66,7 +67,7 @@ def recommend(request, user_pk):
             if result_datas:
                 for result_data in result_datas:
                     all_genre_cnt += len(result_data)
-                 # 선호장르 개수가 3보다 작으면 모든 선호장르 리스트 반환
+                # 선호장르 개수가 3보다 작으면 모든 선호장르 리스트 반환
                 if all_genre_cnt < 4:
                     for result_data in result_datas:
                         for result_d in result_data:
@@ -127,3 +128,13 @@ def recommend(request, user_pk):
                 random_movie_querysets += list(chain(movies))
             serializer = MovieListSerializer(random_movie_querysets, many=True)
             return Response(serializer.data)
+
+@api_view(['PUT'])
+def userchange(request, user_pk):
+    user = get_user_model().objects.get(pk=user_pk)
+    if request.method == 'PUT':
+        serializer = UserCangeSerializer(user, data=request.data )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)

@@ -3,9 +3,18 @@
     <div id="userview-grid">
       <div id="user-block">
         <div>
-          <h1>안녕하세요 {{ user_detail?.username }} 님!</h1>
+          <h1>안녕하세요 <span class="nickname">{{ user_detail?.nickname }}</span>님!</h1>
+          <p>{{ user_detail?.username }}</p>
+          <div>
+            <h3>자기소개</h3>
+            <h5>{{ user_detail?.self_introduce }}</h5>
+            <h3>이메일</h3>
+            <h4>{{ user_detail?.email }} </h4>
+            <img class="profile_image" :src="`http://127.0.0.1:8000${user_detail?.profile_image}`" alt="">
+          </div>
         </div>
         <div class="user-block-btn">
+          <button @click="goChangeUser">회원 정보 변경</button>
           <button @click="goChangePassword">비밀번호 변경</button>
         </div>
       </div>
@@ -62,10 +71,14 @@ export default {
     getUserInfo() {
       console.log(this.user)
       this.$store.dispatch('getUserInfo', this.user.pk)
+    },
+    goChangeUser() {
+      this.$router.push('/userchangeview/')
     }
   },
   created() {
     this.getUserInfo()
+    console.log(this.user_detail)
   }
 }
 </script>
@@ -77,7 +90,7 @@ export default {
 #userview-grid{
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows: 20vh auto;
+  grid-template-rows: 70vh auto;
   background: rgba(14, 0, 75, 0.24);
   border: solid rgb(255, 255, 255) 0.5px;
   border-radius: 5px;
@@ -90,12 +103,16 @@ export default {
   grid-column: 1 / span 2;
   color: white;
   display: grid;
-  grid-template-rows: 50% 50%;
+  grid-template-rows: auto auto;
 }
 
 #comments{
   grid-column: 3 / span 2;
   color: white
+}
+
+.nickname{
+  color: rgb(0, 255, 174);
 }
 
 .like-movie-list-title{
@@ -135,5 +152,11 @@ export default {
 .user-block-btn button:hover{
   color: white;
   background: rgba(14, 0, 75, 0.24);
+}
+
+.profile_image{
+  width: 150px;
+  height: 150px;
+  border-radius: 5px;
 }
 </style>

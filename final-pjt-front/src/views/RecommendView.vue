@@ -65,7 +65,7 @@ export default {
   },
   data() {
     return {
-      picked_movies: []
+      picked_movies: [],
     }
   },
   methods: {
