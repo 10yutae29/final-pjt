@@ -61,7 +61,9 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     'dj_rest_auth.registration',
+    'allauth.socialaccount.providers.facebook',
 ]
 
 MIDDLEWARE = [
@@ -179,5 +181,7 @@ AUTH_USER_MODEL = 'accounts.User'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 MEDIA_URL ='/media/'
+
+DEFAULT_IMAGE_PATH = '/default_image.jpg'
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'

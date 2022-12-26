@@ -8,7 +8,8 @@ from django.contrib.auth import get_user_model
 import random
 from movies.models import Genre, Movie, Prefer
 from itertools import chain
-from os import remove
+
+
 
 # # Create your views here.
 
@@ -138,3 +139,4 @@ def userchange(request, user_pk):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors)
+
