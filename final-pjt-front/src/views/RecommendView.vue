@@ -2,7 +2,7 @@
   <div class="recommendview-grid">
   
     <!-- 이 div에는 selected_genres가 있을때 추천 영화를 출력 -->
-    <div class="recommendview-recommend" v-if="recommend_movies.length">
+    <div class="recommendview-recommend" v-if="recommend_movies?.length">
       <div class="recommendview-items-button">
         <button @click="getSelectedGenres">다른 영화 추천</button>
       </div>

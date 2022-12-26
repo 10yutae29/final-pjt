@@ -6,7 +6,6 @@ from django.db import transaction
 from rest_framework.response import Response
 from allauth.account.adapter import get_adapter
 
-
 class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -23,9 +22,9 @@ class UserDetailSerializers(serializers.ModelSerializer):
         fields = '__all__'
 
 class CustomRegisterSerializer(RegisterSerializer):
-    profile_image = serializers.ImageField(max_length=200, use_url=True)
+    profile_image = serializers.ImageField(max_length=200, use_url=True, default='/default_image.jpg')
     nickname = serializers.CharField(max_length=10)
-    self_introduce = serializers.CharField(max_length=30)
+    self_introduce = serializers.CharField(max_length=30, required=False)
 
     class Meta:
         model = get_user_model()
