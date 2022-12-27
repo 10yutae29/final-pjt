@@ -23,7 +23,21 @@ from rest_framework.viewsets import ModelViewSet
 
 @api_view(['GET'])
 def movie_list(request):
-    movies = Movie.objects.all()
+    selected_genre = request.GET.get('selected_genre')
+    sort =  request.GET.get('sort')
+    sort_direction = request.GET.get('sort_direction')
+
+    if selected_genre == '0':
+        if sort_direction=='1':
+            movies = Movie.objects.all().order_by(sort).reverse()
+        else:
+            movies = Movie.objects.all().order_by(sort)
+    else:
+        if sort_direction=='1':
+            movies = Movie.objects.filter(genres = selected_genre).order_by(sort).reverse()
+        else:
+            movies = Movie.objects.filter(genres = selected_genre).order_by(sort)
+    
     serializer = MovieSerializer(movies, many=True)
     return Response(serializer.data)
 

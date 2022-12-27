@@ -37,11 +37,6 @@ export default new Vuex.Store({
   mutations: {
     GET_MOVIES(state, movies) {
       state.movies = movies
-      state.movies_filtered = state.movies
-    },
-    SHOW_ALL(state){
-      state.movies_filtered = state.movies
-      state.sorting_genre = '보고싶은 장르를 선택하세요.'
     },
     SORT_GENRE(state, sort_genre){
       state.movies_filtered = state.movies.filter(movie => movie.genres.includes(sort_genre.id))
@@ -54,46 +49,6 @@ export default new Vuex.Store({
       state.movies_filtered = state.movies.filter(movie => movie.title.toLowerCase().includes(word))
       state.sorting_genre = '보고싶은 장르를 선택하세요.'
 
-    },
-    SCORE_UP(state) {
-      const movies_filtered = state.movies_filtered
-      movies_filtered.sort(function(a, b) {
-        return b.vote_average - a.vote_average
-      })
-    },
-    SCORE_DOWN(state) {
-      const movies_filtered = state.movies_filtered
-      movies_filtered.sort(function(a, b) {
-        return a.vote_average - b.vote_average
-      })
-    },
-    TITLE_UP(state) {
-      const movies_filtered = state.movies_filtered
-      movies_filtered.sort(function(a, b) {
-        if (a.title > b.title) return 1;
-    else if (b.title > a.title) return -1;
-    else return 0;
-      })
-    },
-    TITLE_DOWN(state) {
-      const movies_filtered = state.movies_filtered
-      movies_filtered.sort(function(a, b) {
-        if (a.title > b.title) return -1;
-    else if (b.title > a.title) return 1;
-    else return 0;
-      })
-    },
-    DATE_UP(state) {
-      const movies_filtered = state.movies_filtered
-      movies_filtered.sort(function(a, b) {
-        return new Date(b.release_date) - new Date(a.release_date)
-      })
-    },
-    DATE_DOWN(state) {
-      const movies_filtered = state.movies_filtered
-      movies_filtered.sort(function(a, b) {
-        return new Date(a.release_date) - new Date(b.release_date)
-      })
     },
     SAVE_TOKEN(state, token) {
       state.token = token
@@ -137,12 +92,18 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    getMovies(context) {
+    getMovies(context, datas) {
       axios({
         method: 'get',
-        url: `${API_URL}/movies/`
+        url: `${API_URL}/movies/`,
+        params: {
+          selected_genre: datas.genre,
+          sort: datas.sort,
+          sort_direction: datas.sort_direction,
+        }
       })
       .then(response => {
+        console.log(response)
         context.commit('GET_MOVIES', response.data) 
       })
       .catch(error => {

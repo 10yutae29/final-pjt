@@ -9,34 +9,25 @@
         </div>
       </div>
     </div>
-    
-    <div id="dropdown" class="dropdown">
-      <button id="dropdown-btn" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        {{ sorting_genre }}
-      </button>
-      <ul class="dropdown-menu">
-        <!-- <li class="dropdown-item"> -->
-          <li
-          class="dropdown-item dropdown-text"
-          @click="showAll"
-          >전체</li>
-          <GenresItem
-          v-for="genre in genres"
+
+    <label>
+      <select name="genre-filter" id="genre-filter" @change="getMovieData">
+        <option value=0>전체</option>
+        <option v-for="genre in genres"
           :key="genre.pk"
-          :genre="genre"
+          :value = "genre.id"
           class="dropdown-item dropdown-text"
-          />
-
-      </ul>
-    </div>
-
+          >{{ genre.name }}
+        </option>
+      </select> 
+    </label>
 
     <div id="moviesview-sort">
-      <span @click="scoreUp">평점</span> 
-      <span @click="titleUp">제목</span>
-      <span @click="dateUp">개봉일</span> 
-      <ion-icon v-if="sort_direction_info == 1" name="arrow-up-outline" class="sort" @click="sortUp"></ion-icon> 
-      <ion-icon v-if="sort_direction_info == 0" name="arrow-down-outline" class="sort" @click="sortDown"></ion-icon>
+      <button @click="sortMovie" value="vote_average">평점</button> 
+      <button @click="sortMovie" value="title">제목</button>
+      <button @click="sortMovie" value="release_date">개봉일</button> 
+      <ion-icon v-if="sort_direction == 0" name="arrow-up-outline" class="sort" @click="sortUpDown"></ion-icon> 
+      <ion-icon v-if="sort_direction == 1" name="arrow-down-outline" class="sort" @click="sortUpDown"></ion-icon>
     </div>
 
     <div class="moviesview-items">
@@ -51,101 +42,72 @@
 
 <script>
 import MoviesListItem from '@/components/MoviesListItem'
-import GenresItem from '@/components/GenresItem'
 
 export default {
   name: 'MoviesView',
   components:{
     MoviesListItem,
-    GenresItem
   },
   data() {
     return {
       search: '',
-      sortstatus: 1,
       sort_direction: 0,
+      sort_data: 'vote_average',
+      filtered_genre: '0'
     }
   },
   computed: {
     movieGo(){
-      return this.$store.state.movies_filtered
+      return this.$store.state.movies
     },
     genres() {
       return this.$store.state.genres
     },
-    sorting_genre(){
-      return this.$store.state.sorting_genre
-    },
-    sort_direction_info(){
-      return this.sort_direction
-    }
   },
   methods: {
-    getMovieData(){
-      this.$store.dispatch('getMovies')
+    getMovieData(event){
+      if(event){
+        this.filtered_genre = event.target.value
+        const datas = {
+          genre:event.target.value,
+          sort: 'vote_average',
+          sort_direction: this.sort_direction,
+        }
+        console.log(datas)
+        this.$store.dispatch('getMovies',datas)
+      } else{
+        const datas = {
+          genre: this.filtered_genre,
+          sort: this.sort_data,
+          sort_direction: this.sort_direction,
+        }
+        this.$store.dispatch('getMovies',datas)
+      }
+    },
+    sortMovie(event){
+      this.sort_data = event.target.value
+      this.getMovieData()
+    },
+    sortUpDown(){
+      if(this.sort_direction === 0) {
+        this.sort_direction = 1
+      } else {
+        this.sort_direction = 0
+      }
+      this.getMovieData()
     },
     searchFilter() {
       const word = this.search.toLowerCase()
       this.$store.commit('SEARCH_FILTER', word)
       this.sort_direction = 0
-
-    },
-    scoreUp() {
-      this.$store.commit('SCORE_UP')
-      this.sortstatus = 1
-      this.sort_direction = 0
-    },
-    scoreDown() {
-      this.$store.commit('SCORE_DOWN')
-      this.sort_direction = 1
-    },
-    titleUp() {
-      this.$store.commit('TITLE_UP')
-      this.sortstatus = 2
-      this.sort_direction = 0
-    },
-    titleDown() {
-      this.$store.commit('TITLE_DOWN')
-      this.sort_direction = 1
-    },
-    dateUp() {
-      this.$store.commit('DATE_UP')
-      this.sortstatus = 3
-      this.sort_direction = 0
-    },
-    dateDown() {
-      this.$store.commit('DATE_DOWN')
-      this.sort_direction = 1
     },
     activateSearch() {
-      
       const search = document.querySelector('.search')
       search.classList.toggle('active')
     },
-    showAll(){
-      this.$store.commit('SHOW_ALL')
-    },
-    sortDown(){
-      if (this.sortstatus == 1){
-        this.scoreDown()
-      } else if (this.sortstatus == 2){
-        this.titleDown()
-      } else if (this.sortstatus == 3){
-        this.dateDown()
-      }
-    },
-    sortUp(){
-      if (this.sortstatus == 1){
-        this.scoreUp()
-      } else if (this.sortstatus == 2){
-        this.titleUp()
-      } else if (this.sortstatus == 3){
-        this.dateUp()
-      }
-    }
   },
   created() {
-    this.showAll()
+    this.getMovieData()
   }
 }
 
